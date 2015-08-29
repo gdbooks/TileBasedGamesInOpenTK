@@ -15,4 +15,5 @@
 * Jumping
 * Clouds
 * Ladders
+* Simple Enemy
 
