@@ -20,4 +20,5 @@
 * Shooting
 * Getting Items
 * Moving Tiles
+* Scrolling
 
