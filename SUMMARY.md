@@ -3,7 +3,7 @@
 * [Introduction](README.md)
 * [Starting Out](Chapter1.md)
 * [Why Tiles?](Chapter2.md)
-* Map Format
+* [Map Format](Chapter3.md)
 * More Maps
 * Map Tools
 * Creating Tiles
