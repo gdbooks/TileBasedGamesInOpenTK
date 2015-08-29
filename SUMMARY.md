@@ -23,4 +23,5 @@
 * Scrolling
 * More Scrolling
 * Depth
+* Ismetric View
 
