@@ -30,4 +30,5 @@
 * Rotating Hero
 * Rotating Ground
 * Slopes
+* Hexagons
 
