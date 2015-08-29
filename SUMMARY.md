@@ -1,7 +1,5 @@
 # Summary
 
-* [Introduction](test.md/Introduction)
-* [Introduction](README.md/readmemd.md)
 * [Starting Out](Chapter1.md)
 * [Why Tiles?](Chapter2.md)
 * [Map Format](Chapter3.md)
