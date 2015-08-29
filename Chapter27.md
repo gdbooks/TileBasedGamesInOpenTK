@@ -1,1 +1,1 @@
-#Chapter 27
+#Chapter 27 - Rotating Hero
