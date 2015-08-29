@@ -25,4 +25,5 @@
 * Depth
 * Ismetric View
 * Mouse To Move
+* Iso Mouse
 
