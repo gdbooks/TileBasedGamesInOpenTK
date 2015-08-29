@@ -11,4 +11,5 @@
 * The Hero
 * Keys To Move
 * Hit The Wall
+* Open The Door
 
