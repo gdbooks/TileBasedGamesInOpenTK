@@ -27,4 +27,5 @@
 * Mouse To Move
 * Iso Mouse
 * Iso Scroll
+* Rotating Hero
 
