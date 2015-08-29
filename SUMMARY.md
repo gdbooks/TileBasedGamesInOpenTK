@@ -17,4 +17,5 @@
 * Ladders
 * Simple Enemy
 * More Enemy
+* Shooting
 
