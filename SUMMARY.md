@@ -1,7 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* Starting Out
+* [Starting Out](Chapter1.md)
 * Why Tiles?
 * Map Format
 * More Maps
