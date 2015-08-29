@@ -2,7 +2,7 @@
 
 * [Introduction](README.md)
 * [Starting Out](Chapter1.md)
-* Why Tiles?
+* [Why Tiles?](Chapter2.md)
 * Map Format
 * More Maps
 * Map Tools
