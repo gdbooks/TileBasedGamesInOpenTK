@@ -29,4 +29,5 @@
 * Iso Scroll
 * Rotating Hero
 * Rotating Ground
+* Slopes
 
