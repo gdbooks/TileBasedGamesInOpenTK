@@ -8,4 +8,5 @@
 * Map Tools
 * Creating Tiles
 * More Tiles
+* The Hero
 
