@@ -10,4 +10,5 @@
 * More Tiles
 * The Hero
 * Keys To Move
+* Hit The Wall
 
