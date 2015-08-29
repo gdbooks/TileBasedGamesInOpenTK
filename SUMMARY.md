@@ -18,4 +18,5 @@
 * Simple Enemy
 * More Enemy
 * Shooting
+* Getting Items
 
