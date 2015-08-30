@@ -22,12 +22,12 @@ So now that we have the definition of what an indevidual tile is, let's see if w
 protected Tile[][] map = null;
 protected Size mapSize = new Size(8, 6);
 protected int[][] mapLayout = new int[
-    new int[],
-    new int[],
-    new int[],
-    new int[],
-    new int[],
-    new int[]
+    new int[1, 1, 1, 1, 1, 1, 1, 1],
+    new int[1, 0, 0, 0, 0, 0, 0, 1],
+    new int[1, 0, 0, 0, 0, 0, 0, 1],
+    new int[1, 0, 0, 0, 0, 0, 0, 1],
+    new int[1, 0, 0, 0, 0, 0, 0, 1],
+    new int[1, 1, 1, 1, 1, 1, 1, 1]
 ];
 
 public void Initialize() {
