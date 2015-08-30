@@ -17,3 +17,24 @@ class Tile {
 
 ###Game map
 So now that we have the definition of what an indevidual tile is, let's see if we can make a map. The ```map``` variable lives inside your ```Game``` class, *NOT* inside of the ```Tile``` class.
+
+```
+protected Tile[][] map = null;
+protected Size mapSize = new Size(8, 6);
+protected int[][] mapLayout = new int[
+    new int[],
+    new int[],
+    new int[],
+    new int[],
+    new int[],
+    new int[]
+];
+
+public void Initialize() {
+    map = new Tile[mapSize.Width][];
+    for (int i = 0; i < mapSize.Width; ++i) {
+        map[i] = new Tile[mapSize.Height];
+    }
+}
+
+```
