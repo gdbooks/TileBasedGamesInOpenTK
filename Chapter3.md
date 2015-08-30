@@ -26,16 +26,14 @@ if (game_map[tileX][tileY].IsWalkable) {
 However there is a downside to this method of doing things. It becomes pretty complicated to save the map data. You can't really serialize a two dimensional array of objects to a text file cleanly.
 
 
-**Integers**
-
-
-#Map Manager
+**Integers**: The other option is to create a two dimensional array of integers. Each integer represents a tile type. How would you figure out if a given tile is walkable or not, how would you get the sprite of a tile if we just stored a 2D array of integers? Well, you would need to create a TileManager (Singleton), something like this:
 
 ```
-class MapManager {
+class TileManager {
     private List<int> sprites = null;
     
     public int AddTile();
     public void SetSprite(int tile, int spriteId);
 }
 ```
+
