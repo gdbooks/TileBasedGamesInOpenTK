@@ -5,7 +5,7 @@
 * [Why Tiles?](Chapter2.md)
 * [Map Format](Chapter3.md)
 * [Creating Tiles](Chapter6.md)
-   * On Your Own
+   * [On Your Own](Practice/PracticeCh6.md)
 * [Map Tools](Chapter5.md)
 * [More Tiles](Chapter7.md)
 * [The Hero](Chapter8.md)
