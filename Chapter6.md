@@ -6,17 +6,11 @@ The first thing we need is a tile object. For now each object will have two prop
 
 ```
 class Tile {
-    private int sprite = -1;
-    
+    public int Sprite { get; private set; }
     public bool Walkable { get; set; }
     
-    public int Sprite {
-        get {
-            return sprite;
-        }
-        set {
-        
-        }
+    public Tile(string spritePath) {
+        Sprite = TextureManager.Instance.LoadTexture(Sprite);
     }
 }
 ```
