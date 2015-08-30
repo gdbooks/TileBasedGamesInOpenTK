@@ -14,3 +14,6 @@ class Tile {
     }
 }
 ```
+
+###Game map
+So now that we have the definition of what an indevidual tile is, let's see if we can make a map. The ```map``` variable lives inside your ```Game``` class, *NOT* inside of the ```Tile``` class.
