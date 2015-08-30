@@ -27,12 +27,7 @@ Now that we know we're storing the map in a 2D array, the big question is what t
 class MapManager {
     private List<int> sprites = null;
     
-    public int AddTile() {
-        sprites.Add(-1);
-    }
-    
-    public void SetSprite(int tile, int spriteId) {
-        
-    }
+    public int AddTile();
+    public void SetSprite(int tile, int spriteId);
 }
 ```
