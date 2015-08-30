@@ -11,3 +11,6 @@ for (int i = 0; i < twoDim.Length; ++i) {
     twoDim[i] = new int[5];
 }
 ```
+
+###Map data
+Now that we know we're storing the map in a 2D array, the big question is what the data type of the array supposed to be?
