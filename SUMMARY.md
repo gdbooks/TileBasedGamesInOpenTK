@@ -4,7 +4,6 @@
 * [Starting Out](Chapter1.md)
 * [Why Tiles?](Chapter2.md)
 * [Map Format](Chapter3.md)
-* [More Maps](Chapter4.md)
 * [Creating Tiles](Chapter6.md)
 * [Map Tools](Chapter5.md)
 * [More Tiles](Chapter7.md)
