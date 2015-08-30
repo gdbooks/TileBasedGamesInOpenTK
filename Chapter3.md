@@ -1,4 +1,5 @@
 #Map Format
+Knowing why we're going to use tiles, let's talk about how we are going to be treating them. One of the most important things in any good tile based game is the map. The map contains our tile data, the levels layout as well as information about each tile. Let's explore different ways we can represent this map.
 
 ###Two dimensional arrays
 I'm going to talk about two dimensional arrays a LOT. You will quickly find that i don't mean proper C# 2D arrays. I don't EVER use those. 
