@@ -31,9 +31,37 @@ However there is a downside to this method of doing things. It becomes pretty co
 ```
 class TileManager {
     private List<int> sprites = null;
+    private List<bool> walkable = null;
+    // One list for each property
     
-    public int AddTile();
-    public void SetSprite(int tile, int spriteId);
+    // Singleton code & constructor that creates lists
+    
+    public int AddTile() {
+        sprites.Add(-1);
+        walkable.Add(false);
+    }
+    
+    public void SetWalkable(int tile, bool canWalk) {
+        walkable[tile] = canWalk;
+    }
+    
+    public bool GetWalkable(int tile) {
+        return walkable[tile];
+    }
+    
+    // Getters / setters for other properties
 }
 ```
 
+Using this method we would find out if a tile is walkable like so:
+
+```
+if (TileManager.Instance.GetWalkable(game_map[tileX][tileY])) {
+    DoWalk();
+}
+```
+
+As you can see, the code has become a LOT more verbose. At runtime we need to do a considerable amount of typing to achieve the same thing as we did with objects. So, is there an upside to this method? Yes, writing the map to a file and reading it back becomes dead simple! We write a few lists, and a two dimensional array to our saved map file. It's quick and easy!
+
+##Next Steps
+Having some context on the two main methods of storing tile info, i want you to take a few minutes and think about how you would do things. Which method makes more sense to you? What's more important, having clear code and messy data or having messy code and clear data? There is no silver bullet for anything in programming, everything is a compromise, it's your job as a programmer to find the best option.
