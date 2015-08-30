@@ -14,3 +14,15 @@ for (int i = 0; i < twoDim.Length; ++i) {
 
 ###Map data
 Now that we know we're storing the map in a 2D array, the big question is what the data type of the array supposed to be?
+
+#Map Manager
+
+```
+class MapManager {
+    private List<int> sprites = null;
+    
+    public int AddTile();
+    
+    public void SetSprite(int tile, int spriteId);
+}
+```
