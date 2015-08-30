@@ -15,7 +15,15 @@ for (int i = 0; i < twoDim.Length; ++i) {
 ###Map data
 Now that we know we're storing the map in a 2D array, the big question is what the data type of the array supposed to be? With the map we want to have tiles have properties, these should denote things like Is the tile walkable, what sprite should the tile use? etc... We have two options to storing map data:
 
-**Tile Object**: It only makes sense to create a tile object. This object could have member variables denoting IsWalkable, RenderSprite, etc...
+**Tile Object**: It only makes sense to create a tile object. This object could have member variables denoting IsWalkable, RenderSprite, etc... Tile objects have the advantage of being easy to use. Want to check if an object is walkable? It's as simple as:
+
+```
+if (game_map[tileX][tileY].IsWalkable) {
+    DoWalk();
+}
+```
+
+However there is a downside to this method of doing things. It becomes pretty complicated to save the map data. You can't really serialize a two dimensional array of objects to a text file cleanly.
 
 
 **Integers**
