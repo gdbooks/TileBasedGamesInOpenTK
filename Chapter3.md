@@ -13,7 +13,13 @@ for (int i = 0; i < twoDim.Length; ++i) {
 ```
 
 ###Map data
-Now that we know we're storing the map in a 2D array, the big question is what the data type of the array supposed to be?
+Now that we know we're storing the map in a 2D array, the big question is what the data type of the array supposed to be? With the map we want to have tiles have properties, these should denote things like Is the tile walkable, what sprite should the tile use? etc... We have two options to storing map data:
+
+**Tile Object**: It only makes sense to create a tile object. This object could be responsible for 
+
+
+**Integers**
+
 
 #Map Manager
 
@@ -21,8 +27,11 @@ Now that we know we're storing the map in a 2D array, the big question is what t
 class MapManager {
     private List<int> sprites = null;
     
-    public int AddTile();
+    public int AddTile() {
+        sprites.Add(-1);
+    }
     
-    public void SetSprite(int tile, int spriteId);
+    public void SetSprite(int tile, int spriteId) {
+    
 }
 ```
