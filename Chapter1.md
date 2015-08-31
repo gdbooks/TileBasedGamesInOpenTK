@@ -22,7 +22,7 @@ Lets also add an Assets folder next to the solution. This is where we are going 
 
 TODO: STep 4, i don't have screenshot yet.
 
-Don't forget to set your working directory
+Don't forget to set your working directory (MAKE SURE TO EXPLAIN HOW THIS IS SHARED)
 Make sure you have latest!
 GABOR TODO: Submit nearest neighbor changelist
 
