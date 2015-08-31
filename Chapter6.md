@@ -5,7 +5,7 @@ The last section left off with an open ended question. What's more important cle
 I'm going to be using [this zelda tile set](https://dl.dropboxusercontent.com/u/48598159/ZeldaTiles.zip) for the tutorial. Download it, and unzip the textures into your "Assets" directory. All of the sprite sheets in that folder are already a power of two.
 
 ###New Project
-Create a new project, call it "_Creating Tiles_" and make the standard window appear. Don't forget to set your working directory correctly. Follow this chapter along in this new solution.
+Create a new project, call it **CreatingTiles** and make the standard window appear. Don't forget to set your working directory correctly. Follow this chapter along in this new solution.
 
 ###Tile Object
 The first thing we need is a tile object. For now each object will have two properties, a sprite to display and a boolean to dictate if we can walk on it or not. In the future we will add properties to this tile definition as needed (eq: IsDestructable, IsHidden, etc...). The name of this class is going to simply be ```Tile```:
