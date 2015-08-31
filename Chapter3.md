@@ -6,7 +6,7 @@ I'm going to talk about two dimensional arrays a LOT. You will quickly find that
 
 When i talk about a 2D array i'm talking about a jagged array. An array of arrays, like so:
 
-```
+```cs
 int[][] twoDim = new int[5];
 for (int i = 0; i < twoDim.Length; ++i) {
     twoDim[i] = new int[5];
@@ -18,7 +18,7 @@ Now that we know we're storing the map in a 2D array, the big question is what t
 
 **Tile Object**: It only makes sense to create a tile object. This object could have member variables denoting IsWalkable, RenderSprite, etc... Tile objects have the advantage of being easy to use. Want to check if an object is walkable? It's as simple as:
 
-```
+```cs
 if (game_map[tileX][tileY].IsWalkable) {
     DoWalk();
 }
@@ -29,7 +29,7 @@ However there is a downside to this method of doing things. It becomes pretty co
 
 **Integers**: The other option is to create a two dimensional array of integers. Each integer represents a tile type. How would you figure out if a given tile is walkable or not, how would you get the sprite of a tile if we just stored a 2D array of integers? Well, you would need to create a TileManager (Singleton), something like this:
 
-```
+```cs
 class TileManager {
     private List<int> sprites = null;
     private List<bool> walkable = null;
@@ -56,7 +56,7 @@ class TileManager {
 
 Using this method we would find out if a tile is walkable like so:
 
-```
+```cs
 if (TileManager.Instance.GetWalkable(game_map[tileX][tileY])) {
     DoWalk();
 }
