@@ -28,7 +28,10 @@ class Tile {
     }
 
     public void Render() {
-        TextureManager.Instance.Draw(Sprite, new Point(WorldPosition.X, WorldPosition.Y), Scale, Source);
+        Point renderPosition = new Point(WorldPosition.X, WorldPosition.Y);
+        renderPosition.X = (int)(renderPosition.X * Scale);
+        renderPosition.Y = (int)(renderPosition.Y * Scale);
+        TextureManager.Instance.Draw(Sprite, renderPosition, Scale, Source);
     }
 
     public void Destroy() {
