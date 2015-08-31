@@ -82,25 +82,27 @@ Why did we add two arrays? Well, map layout refers to tiles by numbers, each num
 We now have all the information we need to build the map array. Let's create a helper function and call it in initialize.
 
 ```
-Tile[][] GenerateMap(int[][] layout, string[] sheets, string[] sources) {
+Tile[][] GenerateMap(int[][] layout, string[] sheets, Rectangle[] sources) {
     Tile[][] result = new Tile[layout.Length][];
-    
+    float scale = 50.0f;
+
     for (int i = 0; i < layout.Length; ++i) {
         result[i] = new Tile[layout[i].Length];
-        
+
         for (int j = 0; j < layout[i].Length; ++j) {
             string sheet = sheets[layout[i][j]];
-            string source = sheets[layout[i][j]];
+            Rectangle source = sources[layout[i][j]];
+            Point worldPosition = new Point();
+            worldPosition.X = (int)(i * source.Width * scale);
+            worldPosition.Y = (int)(j * source.Height * scale);
+
             result[i][j] = new Tile(sheet, source);
-            
             result[i][j].Walkable = layout[i][j] == 0;
-            result[i][j].WorldPosition.X = i * source.Width;
-            result[i][j].WorldPosition.Y = j * source.Height;
-            
-            result[i][j].Scale = 50;
+            result[i][j].WorldPosition = worldPosition;
+            result[i][j].Scale = scale;
         }
     }
-    
+
     return result;
 }
 
