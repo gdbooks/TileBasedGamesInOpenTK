@@ -23,5 +23,7 @@ Lets also add an Assets folder next to the solution. This is where we are going 
 TODO: STep 4, i don't have screenshot yet.
 
 Don't forget to set your working directory
+Make sure you have latest!
+GABOR TODO: Submit nearest neighbor changelist
 
 Go ahead and commit this, we now have a repo to work out of.
