@@ -16,6 +16,8 @@ We are going to be re-using the **Assets/HouseTiles.png** sprite sheet for this 
 
 TODO: Include generated breakdown image
 
+There are a lot of different ways to represent a tile map in memory, i strongly urge you to use the method we used in **CreatingTiles**. That is make a multidimensional array for the map layout, which indexes into two regular arrays for the sprite sheet names and sprite regions on the sheets.
+
 ###Goal
 Given the above information try to recreate this room:
 
@@ -23,7 +25,10 @@ TODO: Room render
 
 Make sure that your window is a tight fit to the room
 
+###Extra Credit
+This next part is optional, i suggest doing it as the extra practice tends to help.
 
+Create another new solution, call it **TilePractice2**, repeat everything you just did, except instead of re-creating my room design design your own room using the sprite sheet. The room can be as big or as small as you want it to be.
 
 ##Checkin
 Before moving onto the next section check in with me. I want to look over the code for both **CreatingTiles** and **TilePractice**
