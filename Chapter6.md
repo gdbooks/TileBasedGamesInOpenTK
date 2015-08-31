@@ -6,7 +6,7 @@ https://dl.dropboxusercontent.com/u/48598159/ZeldaTiles.zip
 ###Tile Object
 The first thing we need is a tile object. For now each object will have two properties, a sprite to display and a boolean to dictate if we can walk on it or not. In the future we will add properties to this tile definition as needed (eq: IsDestructable, IsHidden, etc...). The name of this class is going to simply be ```Tile```:
 
-```
+```cs
 class Tile {
     public int Sprite { get; private set; }
     public Rectangle Source { get; private set; }
@@ -37,7 +37,7 @@ class Tile {
 ###Game map
 So now that we have the definition of what an individual tile is, let's see if we can make a map. The ```map``` should be in a game class, you should be able to figure out how to add a game instance to the window.
 
-```
+```cs
 class Game {
     protected Tile[][] map = null;
     protected int[][] mapLayout = new int[][] {
@@ -58,7 +58,7 @@ As your game gets more and more complicated it may not be possible to store data
 
 Now that we know what the map is going to look like, the next step is to actually load the map in! In order to create a tile object we need to know two things, the sprite sheet it's going to be on and the rectangle on that sheet. Before going any further, lets also add this meta-data to the game class
 
-```
+```cs
 class Game {
     protected Tile[][] map = null;
     protected int[][] mapLayout = new int[][] {
@@ -85,7 +85,7 @@ Why did we add two arrays? Well, map layout refers to tiles by numbers, each num
 
 We now have all the information we need to build the map array. Let's create a helper function and call it in initialize.
 
-```
+```cs
 Tile[][] GenerateMap(int[][] layout, string[] sheets, Rectangle[] sources) {
     Tile[][] result = new Tile[layout.Length][];
     float scale = 6.0f;
@@ -115,11 +115,12 @@ public void Initialize() {
     map = GenerateMap(mapLayout, spriteSheets, spriteSources);
 }
 ```
+
 With ```GenerateMap``` containing all of the logic for initializing tiles you can imagine that it's going to get more complicated as your tiles get more complicated. This is the expected behaviour, it's just something to keep in mind. 
 
 With all of that in place, i think we are ready to render our tiles! Because the tile class has a ```Render``` method that takes care of it's own rendering, this is going to be super simple. Inside the **Game** classes ```Render``` function just call ```Render``` on every tile:
 
-```
+```cs
 public void Render() {
     for (int h = 0; h < map.Length; ++h) {
         for (int w = 0; w < map[h].Length; ++w) {
@@ -129,14 +130,12 @@ public void Render() {
 }
 ```
 
-![SCREEN1](Images/sample1.PNG)
-
 The game should now look like this:
 
-
+<img src="Images/sample1.PNG" width="408" height="325" />
 
 Don't forget, each tile loaded a sprite, we must now unload these!
-```
+```cs
 public void Shutdown() {
     for (int h = 0; h < map.Length; ++h) {
         for (int w = 0; w < map[h].Length; ++w) {
