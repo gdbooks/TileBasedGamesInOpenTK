@@ -45,14 +45,16 @@ Lets see what the **Variables** do:
 * Sprite - Once loaded, this is a reference to the sprite sheet we will be rendering
 * Source - What section of the sprite sheet do we want to display
 * Walkable - Can the player walk on this tile
-* WorldPosition - What X / Y should the tile render at. Does NOT respect scale
+* WorldPosition - What X / Y should the tile render a, this respects scale
 * Scale - We might want to scale the tile to display on a larger screen
+  * If we have a tile of size 16 at x position 2, it will draw at pixel 2 with a width of 16
+  * The same (width 16, x 2) with a scale of 2 it will render at piel 4 with a width of 32
 
 The **constructor** takes the path to a sprite sheet and a rectangle of the subsprite that represents this tile. It sets the appropriate member variables, and sets the rest to defaults.
 
 Because the constructor called ```LoadTexture``` we must also call ```UnloadTexture```. The **Destroy** method serves this purpose. Once the Tile is no longer needed the Destroy function should be called.
 
-The **Render** function is super simple, it just uses all the members we have to render the sprite. It's a simple wrapper for the ```Draw``` function of _TextureManager_
+The **Render** function is super simple, it just uses all the members we have to render the sprite. It's a simple wrapper for the ```Draw``` function of _TextureManager_. The only work render does is to account for scaling and world position.
 
 ###Map Data
 So now that we have the definition of what an individual tile is, let's see if we can make a map. The ```map``` should be in a game class, you should be able to figure out how to add a game instance to the window.
