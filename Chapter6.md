@@ -71,8 +71,8 @@ class Game {
         "TODO/Path2.png"
     };
     protected Rectangle[] spriteSources = new Rectangle[] {
-        new Rectangle(0,0,10,10);
-        new Rectangle(10,10,20,20);
+        new Rectangle(120,1,16,16);
+        new Rectangle(10,10,16,16);
     };
 }
 ```
@@ -96,6 +96,8 @@ Tile[][] GenerateMap(int[][] layout, string[] sheets, string[] sources) {
             result[i][j].Walkable = layout[i][j] == 0;
             result[i][j].WorldPosition.X = i * source.Width;
             result[i][j].WorldPosition.Y = j * source.Height;
+            
+            result[i][j].Scale = 50;
         }
     }
     
