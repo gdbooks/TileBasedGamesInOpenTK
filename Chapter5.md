@@ -1,5 +1,11 @@
 #Chapter 5 - Map Tools
 
+###Online Tilemap Editor
+The [Online Tilemap Editor](http://apps.elias.media/Online-Tile-Map-Editor/) is an HTML5 tile editor you can use right from your browser! Even more impressive, it's Open Source and on [Github](https://github.com/elias-schuett/Online-Tile-Map-Editor). I like this editor because it's fast, easy and doesn't require any installation. I dislike the data output format, the final output needs a lot of love for it to be usable.
+
+###Using Online Tilemap Editor
+
+TODO
 
 ###Array Painter
 By far the simplest tool I've found has been a little Java Applet called [Array Painter](http://www.arraypainter.com/). I made a local backup of it's JAR file in case it ever goes offline. This is what the application looks like:
