@@ -129,7 +129,7 @@ public void Render() {
 }
 ```
 
-// TODO: Wrap up & Screen Shot
+![SCREEN1](Images/sample1.PNG)
 
 The game should now look like this:
 
