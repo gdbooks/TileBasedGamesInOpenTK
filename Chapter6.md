@@ -144,3 +144,10 @@ public void Shutdown() {
     }
 }
 ```
+
+###Window size
+If you want the tiles to fill out the full window, set the ClientSize of the window to **16 \* 6 \* 8** by **16 \* 6 \* 6**.
+
+* 16 - width of sprite
+* 6 - how much we scaled the sprites up by
+* 8 / 6 - How many sprites we have horizontally (8) and vertically(6)
