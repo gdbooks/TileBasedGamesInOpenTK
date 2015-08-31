@@ -99,8 +99,8 @@ class Game {
         "Assets/HouseTiles.png"
     };
     protected Rectangle[] spriteSources = new Rectangle[] {
-        new Rectangle(18,18,16,16),
-        new Rectangle(120,86,16,16)
+        new Rectangle(480,34,30,30),
+        new Rectangle(480,1,30,30)
     };
 }
 ```
@@ -113,10 +113,7 @@ We now have all the information we need to build the map array. Some information
 ```cs
 Tile[][] GenerateMap(int[][] layout, string[] sheets, Rectangle[] sources) {
     Tile[][] result = new Tile[layout.Length][];
-    
-    // By default tiles are 16x16 which is tiny. Let's scale by 6 uniformly.
-    // new tile size is 96x96, which is much easyer to see
-    float scale = 6.0f;
+    float scale = 1.0f;
 
     for (int i = 0; i < layout.Length; ++i) {
         result[i] = new Tile[layout[i].Length];
@@ -127,11 +124,13 @@ Tile[][] GenerateMap(int[][] layout, string[] sheets, Rectangle[] sources) {
             string sheet = sheets[layout[i][j]];
             Rectangle source = sources[layout[i][j]];
             
-            // We have to figure out world position, don't forget to
-            // take sprite scaling into consideration when doing this!
+            // We don't have to take scale into account, but we do need
+            // to space our grid out accordingly. It might be smart to have
+            // a width and height that's a constant, right now we are assuming
+            // that all of the passed in rect's in sources will have a uniform size
             Point worldPosition = new Point();
-            worldPosition.X = (int)(j * source.Width * scale);
-            worldPosition.Y = (int)(i * source.Height * scale);
+            worldPosition.X = (int)(j * source.Width);
+            worldPosition.Y = (int)(i * source.Height);
 
             result[i][j] = new Tile(sheet, source);
             result[i][j].Walkable = layout[i][j] == 0;
@@ -174,7 +173,7 @@ public void Render() {
 
 The game should now look like this:
 
-<img src="Images/sample1.PNG" width="408" height="325" />
+<img src="Images/sample1_new.PNG" width="408" height="325" />
 
 ###Cleanup
 Don't forget, each tile loaded a sprite, we must now unload these!
@@ -189,8 +188,11 @@ public void Shutdown() {
 ```
 
 ###Window size
-If you want the tiles to fill out the full window, set the ClientSize of the window to **16 \* 6 \* 8** by **16 \* 6 \* 6**.
+If you want the tiles to fill out the full window, set the ClientSize of the window to **30 \* 8** by **30 \* 6**.
 
-* 16 - width of sprite
-* 6 - how much we scaled the sprites up by
+* 30 - width / height of sprite
 * 8 / 6 - How many sprites we have horizontally (8) and vertically(6)
+
+If our sprites had a scale factor to them, we would take that into account as well. Here is what the game looks like with the window size adjusted:
+
+![SAMPLE2](Images/sample2.PNG)
