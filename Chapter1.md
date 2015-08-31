@@ -18,4 +18,8 @@ STEP3
 
 Also, before we do anything else, add a .gitignore file. Use the [Visual Studio](https://github.com/github/gitignore/blob/master/VisualStudio.gitignore) template. 
 
+Lets also add an Assets folder next to the solution. This is where we are going to keep all shared game assets. All in all your folder structre should look like this:
+
+TODO: STep 4, i don't have screenshot yet.
+
 Go ahead and commit this, we now have a repo to work out of.
