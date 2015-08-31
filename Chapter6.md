@@ -88,7 +88,7 @@ We now have all the information we need to build the map array. Let's create a h
 ```
 Tile[][] GenerateMap(int[][] layout, string[] sheets, Rectangle[] sources) {
     Tile[][] result = new Tile[layout.Length][];
-    float scale = 50.0f;
+    float scale = 6.0f;
 
     for (int i = 0; i < layout.Length; ++i) {
         result[i] = new Tile[layout[i].Length];
@@ -97,8 +97,8 @@ Tile[][] GenerateMap(int[][] layout, string[] sheets, Rectangle[] sources) {
             string sheet = sheets[layout[i][j]];
             Rectangle source = sources[layout[i][j]];
             Point worldPosition = new Point();
-            worldPosition.X = (int)(i * source.Width * scale);
-            worldPosition.Y = (int)(j * source.Height * scale);
+            worldPosition.X = (int)(j * source.Width * scale);
+            worldPosition.Y = (int)(i * source.Height * scale);
 
             result[i][j] = new Tile(sheet, source);
             result[i][j].Walkable = layout[i][j] == 0;
@@ -111,6 +111,7 @@ Tile[][] GenerateMap(int[][] layout, string[] sheets, Rectangle[] sources) {
 }
 
 public void Initialize() {
+    TextureManager.Instance.UseNearestFiltering = true;
     map = GenerateMap(mapLayout, spriteSheets, spriteSources);
 }
 ```
@@ -120,13 +121,23 @@ With all of that in place, i think we are ready to render our tiles! Because the
 
 ```
 public void Render() {
-    for (int i = 0; i < map.Length; ++i) {
-        for (int j = 0; j < map[i].Length; ++j) {
-            float scale = map[i][j].Scale;
-            map[i][j].Render((int)(i * scale), (int)(j * scale));
+    for (int h = 0; h < map.Length; ++h) {
+        for (int w = 0; w < map[h].Length; ++w) {
+            map[h][w].Render();
         }
     }
 }
 ```
 
 // TODO: Wrap up & Screen Shot
+
+Don't forget, each tile loaded a sprite, we must now unload these!
+```
+public void Shutdown() {
+    for (int h = 0; h < map.Length; ++h) {
+        for (int w = 0; w < map[h].Length; ++w) {
+            map[h][w].Destroy();
+        }
+    }
+}
+```
