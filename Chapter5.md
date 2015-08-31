@@ -24,7 +24,7 @@ There is a catch tough, windows has blocked jnlp applets by default. To launch t
 
 ###Using Array Painter
 
-###A Better Tool?
+##A Better Tool?
 All of the tools we've explored in this chapter are pretty nifty, but let's face it none of them are a slam dunk one stop solution for us. This is just the nature of tools, there is no such thing as really generic. If you feel like being a bad-ass you can write your own tool for editing maps. I for one would love to see a more up to date and useful version of Array Painter. It's a project i might actually take on one day.
 
 Making a tile editor is not required, but if you feel up to it it's a fun little side project and a great review of using Windows Forms. 
