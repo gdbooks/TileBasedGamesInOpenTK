@@ -67,12 +67,12 @@ class Game {
     };
     
     protected string[] spriteSheets = new string[] {
-        "TODO/Path1.png",
-        "TODO/Path2.png"
+        "Assets/HouseTiles.png",
+        "Assets/HouseTiles.png"
     };
     protected Rectangle[] spriteSources = new Rectangle[] {
-        new Rectangle(120,1,16,16);
-        new Rectangle(10,10,16,16);
+        new Rectangle(120,1,16,16),
+        new Rectangle(120,86,16,16)
     };
 }
 ```
