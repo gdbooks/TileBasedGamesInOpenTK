@@ -22,7 +22,7 @@ class Tile {
         Scale = 1.0f;
     }
 
-    void Render(int x, int y) {
+    public void Render(int x, int y) {
         TextureManager.Instance.Draw(Sprite, new Point(x, y), Scale, Source);
     }
 }
