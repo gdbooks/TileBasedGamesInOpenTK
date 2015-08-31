@@ -118,7 +118,8 @@ With all of that in place, i think we are ready to render our tiles! Because the
 public void Render() {
     for (int i = 0; i < map.Length; ++i) {
         for (int j = 0; j < map[i].Length; ++j) {
-            map[i][j].Render();
+            float scale = map[i][j].Scale;
+            map[i][j].Render((int)(i * scale), (int)(j * scale));
         }
     }
 }
