@@ -131,6 +131,10 @@ public void Render() {
 
 // TODO: Wrap up & Screen Shot
 
+The game should now look like this:
+
+
+
 Don't forget, each tile loaded a sprite, we must now unload these!
 ```
 public void Shutdown() {
