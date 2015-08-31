@@ -146,6 +146,14 @@ public void Initialize() {
 
 With ```GenerateMap``` containing all of the logic for initializing tiles you can imagine that it's going to get more complicated as your tiles get more complicated. This is the expected behaviour, it's just something to keep in mind. 
 
+Initialize calls a method of TextureManager we have not talked about yet:
+
+```
+TextureManager.Instance.UseNearestFiltering = true;
+```
+
+What does this do? Filtering is applied when an image is loaded. If filtering uses nearest, then everything resizes in a pixelated fashion. This is how you get pixel perfect images. If nearest filtering is NOT used then anti aliasing is applied to textures that are resized. This MAY cause blurry looking textures.
+
 ###Displaying the Map
 With all of that in place, i think we are ready to render our tiles! Because the tile class has a ```Render``` method that takes care of it's own rendering, this is going to be super simple. Inside the **Game** classes ```Render``` function just call ```Render``` on every tile:
 
