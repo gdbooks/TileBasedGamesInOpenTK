@@ -27,3 +27,7 @@ Make sure you have latest!
 GABOR TODO: Submit nearest neighbor changelist
 
 Go ahead and commit this, we now have a repo to work out of.
+
+
+#TODO
+Creating tiles: Upload final zip!
