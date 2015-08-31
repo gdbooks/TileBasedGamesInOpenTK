@@ -1,6 +1,8 @@
 #Creating Tiles
 The last section left off with an open ended question. What's more important clean code and messy data, or messy code and clean data? Seeing how we're making a game, not a tool i would say having clean code take priority. Games are complicated beasts, it's hard enough to make a game when you write good code, let's not over complicate the code needed for the sake of data.
 
+https://dl.dropboxusercontent.com/u/48598159/ZeldaTiles.zip
+
 ###Tile Object
 The first thing we need is a tile object. For now each object will have two properties, a sprite to display and a boolean to dictate if we can walk on it or not. In the future we will add properties to this tile definition as needed (eq: IsDestructable, IsHidden, etc...). The name of this class is going to simply be ```Tile```:
 
@@ -10,16 +12,18 @@ class Tile {
     public Rectangle Source { get; private set; }
     public Point WorldPosition { get; set; }
     public bool Walkable { get; set; }
-    
+    public float Scale { get; set; }
+
     public Tile(string spritePath, Rectangle sourceRect) {
-        Sprite = TextureManager.Instance.LoadTexture(Sprite);
+        Sprite = TextureManager.Instance.LoadTexture(spritePath);
         Source = sourceRect;
         Walkable = false;
-        WorldPosition = new Point(0,0);
+        WorldPosition = new Point(0, 0);
+        Scale = 1.0f;
     }
-    
-    void Render() {
-        // TODO: Render logic
+
+    void Render(int x, int y) {
+        TextureManager.Instance.Draw(Sprite, new Point(x, y), Scale, Source);
     }
 }
 ```
@@ -32,14 +36,14 @@ So now that we have the definition of what an individual tile is, let's see if w
 ```
 class Game {
     protected Tile[][] map = null;
-    protected int[][] mapLayout = new int[
-        new int[1, 1, 1, 1, 1, 1, 1, 1],
-        new int[1, 0, 0, 0, 0, 0, 0, 1],
-        new int[1, 0, 1, 0, 0, 0, 0, 1],
-        new int[1, 0, 0, 0, 0, 1, 0, 1],
-        new int[1, 0, 0, 0, 0, 0, 0, 1],
-        new int[1, 1, 1, 1, 1, 1, 1, 1]
-    ];
+    protected int[][] mapLayout = new int[][] {
+        new int[] { 1, 1, 1, 1, 1, 1, 1, 1 },
+        new int[] { 1, 0, 0, 0, 0, 0, 0, 1 },
+        new int[] { 1, 0, 1, 0, 0, 0, 0, 1 },
+        new int[] { 1, 0, 0, 0, 0, 1, 0, 1 },
+        new int[] { 1, 0, 0, 0, 0, 0, 0, 1 },
+        new int[] { 1, 1, 1, 1, 1, 1, 1, 1 }
+    };
 }
 ```
 
@@ -53,14 +57,15 @@ Now that we know what the map is going to look like, the next step is to actuall
 ```
 class Game {
     protected Tile[][] map = null;
-    protected int[][] mapLayout = new int[
-        new int[1, 1, 1, 1, 1, 1, 1, 1],
-        new int[1, 0, 0, 0, 0, 0, 0, 1],
-        new int[1, 0, 1, 0, 0, 0, 0, 1],
-        new int[1, 0, 0, 0, 0, 1, 0, 1],
-        new int[1, 0, 0, 0, 0, 0, 0, 1],
-        new int[1, 1, 1, 1, 1, 1, 1, 1]
-    ];
+    protected int[][] mapLayout = new int[][] {
+        new int[] { 1, 1, 1, 1, 1, 1, 1, 1 },
+        new int[] { 1, 0, 0, 0, 0, 0, 0, 1 },
+        new int[] { 1, 0, 1, 0, 0, 0, 0, 1 },
+        new int[] { 1, 0, 0, 0, 0, 1, 0, 1 },
+        new int[] { 1, 0, 0, 0, 0, 0, 0, 1 },
+        new int[] { 1, 1, 1, 1, 1, 1, 1, 1 }
+    };
+    
     protected string[] spriteSheets = new string[] {
         "TODO/Path1.png",
         "TODO/Path2.png"
