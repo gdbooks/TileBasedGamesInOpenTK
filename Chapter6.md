@@ -25,6 +25,10 @@ class Tile {
     public void Render(int x, int y) {
         TextureManager.Instance.Draw(Sprite, new Point(x, y), Scale, Source);
     }
+    
+    public void Destroy() {
+        TextureManager.Instance.UnloadTexture(Sprite);
+    }
 }
 ```
 
