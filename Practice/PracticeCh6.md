@@ -16,5 +16,14 @@ We are going to be re-using the **Assets/HouseTiles.png** sprite sheet for this 
 
 TODO: Include generated breakdown image
 
+###Goal
+Given the above information try to recreate this room:
+
+TODO: Room render
+
+Make sure that your window is a tight fit to the room
+
+
+
 ##Checkin
 Before moving onto the next section check in with me. I want to look over the code for both **CreatingTiles** and **TilePractice**
