@@ -2,7 +2,7 @@
 The last section left off with an open ended question. What's more important clean code and messy data, or messy code and clean data? Seeing how we're making a game, not a tool i would say having clean code take priority. Games are complicated beasts, it's hard enough to make a game when you write good code, let's not over complicate the code needed for the sake of data.
 
 ###Getting the assets
-I'm going to be using [this zelda tile set](https://dl.dropboxusercontent.com/u/48598159/ZeldaTiles.zip) for the tutorial. Download it, and unzip the textures into your "Assets" directory. All of the sprite sheets in that folder are already a power of two.
+I'm going to be using [this zelda tile set](Files/ZeldaTiles.zip) for the tutorial. Download it, and unzip the textures into your "Assets" directory. All of the sprite sheets in that folder are already a power of two.
 
 ###New Project
 Create a new project, call it **CreatingTiles** and make the standard window appear. Don't forget to set your working directory correctly. Follow this chapter along in this new solution.
