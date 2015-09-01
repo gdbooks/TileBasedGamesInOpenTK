@@ -1,4 +1,4 @@
-#Chapter 5 - Map Tools
+#Map Tools
 As you can imagine, creating maps by hand becomes very tedious very fast! What we need is some tools to help us design these maps faster. Luckily, the internet is crawling with tools! 
 
 A quick google for 2D Tile Editor will result in numerous searches. Each editor has it's own set of strengths and weaknesses, you can probably figure out how most of them work. 
