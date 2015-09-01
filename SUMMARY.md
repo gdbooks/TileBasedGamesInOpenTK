@@ -29,6 +29,6 @@
 * [Rotating Hero](Chapter27.md)
 * [Rotating Ground](Chapter28.md)
 * [Slopes](Chapter29.md)
-* [More Tiles](Chapter7.md)
 * [Hexagons](Chapter30.md)
+* [More Tiles](Chapter7.md)
 
