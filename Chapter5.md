@@ -46,7 +46,7 @@ Open up the output file that is downloaded with sublime text. You should be able
 ###Array Painter
 By far the simplest tool I've found has been a little Java Applet called [Array Painter](http://www.arraypainter.com/). I made a local backup of it's [JAR](Files/arraypainter.zip) file in case it ever goes offline. This is what the application looks like:
 
-
+![ARRAY_PAINTER](Images/arraypainter_overview.gif)
 
 Go to the [applications website](http://www.arraypainter.com/), download the application. This download will give you a **jnlp** file, which is a shortcut to a Java Web App. (Want to know where the real app is? Open the jnlp file with sublimte text to see what it launches). 
 
@@ -59,6 +59,27 @@ There is a catch tough, windows has blocked jnlp applets by default. To launch t
   * http://www.arraypainter.com/webstart/webstart.jnlp
 
 ###Using Array Painter
+By default array painter has two tiles. A blue and a yellow square. Let's import our own tiles. Go to **Options > Edit Shapes**. This brings up the "_Edit Shapes_" window:
+
+<img src="Images/edit_shape.PNG" width="300" height="180" />
+
+Click the **Use picture** check mark and browse for an indevidual tile. Cut out tiles are located in the "_tiles_" folder under assets. Sadly, you can't import a full tile sheet. For the name and tag of the tile, just use it's number. These will be used later to export data. Click the **Create New** button.
+
+Select the blue square, hit **Delete shape**, select the yellow square and hit **delete shape**. Next add all the tiles you want to use. This is what my window looks like:
+
+<img src="Images/with_tiles.PNG" width="300" height="180" />
+
+Now you can close this window and paint in the main application. If you want to set the map size the option is under **Option > Set Map Size**.
+
+###Exporting Data
+When you have authored a map you like click **File > Generate Array**. You will be greeted with the following window:
+
+<img src="Images/gen_array.PNG" width="400" height="230" />
+
+Initially the text array is not populated inside the text box. Make sure you have the same things checked as i do (should be the default) and click the **Refresh** button. 
+
+You should be able to copy this array and reformat it into a 2D C# array.
+
 
 ##A Better Tool?
 All of the tools we've explored in this chapter are pretty nifty, but let's face it none of them are a slam dunk one stop solution for us. This is just the nature of tools, there is no such thing as really generic. If you feel like being a bad-ass you can write your own tool for editing maps. I for one would love to see a more up to date and useful version of Array Painter. It's a project i might actually take on one day.
