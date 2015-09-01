@@ -99,8 +99,8 @@ class Game {
         "Assets/HouseTiles.png"
     };
     protected Rectangle[] spriteSources = new Rectangle[] {
-        new Rectangle(480,34,30,30),
-        new Rectangle(480,1,30,30)
+        new Rectangle(466,32,30,30),
+        new Rectangle(466,1,30,30)
     };
 }
 ```
