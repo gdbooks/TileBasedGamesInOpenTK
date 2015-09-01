@@ -8,7 +8,7 @@ The [Online Tilemap Editor](http://apps.elias.media/Online-Tile-Map-Editor/) is 
 TODO
 
 ###Array Painter
-By far the simplest tool I've found has been a little Java Applet called [Array Painter](http://www.arraypainter.com/). I made a local backup of it's JAR file in case it ever goes offline. This is what the application looks like:
+By far the simplest tool I've found has been a little Java Applet called [Array Painter](http://www.arraypainter.com/). I made a local backup of it's [JAR](Files/arraypainter.zip) file in case it ever goes offline. This is what the application looks like:
 
 
 
