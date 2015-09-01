@@ -70,6 +70,8 @@ class Game {
         new int[] { 1, 0, 0, 0, 0, 0, 0, 1 },
         new int[] { 1, 1, 1, 1, 1, 1, 1, 1 }
     };
+    
+    // Singleton (private static instance, public static getter, private constructor)
 }
 ```
 
@@ -79,6 +81,8 @@ class Game {
   * 1's are not walkable
 
 As your game gets more and more complicated it may not be possible to store data in a simple representation like the one given above. I'm going to try my best to keep things as simple as possible for the tutorial. 
+
+Also take note that my game class is a singleton. You should make yours a singleton too, it will make hooking it up to the game window super easy.
 
 Now that we know what the map is going to look like, the next step is to actually load the map in! In order to create a tile object we need to know two things, the sprite sheet it's going to be on and the rectangle on that sheet. Before going any further, lets also add this meta-data to the game class
 
