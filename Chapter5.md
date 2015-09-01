@@ -20,7 +20,7 @@ There is a catch tough, windows has blocked jnlp applets by default. To launch t
 * Click the **Security** tab
 * Click the **Edit Site List** button
 * Add the following URL to the list
-  * TODO: Figure this out
+  * http://www.arraypainter.com/webstart/webstart.jnlp
 
 ###Using Array Painter
 
