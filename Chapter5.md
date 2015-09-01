@@ -20,7 +20,21 @@ Remove the tileset with the **Remove Tileset** button
 
 Delete one of the layers by clicking the **gear icon** and selecting **Remove** from the dropdown menu.
 
-![TILE_EDITOR](Images/tile_editor.PNG)
+<img src="Images/tile_editor.PNG" width="300" height="500" />
+
+Next click the **Add tileset** button, in the popup that follows:
+
+* Browse for the tilemap image
+* Tile Width is 30
+* Tile Height is 30
+* Tile Margin is 0
+* Keep the Tile Alpha field blank
+
+Now just click on the Tileset in the upper left and draw on stage in the right.
+
+If you can't draw, make sure you have a layer selected. (Selected layer is blue)
+
+####Exporting Data
 
 ###Array Painter
 By far the simplest tool I've found has been a little Java Applet called [Array Painter](http://www.arraypainter.com/). I made a local backup of it's [JAR](Files/arraypainter.zip) file in case it ever goes offline. This is what the application looks like:
