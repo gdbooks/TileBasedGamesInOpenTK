@@ -17,7 +17,6 @@
 * [Simple Enemy](Chapter15.md)
 * [More Enemy](Chapter16.md)
 * [Shooting](Chapter17.md)
-* [More Tiles](Chapter7.md)
 * [Getting Items](Chapter18.md)
 * [Moving Tiles](Chapter19.md)
 * [Scrolling](Chapter20.md)
@@ -30,5 +29,6 @@
 * [Rotating Hero](Chapter27.md)
 * [Rotating Ground](Chapter28.md)
 * [Slopes](Chapter29.md)
+* [More Tiles](Chapter7.md)
 * [Hexagons](Chapter30.md)
 
