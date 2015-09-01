@@ -21,7 +21,7 @@ There are a lot of different ways to represent a tile map in memory, i strongly 
 ###Goal
 Given the above information try to recreate this room:
 
-TODO: Room render
+![GUIDE](../Images/goal_room.PNG)
 
 Make sure that your window is a tight fit to the room
 
