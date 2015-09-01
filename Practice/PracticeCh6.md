@@ -14,7 +14,7 @@ Make yourself a tile object. This can be extremly similar to the tile object fro
 ###Tile map
 We are going to be re-using the **Assets/HouseTiles.png** sprite sheet for this project. It should already be in your shared Assets directory, assuming you set your working path correctly you shouldn't event need to add anything. Here is a position breakdown of each tile:
 
-TODO: Include generated breakdown image
+![GUIDE](Images/sample_guide.PNG)
 
 There are a lot of different ways to represent a tile map in memory, i strongly urge you to use the method we used in **CreatingTiles**. That is make a multidimensional array for the map layout, which indexes into two regular arrays for the sprite sheet names and sprite regions on the sheets.
 
