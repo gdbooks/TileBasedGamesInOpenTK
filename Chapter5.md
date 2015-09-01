@@ -35,7 +35,7 @@ Now just click on the Tileset in the upper left and draw on stage in the right.
 If you can't draw, make sure you have a layer selected. (Selected layer is blue)
 
 ###Exporting Data
-Click File > Export, in the popup that follows select:
+Click **File > Export**, in the popup that follows select:
 
 * Output format: XML
 * Format output: yes
