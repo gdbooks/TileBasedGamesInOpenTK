@@ -1,1 +1,2 @@
-#Chapter 7 - More Tiles
+#More Tiles
+In all of our examples we have loaded tiles by hand. We did breafly look at how to use tools to generate some understandable data, but it only goes so far. Let's leave off with an easy to parse map format. In this chapter we're going to load and save maps.
