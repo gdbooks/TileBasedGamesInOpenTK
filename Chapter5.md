@@ -34,7 +34,14 @@ Now just click on the Tileset in the upper left and draw on stage in the right.
 
 If you can't draw, make sure you have a layer selected. (Selected layer is blue)
 
-####Exporting Data
+###Exporting Data
+Click File > Export, in the popup that follows select:
+
+* Output format: XML
+* Format output: yes
+* Include src: no
+
+Open up the output file that is downloaded with sublime text. You should be able to reformat this text into a C# array with fairly minimal effort.
 
 ###Array Painter
 By far the simplest tool I've found has been a little Java Applet called [Array Painter](http://www.arraypainter.com/). I made a local backup of it's [JAR](Files/arraypainter.zip) file in case it ever goes offline. This is what the application looks like:
