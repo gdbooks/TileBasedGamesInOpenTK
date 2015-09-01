@@ -1,11 +1,26 @@
 #Chapter 5 - Map Tools
+As you can imagine, creating maps by hand becomes very tedious very fast! What we need is some tools to help us design these maps faster. Luckily, the internet is crawling with tools! 
+
+A quick google for 2D Tile Editor will result in numerous searches. Each editor has it's own set of strengths and weaknesses, you can probably figure out how most of them work. 
+
+Here, i want to go over two of what i think are the simplest / easyest tools to use to generate maps. These tools will not output our map format, but with a little bit of text editing we can transform their output into something useful.
 
 ###Online Tilemap Editor
-The [Online Tilemap Editor](http://apps.elias.media/Online-Tile-Map-Editor/) is an HTML5 tile editor you can use right from your browser! Even more impressive, it's Open Source and on [Github](https://github.com/elias-schuett/Online-Tile-Map-Editor). I like this editor because it's fast, easy and doesn't require any installation. I dislike the data output format, the final output needs a lot of love for it to be usable.
+The [Online Tilemap Editor](http://apps.elias.media/Online-Tile-Map-Editor/) is an HTML5 tile editor you can use right from your browser! Even more impressive, it's Open Source and on [Github](https://github.com/elias-schuett/Online-Tile-Map-Editor).
+
+I like this editor because it's fast, easy and doesn't require any installation. It's a super quick editor to use, especially if you have a cleanly formatted map tiles, like our zelda map.
 
 ###Using Online Tilemap Editor
 
-TODO
+Go to the [Online Tilemap Editor](http://apps.elias.media/Online-Tile-Map-Editor/) website.
+
+At this point the editor is generated with some default data.
+
+Remove the tileset with the **Remove Tileset** button
+
+Delete one of the layers by clicking the **gear icon** and selecting **Remove** from the dropdown menu.
+
+![TILE_EDITOR](Images/tile_editor.PNG)
 
 ###Array Painter
 By far the simplest tool I've found has been a little Java Applet called [Array Painter](http://www.arraypainter.com/). I made a local backup of it's [JAR](Files/arraypainter.zip) file in case it ever goes offline. This is what the application looks like:
