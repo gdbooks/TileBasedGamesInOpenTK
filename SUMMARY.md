@@ -2,6 +2,13 @@
 
 * [Introduction](README.md)
 * [Starting Out](Chapter1.md)
+* [On Your Own](Practice/PracticeCh6.md)
+   * [GraphicsManager](Practice/PracticeCh6.md)
+   * [TextureManager](Practice/PracticeCh6.md)
+   * [InputManager](Practice/PracticeCh6.md)
+   * [SoundManager](Practice/PracticeCh6.md)
+   * [Game](Practice/PracticeCh6.md)
+   * [Program](Practice/PracticeCh6.md)
 * [Why Tiles?](Chapter2.md)
 * [Map Format](Chapter3.md)
 * [Creating Tiles](Chapter6.md)
