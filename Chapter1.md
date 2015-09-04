@@ -70,7 +70,7 @@ We want to select the parent of the Assets directory. This way when you are read
 That is our basic project setup minus any code. **The Assets Directory Is Shared**. All of the projects we build in this tutorial will use the same **Assets** directory!
 
 ###Adding code
-
+We're going to add the [OpenTK Framework Managers](https://github.com/gszauer/2DOpenTKFramework) to this project. I'll link to the code on the main repo, but i'll also include it in the tutorial, in case the repo goes down.
 
 
 Don't forget to set your working directory (MAKE SURE TO EXPLAIN HOW THIS IS SHARED)
