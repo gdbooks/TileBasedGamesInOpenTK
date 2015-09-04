@@ -132,6 +132,8 @@ namespace Skeleton {
 
 ```
 
+The class is a singleton, each function in here should be relativley straight forward.
+
 
 #TODO
 Creating tiles: Upload final zip!
