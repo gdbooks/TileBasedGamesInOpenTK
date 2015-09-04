@@ -72,6 +72,21 @@ That is our basic project setup minus any code. **The Assets Directory Is Shared
 ###Adding code
 We're going to add the [OpenTK Framework Managers](https://github.com/gszauer/2DOpenTKFramework) to this project. I'll link to the code on the main repo, but i'll also include it in the tutorial, in case the repo goes down.
 
+Right click on the project, select Add, then **New Folder**
+
+![STEP16](Images/step16.png)
+
+Go ahead and name this folder **Managers**. Right click on the new **Managers** folder, select add, then new item
+
+![STEP17](Images/step17.png)
+
+Call the new item **GraphicsManager**
+
+![STEP18](Images/step18.PNG)
+
+Replace the contents of the new **GraphicsManager.cs** file [with this](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/GraphicsManager.cs).
+
+Repeat the above steps to add the [TextureManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/TextureManager.cs), [InputManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/InputManager.cs) and [SoundManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/SoundManager.cs)
 
 Don't forget to set your working directory (MAKE SURE TO EXPLAIN HOW THIS IS SHARED)
 Make sure you have latest!
