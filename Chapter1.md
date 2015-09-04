@@ -132,7 +132,7 @@ namespace Skeleton {
 
 ```
 
-The class is a singleton, each function in here should be relativley straight forward.
+The class is a singleton, each function in here should be relativley straight forward. The last thing we have to do is fill in the main Program. Change the contents of **Program.cs** to
 
 
 #TODO
