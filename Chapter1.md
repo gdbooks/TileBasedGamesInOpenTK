@@ -1,8 +1,5 @@
-Starting Out
+#Starting Out
 
-Test, test
-
-https://web.archive.org/web/20120307222154/http://tonypa.pri.ee/tbw/index.html
 
 ###Setting up a solution
 Make a new visual studio solution, i called mine "TileBasedGames"
@@ -22,6 +19,27 @@ Before we do anything else, add a .gitignore file. Use the [Visual Studio](https
 Lets also add an Assets folder next to the solution. This is where we are going to keep all shared game assets. All in all your folder structre should look like this:
 
 ![STEP4](Images/step4.PNG)
+
+###Setting up a project
+Let's go trough setting up a project together. While you won't use this specific project, all subsequent tutorials will have the same setup. Ideally you want to have one solution with many projects inside it.
+
+Let's add a new project called **Skeleton**. Right click on your solution and add a new project.
+
+![STEP5](Images/step5.png)
+
+I'm going to go ahead and call mine **Skeleton**
+
+![STEP6](Images/step6.PNG)
+
+Link in System.Drawing. Right click on references and select "Add Reference"
+
+![STEP7](Images/step7.png)
+
+Type *System.Drawing* in the search box, check the appropriate package
+
+![STEP8](Images/step8.PNG)
+
+Next we're going to link in two NuGet packages, [OpenTK](http://www.opentk.com/) and (https://naudio.codeplex.com/)
 
 Don't forget to set your working directory (MAKE SURE TO EXPLAIN HOW THIS IS SHARED)
 Make sure you have latest!
