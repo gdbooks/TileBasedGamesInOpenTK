@@ -1,3 +1,10 @@
+#Introduction
+
+This tutorial about tile based games is based on the old TonyPa flash tutorials. The original tutorial website has since dissapeared from the internet, but is still accessable [on the way back machine](https://web.archive.org/web/20120307222154/http://tonypa.pri.ee/tbw/index.html). I also have the [PDF version](Files/tbg.pdf) stashed away.
+
+Converting these tutorials from AS2 to C# is no small feat, the languages are unbelivably different and the workflows don't match up at all. With that being said, the two tutorials are not the exact same. I have inserted sections i feel are important and remove sections i deem as not important. I also try to go into MUCH more detail than the original.
+
+###License
 This is free and unencumbered software released into the public domain.
 
 Anyone is free to copy, modify, publish, use, compile, sell, or
