@@ -8,7 +8,7 @@ Make a new visual studio solution, i called mine "TileBasedGames"
 
 Notice that this created a new solution called TileBasedGames as well as a new project called TileBasedGames. Go ahead and delete the project. Right click the project and select Remove. Click "OK" on the confirm dialog.
 
-![STEP2](Images/step2.PNG)
+<img src="Images/step2.PNG" width=320 height=250 />
 
 If you look at the "TileBasedGames" folder there are two things in there, a solution named "TileBasedGames" and a folder named "TileBasedGames". The folder contains the project we just deleted. Go ahead and delete that folder.
 
@@ -33,7 +33,7 @@ I'm going to go ahead and call mine **Skeleton**
 
 Link in System.Drawing. Right click on references and select "Add Reference"
 
-![STEP7](Images/step7.png)
+<img src="Images/step7.png" width=320 height=255 />
 
 Type *System.Drawing* in the search box, check the appropriate package
 
@@ -41,7 +41,7 @@ Type *System.Drawing* in the search box, check the appropriate package
 
 Next we're going to link in two NuGet packages, [OpenTK](http://www.opentk.com/) and (https://naudio.codeplex.com/). Right click on the project and select **Manage NuGet Packages**
 
-![STEP9](Images/step9.png)
+<img src="Images/step9.png" width=320 height=460 />
 
 In the window that pops up, type **TopenTK** in the search bar, select the appropriate package and hit install.
 
@@ -53,7 +53,7 @@ Repeat for NAudio
 
 We set up an **Assets** folder when we created the soltuion. Let's set the projects working directory so we can actually use the Assets folder. Right click on the solution, select _Properties_
 
-![STEP12](Images/step12.png)
+<img="Images/step12.png" width=305 height=500 />
 
 In the debug tab, browse for a new working directory
 
