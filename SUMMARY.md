@@ -2,7 +2,7 @@
 
 * [Introduction](README.md)
 * [Starting Out](Chapter1.md)
-   * [GraphicsManager](Practice/PracticeCh6.md)
+   * [GraphicsManager](GraphicsManager.md)
    * [TextureManager](Practice/PracticeCh6.md)
    * [InputManager](Practice/PracticeCh6.md)
    * [SoundManager](Practice/PracticeCh6.md)
