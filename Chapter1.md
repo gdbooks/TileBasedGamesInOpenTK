@@ -88,11 +88,7 @@ Replace the contents of the new **GraphicsManager.cs** file [with this](https://
 
 Repeat the above steps to add the [TextureManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/TextureManager.cs), [InputManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/InputManager.cs) and [SoundManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/SoundManager.cs). In case the main repo ever goes down i've included the source for all the managers in the tutorial, check the sub-sections of this section.
 
-Don't forget to set your working directory (MAKE SURE TO EXPLAIN HOW THIS IS SHARED)
-Make sure you have latest!
-GABOR TODO: Submit nearest neighbor changelist
-
-Go ahead and commit this, we now have a repo to work out of.
+Let's add a new **Game** class, this is the class that we will be writing most of the example code in. Ideally you shouldn't have to touch any other classes.
 
 
 #TODO
