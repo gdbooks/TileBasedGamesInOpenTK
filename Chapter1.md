@@ -221,4 +221,4 @@ Program.cs just takes care of initializing and cleaning up our various managers.
 You should be good to go. Compile and run the game to make sure that the standard window pops up. You will likeley have to do the above steps for EVERY project you make. Don't Link to the managers, include them in each project.
 
 ##Checkin
-Go ahead and commit what you have to github. Before moving onto the next section check in with me. I want to look over your code, make sure that the project is properly orgonized before moving on.
+Go ahead and commit what you have to github. Before moving onto the next section check in with me. I want to look over your code, make sure that the project is properly organized before moving on.
