@@ -53,7 +53,7 @@ Repeat for NAudio
 
 We set up an **Assets** folder when we created the soltuion. Let's set the projects working directory so we can actually use the Assets folder. Right click on the solution, select _Properties_
 
-<img="Images/step12.png" width=305 height=500 />
+<img src="Images/step12.png" width=305 height=500 />
 
 In the debug tab, browse for a new working directory
 
