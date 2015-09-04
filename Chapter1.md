@@ -39,7 +39,39 @@ Type *System.Drawing* in the search box, check the appropriate package
 
 ![STEP8](Images/step8.PNG)
 
-Next we're going to link in two NuGet packages, [OpenTK](http://www.opentk.com/) and (https://naudio.codeplex.com/)
+Next we're going to link in two NuGet packages, [OpenTK](http://www.opentk.com/) and (https://naudio.codeplex.com/). Right click on the project and select **Manage NuGet Packages**
+
+![STEP9](Images/step9.png)
+
+In the window that pops up, type **TopenTK** in the search bar, select the appropriate package and hit install.
+
+![STEP10](Images/step10.png)
+
+Repeat for NAudio
+
+![STEP11](Images/step11.png)
+
+We set up an **Assets** folder when we created the soltuion. Let's set the projects working directory so we can actually use the Assets folder. Right click on the solution, select _Properties_
+
+![STEP12](Images/step12.png)
+
+In the debug tab, browse for a new working directory
+
+![STEP13](Images/step13.png)
+
+Select the **TileBasedGames** root directory. THIS IS NOT THE **Assets** DIRECTORY, RATHER THE Assets DIRECTORY'S PARENT. 
+
+![STEP14](Images/step14.png)
+
+We want to select the parent of the Assets directory. This way when you are ready to distribute your game, you just have to copy the **Assets** directory next to your exe file. Your properties should look like this:
+
+![STEP15](Images/step15.png)
+
+That is our basic project setup minus any code. **The Assets Directory Is Shared**. All of the projects we build in this tutorial will use the same **Assets** directory!
+
+###Adding code
+
+
 
 Don't forget to set your working directory (MAKE SURE TO EXPLAIN HOW THIS IS SHARED)
 Make sure you have latest!
