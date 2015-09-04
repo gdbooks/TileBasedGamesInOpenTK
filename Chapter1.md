@@ -84,9 +84,9 @@ Call the new item **GraphicsManager**
 
 ![STEP18](Images/step18.PNG)
 
-Replace the contents of the new **GraphicsManager.cs** file [with this](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/GraphicsManager.cs).
+Replace the contents of the new **GraphicsManager.cs** file [with this](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/GraphicsManager.cs). Make sure to use the latest code from the repo, as some of the code might have changed since you last saw it.
 
-Repeat the above steps to add the [TextureManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/TextureManager.cs), [InputManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/InputManager.cs) and [SoundManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/SoundManager.cs)
+Repeat the above steps to add the [TextureManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/TextureManager.cs), [InputManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/InputManager.cs) and [SoundManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/SoundManager.cs). In case the main repo ever goes down i've included the source for all the managers in the tutorial, check the sub-sections of this section.
 
 Don't forget to set your working directory (MAKE SURE TO EXPLAIN HOW THIS IS SHARED)
 Make sure you have latest!
