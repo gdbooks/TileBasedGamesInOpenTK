@@ -88,7 +88,49 @@ Replace the contents of the new **GraphicsManager.cs** file [with this](https://
 
 Repeat the above steps to add the [TextureManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/TextureManager.cs), [InputManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/InputManager.cs) and [SoundManager](https://github.com/gszauer/2DOpenTKFramework/blob/master/2DFramework/Framework/SoundManager.cs). In case the main repo ever goes down i've included the source for all the managers in the tutorial, check the sub-sections of this section.
 
-Let's add a new **Game** class, this is the class that we will be writing most of the example code in. Ideally you shouldn't have to touch any other classes.
+Let's add a new **Game** class, this is the class that we will be writing most of the example code in. Ideally you shouldn't have to touch any other classes. Add the game file to the solution (it's a top level file, next to Program.cs, not in the managers directory), and fill it with the following code:
+
+```cs
+using System;
+using GameFramework;
+using System.Collections.Generic;
+
+namespace Skeleton {
+    class Game {
+        // Singleton
+        private static Game instance = null;
+        public static Game Instance {
+            get {
+                if (instance == null) {
+                    instance = new Game();
+                }
+                return instance;
+            }
+        }
+
+        protected Game() {
+
+        }
+
+        public void Initialize() {
+
+        }
+
+        public void Update(float dt) {
+
+        }
+
+        public void Render() {
+
+        }
+
+        public void Shutdown() {
+
+        }
+    }
+}
+
+```
 
 
 #TODO
