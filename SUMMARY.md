@@ -2,7 +2,6 @@
 
 * [Introduction](README.md)
 * [Starting Out](Chapter1.md)
-* [On Your Own](Practice/PracticeCh6.md)
    * [GraphicsManager](Practice/PracticeCh6.md)
    * [TextureManager](Practice/PracticeCh6.md)
    * [InputManager](Practice/PracticeCh6.md)
