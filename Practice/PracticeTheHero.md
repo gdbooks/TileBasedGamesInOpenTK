@@ -15,4 +15,44 @@ First, remove the following variables from the character class:
 * facingRightFrame1
 * displaySourceRect
 
-Add a new dictionary, the key should be a string, the value should be a rectangle. I would call this dictionary **spriteSources**, but the name is up to you. Also, add a string. Again what you call the string is up to you, i call mine **currentAnimation**
+Add a new dictionary, the key should be a string, the value should be a rectangle. I would call this dictionary **spriteSources**, but the name is up to you. Also, add a string. Again what you call the string is up to you, i call mine **currentSprite**
+
+
+###End result
+The **Initialize** method of my **Progra.cs** looks like this:
+```cs
+public void Initialize() {
+    TextureManager.Instance.UseNearestFiltering = true;
+    map = GenerateMap(mapLayout, spriteSheets, spriteSources);
+    hero = new Character(heroSheet, new Point(SpawnTile.X * 30, SpawnTile.Y * 30));
+
+    hero.AddSprite("Down", new Rectangle(59, 1, 24, 30));
+    hero.AddSprite("Up", new Rectangle(115, 3, 22, 28));
+    hero.AddSprite("Left", new Rectangle(1, 1, 26, 30));
+    hero.AddSprite("Right", new Rectangle(195, 1, 26, 30));
+}
+```
+
+And i added this to **Update** so i could test:
+
+```cs
+public void Update(float dt) {
+    InputManager i = InputManager.Instance; // Local reference to input manager
+    // ^ I only use the reference to save on space below
+
+    if (i.KeyDown(OpenTK.Input.Key.Left) || i.KeyDown(OpenTK.Input.Key.A)) {
+        hero.SetSprite("Left");
+    }
+    if (i.KeyDown(OpenTK.Input.Key.Right) || i.KeyDown(OpenTK.Input.Key.D)) {
+        hero.SetSprite("Right");
+    }
+    if (i.KeyDown(OpenTK.Input.Key.Up) || i.KeyDown(OpenTK.Input.Key.W)) {
+        hero.SetSprite("Up");
+    }
+    if (i.KeyDown(OpenTK.Input.Key.Down) || i.KeyDown(OpenTK.Input.Key.S)) {
+        hero.SetSprite("Down");
+    }
+}
+```
+
+Even tough link still doesn't move the arrow keys (and WASD) now make him turn in different directions :)
