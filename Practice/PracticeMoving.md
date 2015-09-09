@@ -67,3 +67,42 @@ public void Render() {
 Running the game at this point, you should be able to walk around with link. From the players point of view nothing has changed! But from the programmers point of view, we have laid the groundwork for animating the character.
 
 ###Refactoring Player Character
+At this point, whatever the ```currentFrame``` variable is set to will be displayed. All you need to do is add some more frames. I'll spare you having to look up the frame positions manually, here are the walking frames for link:
+
+```cs
+public PlayerCharacter(string spriteSheet, Point startPos) : base(spriteSheet, startPos) {
+    // ^ The Constructor which take a string and a Point of the base class (Character)
+    // is called using the : notation.
+
+    AddSprite("Down", new Rectangle(59, 1, 24, 30), new Rectangle(87, 1, 24, 30));
+    AddSprite("Up", new Rectangle(115, 3, 22, 28), new Rectangle(141, 3, 22, 28));
+    AddSprite("Left", new Rectangle(1, 1, 26, 30), new Rectangle(31, 1, 26, 31));
+    AddSprite("Right", new Rectangle(195, 1, 26, 30), new Rectangle(167, 1, 26, 29));
+}
+```
+
+Animation is as simple as setting ```currentFrame```. I'll let you figure out how that should be done. I'll include some hints as to how i did it below.
+
+###Animation, my method
+I added three variables to the ```PlayerCharacter``` class to support animation:
+
+* bool animating = false
+* float animFPS = 1.0f / 9.0f;
+* float timeTimer = 0.0f
+
+The **animating** boolean is self explanatory. If it's set to true the animation is playing. If it's set to false then no animation plays. This is how i make link no animate if no button is pressed. That boolean is only true while one of the movement buttons is held down.
+
+The **animFPS** float isn't as straight forward. Link animates at 9 frames / second. This means in one second you see 9 frames of animation. So, why _1.0f / 9.0f_? Simple, we are going to have a counter. That counter is going to count upwards from 0. If we want to display 9 frames every second, that means we want to show ONE new frame every 0.11 seconds. _1.0f / 9.0f_ equals 0.11.
+
+The **timeTimer** float is pretty simple. This is the counter variable that counts upwards. If **timeTimer** is greater than **animFPS** then we will flip one frame!
+
+So how is this all implemented? In each of the if statements that checks if a key is down (and moves the position and sets the sprite if it is) i also set animating to true. After the if blocks that handle input i check if animating is true. If it is, i add deltaTime to animTimer. 
+
+Still inside the ```if(animating) {``` block, i put anoter nested if. If the animTimer is greater than animFPS, i add one to the currentFrame. I also subtract animFPS from animTimer, this gives a smooth animation. Time for yet another nested if, if the currentFrame is greater than the Length of the current spriteSources array then i reset currentFrame to 0 (to keep from going out of bounds). 
+
+Finally outside of any if statements, after the ```if(animating) {``` block i set animating back to false. It's the default state of the animating variable. This way, if no key is pressed no animation happens.
+
+###Check in
+Skype or text me if you have any questions. Turning the ```PlayerCharacter``` class into a flip book is not easy, but i think you can do it!
+
+If you finish this section skype or text me. I want to look over your work before you move on to the next section!
