@@ -87,7 +87,11 @@ public PlayerCharacter(string spriteSheet, Point startPos) : base(spriteSheet, s
 At this point you should be able to run the game. The game should display, and link should rotate when you press keys like nothing has happened.
 
 ###Moving
-Let's add code to actually move the character! Add an ```Update``` method to the ```PlayerCharacter``` class. It should take one argument, ```deltaTime```.
+Let's add code to actually move the character!
+
+
+
+Add an ```Update``` method to the ```PlayerCharacter``` class. It should take one argument, ```deltaTime```.
 
 ```cs
 public void Update(float deltaTime) {
