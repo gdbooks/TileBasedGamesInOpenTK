@@ -50,8 +50,8 @@ namespace TheHero {
         public PointF Position { get; protected set; }
         public int Sprite { get; private set; }
         
-        private Dictionary<string, Rectangle[]> spriteSources = null;
-        private string currentSprite = null;
+        public Dictionary<string, Rectangle> spriteSource { get; private set; }
+        public string currentSprite { get; private set; }
         protected int currentFrame = 0; // NEW
         // ^ protected means any children of this class can modify the variable
 ```
