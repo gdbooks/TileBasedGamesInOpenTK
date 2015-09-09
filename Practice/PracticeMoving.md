@@ -35,3 +35,31 @@ private Dictionary<string, Rectangle[]> spriteSources = null;
 ```
 
 Now the ```AddSprite``` method works again, but the ```Render``` method is broken!
+
+There are a few ways to fix this. You could always render frame 0, but that's a bad idea! You could add an integer to the ```Character``` class and call it ```currentFrame```. This int would represent what frame to display. Adding an integer sounds like a good idea, it's certainly intuitive. But it does have a serious flaw: not every animation is going to have the same number of frames.
+
+Because each animation can have a variable number of frames, we need to add house-keeping. Whenever a new animation is played, the currentFrame has to be reset to 0 to avoid going out of bounds. But then switching back to the old animation, you can't just resume where you left off. This may or may not be the behaviour you want. Is there an alternative?
+
+Yes, yes there is. You could keep a parallel array. One who's key is a ```string``` and value is an ```int```. So it would know the walk animation is on frame 5, while the idle animation is on frame 2. In this case you would also have to add a new string, and call it currentAnimation. This would be used to index into the dictionary. Wow, thats a lot of house keeping! I'm already getting confused!
+
+So, how should we handle this?!?!?! Well, experience tells me having an integer called ```currentFrame``` is the best approach. It's easy to read and requires the least amount of house keeping. It also makes the most sense. So i'm just going to add a new integer to the ```Character``` class:
+
+```cs
+namespace TheHero {
+    class Character {
+        public PointF Position { get; protected set; }
+        public int Sprite { get; private set; }
+        
+        private Dictionary<string, Rectangle[]> spriteSources = null;
+        private string currentSprite = null;
+        protected int currentFrame = 0; // NEW
+        // ^ protected means any children of this class can modify the variable
+```
+
+and let's not forget to fix the ```Render``` method:
+
+```cs
+public void Render() {
+    TextureManager.Instance.Draw(Sprite, new Point((int)Position.X, (int)Position.Y), 1.0f, spriteSources[currentSprite][currentFrame]);
+}
+```
