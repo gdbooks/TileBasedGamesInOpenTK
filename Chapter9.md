@@ -190,3 +190,47 @@ public void Update(float dt) {
 Run the game now, and TADA! Your hero is moving! He's not colliding with any walls.... But we can fix that later. For now what matters is that the hero moved!
 
 ###Cleanup
+One thing you may have noticed is that there is a lot of similar code between the **Update** method of ```Game``` and ```PlayerCharacter```. Whenever you have a lot of similar code, chances are it's time to refactor (clean-up). 
+
+Let's move all of the ```SetSprite``` methods for key input into the ```PlayerCharacter``` class. Updating this code, the ```Update``` method of **Game.cs** should now look like this:
+
+```cs
+public void Update(float dt) {
+    hero.Update(dt);
+}
+```
+
+And the ```Update``` method of **PlayerCharacter.cs** should look like this:
+
+```cs
+public void Update(float deltaTime) {
+    InputManager i = InputManager.Instance;
+
+    PointF positionCpy = Position; // Don't forget to change to PointF in parent class
+    // The Position getter is inherited from the Character class. 
+    // We simply store a COPY of it here, so we can modify the 
+    // X and Y properties indevidually. We also make 
+
+    if (i.KeyDown(OpenTK.Input.Key.Left) || i.KeyDown(OpenTK.Input.Key.A)) {
+        positionCpy.X -= speed * deltaTime;
+        SetSprite("Left");
+    }
+    else if (i.KeyDown(OpenTK.Input.Key.Right) || i.KeyDown(OpenTK.Input.Key.D)) {
+        positionCpy.X += speed * deltaTime;
+        SetSprite("Right");
+    }
+
+    if (i.KeyDown(OpenTK.Input.Key.Up) || i.KeyDown(OpenTK.Input.Key.W)) {
+        positionCpy.Y -= speed * deltaTime;
+        SetSprite("Up");
+    }
+    else if (i.KeyDown(OpenTK.Input.Key.Down) || i.KeyDown(OpenTK.Input.Key.S)) {
+        positionCpy.Y += speed * deltaTime;
+        SetSprite("Down");
+    }
+
+    Position = positionCpy; // Move the copy we made back into the Postion variable
+}
+```
+
+The ```SetSprite``` method is callable because we inherited it from the ```Character``` class. Sometimes it can get a little hard to follow what is and isn't accessable. If you are feeling brave, try using [draw.io](https://www.draw.io/) or [ArgoUML](http://argouml.tigris.org/) (i suggest draw.io) to make a UML diagram the current project. If you end up making the UML check the exported PNG image into your repo.
