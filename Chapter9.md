@@ -59,7 +59,7 @@ And change it to this:
 hero = new PlayerCharacter(heroSheet, new Point(SpawnTile.X * 30, SpawnTile.Y * 30));
 ```
 
-Beacuse the ```PlayerCharacter``` is specific to the hero,  it's safe to put hero specific things in there. Take this bit of code from **Program.cs**:
+Beacuse the ```PlayerCharacter``` is specific to the hero,  it's safe to put hero specific things in there. Take this bit of code from **Game.cs**:
 
 ```cs
 hero.AddSprite("Down",new Rectangle(59,1,24,30));
@@ -164,4 +164,29 @@ public void Update(float deltaTime) {
 }
 ```
 
-Running the game now, pressing the arrow keys.... Nothing moves! What gives? Well, we added an ```Update``` method to the ```PlayerCharacter``` class, but we are not calling this method anywhere!
+Running the game now, pressing the arrow keys.... Nothing moves! What gives? Well, we added an ```Update``` method to the ```PlayerCharacter``` class, but we are not calling this method anywhere! Let's go into **Game.cs** and add this ```Update``` call to the ```Game```s update method:
+
+```cs
+public void Update(float dt) {
+    InputManager i = InputManager.Instance; //local ref to input manager
+    //using i just saves time
+    if (i.KeyDown(OpenTK.Input.Key.Left) || i.KeyDown(OpenTK.Input.Key.A)) {
+        hero.SetSprite("Left");
+    }
+    if (i.KeyDown(OpenTK.Input.Key.Right) || i.KeyDown(OpenTK.Input.Key.D)){
+        hero.SetSprite("Right");
+    }
+    if (i.KeyDown(OpenTK.Input.Key.Up) || i.KeyDown(OpenTK.Input.Key.W)) {
+        hero.SetSprite("Up");
+    }
+    if (i.KeyDown(OpenTK.Input.Key.Down) || i.KeyDown(OpenTK.Input.Key.S)) {
+        hero.SetSprite("Down");
+    }
+    
+    hero.Update(dt);
+}
+```
+
+Run the game now, and TADA! Your hero is moving! He's not colliding with any walls.... But we can fix that later. For now what matters is that the hero moved!
+
+###Cleanup
