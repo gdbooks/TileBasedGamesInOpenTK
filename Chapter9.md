@@ -87,14 +87,52 @@ public PlayerCharacter(string spriteSheet, Point startPos) : base(spriteSheet, s
 At this point you should be able to run the game. The game should display, and link should rotate when you press keys like nothing has happened.
 
 ###Moving
-Let's add code to actually move the character!
+Let's add code to actually move the character! In order to move the character we have to do a little bit of house cleaning first. 
 
+Currently we keep track of the ```Character``` position in a **Point**. This won't work, in order to move around the screen we need to store values as floating points. Find the following line in **Character.cs** 
 
+```cs
+public Point Position { get; set; }
+```
 
-Add an ```Update``` method to the ```PlayerCharacter``` class. It should take one argument, ```deltaTime```.
+and change it to
+
+```cs
+public PointF Position { get; set; }
+```
+
+If you try to compile now, the compiler will throw an error. This is because our render method is trying to pass a **PointF** variable when a **Point** is expected. Still in **Character.cs**, find this bit of code:
+
+```cs
+public void Render() {
+    TextureManager.Instance.Draw(Sprite, Position, 1.0f,spriteSource[currentSprite]);
+}
+```
+
+and change it to:
+
+```cs
+public void Render() {
+    TextureManager.Instance.Draw(Sprite, new Point((int)Position.X, (int)Position.Y), 1.0f,spriteSource[currentSprite]);
+}
+```
+
+And you should be able to compile again! Back in **PlayerCharacter.cs** lets add a speed variable. This varaible is going to determine how fast the player moves. I'm going to set it to 90.0f, that is, move 90 pixels every second or 3 tiles in one second.
+
+```cs
+namespace KeysToMove {
+    class PlayerCharacter : Character {
+        float speed = 90.0f; // NEW
+
+        public PlayerCharacter(string spriteSheet, Point startPos) : base(spriteSheet, startPos) {
+```
+
+Next let's add an ```Update``` method to the ```PlayerCharacter``` class. It should take one argument, ```deltaTime```.
 
 ```cs
 public void Update(float deltaTime) {
     // TODO: Add move code
 }
 ```
+
+This method is going to be responsible for checking Keyboard Input. When the appropriate keys are pressed it's going to update the inherited ```Position``` property to make the character move (Remember, the character is rendered at ```Position```)
