@@ -1,0 +1,2 @@
+#On Your Own
+We now have a way to make the character walk on screen! Huzza! One small problem we're having here is that the hero is just kind of sliding around on the screen! While animations are not required to make a decent game demo, they help. A lot. So in this section we're going to add animations to our Hero!
