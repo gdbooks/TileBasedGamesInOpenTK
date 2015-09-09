@@ -33,3 +33,5 @@ That however is an easy fix, just change the value type to be a Rectangle array
 ```cs
 private Dictionary<string, Rectangle[]> spriteSources = null;
 ```
+
+Now the ```AddSprite``` method works again, but the ```Render``` method is broken!
