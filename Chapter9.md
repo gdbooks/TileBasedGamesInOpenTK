@@ -135,4 +135,33 @@ public void Update(float deltaTime) {
 }
 ```
 
-This method is going to be responsible for checking Keyboard Input. When the appropriate keys are pressed it's going to update the inherited ```Position``` property to make the character move (Remember, the character is rendered at ```Position```)
+This method is going to be responsible for checking Keyboard Input. When the appropriate keys are pressed it's going to update the inherited ```Position``` property to make the character move (Remember, the character is rendered at ```Position```) Let's fill in the missing code:
+
+```cs
+public void Update(float deltaTime) {
+    InputManager i = InputManager.Instance;
+
+    PointF positionCpy = Position; // Don't forget to change to PointF in parent class
+    // The Position getter is inherited from the Character class. 
+    // We simply store a COPY of it here, so we can modify the 
+    // X and Y properties indevidually. We also make 
+
+    if (i.KeyDown(OpenTK.Input.Key.Left) || i.KeyDown(OpenTK.Input.Key.A)) {
+        positionCpy.X -= speed * deltaTime;
+    }
+    else if (i.KeyDown(OpenTK.Input.Key.Right) || i.KeyDown(OpenTK.Input.Key.D)) {
+        positionCpy.X += speed * deltaTime;
+    }
+
+    if (i.KeyDown(OpenTK.Input.Key.Up) || i.KeyDown(OpenTK.Input.Key.W)) {
+        positionCpy.Y -= speed * deltaTime;
+    }
+    else if (i.KeyDown(OpenTK.Input.Key.Down) || i.KeyDown(OpenTK.Input.Key.S)) {
+        positionCpy.Y += speed * deltaTime;
+    }
+
+    Position = positionCpy; // Move the copy we made back into the Postion variable
+}
+```
+
+Running the game now, pressing the arrow keys.... Nothing moves! What gives? Well, we added an ```Update``` method to the ```PlayerCharacter``` class, but we are not calling this method anywhere!
