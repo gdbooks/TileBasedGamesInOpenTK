@@ -63,3 +63,7 @@ public void Render() {
     TextureManager.Instance.Draw(Sprite, new Point((int)Position.X, (int)Position.Y), 1.0f, spriteSources[currentSprite][currentFrame]);
 }
 ```
+
+Running the game at this point, you should be able to walk around with link. From the players point of view nothing has changed! But from the programmers point of view, we have laid the groundwork for animating the character.
+
+###Refactoring Player Character
