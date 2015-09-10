@@ -14,7 +14,40 @@ Using these two rectangles we want to see if they intersect. To do this we look 
 If the intersection(red) rectangle has an area greater than 0 (That is, if a collision has happened) we must resolve the collision. We do this by moving the character to the left, right up or down by the width or height of the intersection.
 
 ###Intersection
-From the above description it becomes clear that we need to be able to get an intersection rectangle between two rectangles. We're going to add this ability to a common helper class.
+From the above description it becomes clear that we need to be able to get an intersection rectangle between two rectangles. We're going to add this ability to a common helper class. If this method is looking alien try to draw out all of the intersection cases on paper and follow it trough for each.
+
+```cs
+using System.Drawing;
+
+namespace HitTheWall {
+    class Intersections {
+        public static Rectangle Rect(Rectangle a, Rectangle b) {
+            Rectangle result = new Rectangle(0,0,0,0);
+
+            // Do they even intersect?
+            if (a.Left < b.Right && a.Right > b.Left && a.Top < b.Bottom && a.Bottom > b.Top) {
+                // They intersect, let's get the intersection
+
+                result.X = System.Math.Max(a.Left, b.Left);
+                result.Y = System.Math.Max(a.Top, b.Top);
+
+                int right = System.Math.Min(a.Right, b.Right);
+                int bottom = System.Math.Min(a.Bottom, b.Bottom);
+
+                result.Width = right - result.X;
+                result.Height = bottom - result.Y;
+            }
+
+            return result;
+        }
+        
+    }
+}
+```
+
+If you end up drawing and labeling these, remember X / Y is the same as Top / Left. But Width / Height are different from Bottom / Right:
+
+![labeles](Images/labels.png)
 
 ###A better way
 Some of this code might seem a bit convoluted, expecially because we move link horizontally, resolve collisions, then move him vertically. It's a bit of a mess. But it's not a bad way to handle the situation. All mission critical code is local to the ```PlayerCharacter``` class. 
