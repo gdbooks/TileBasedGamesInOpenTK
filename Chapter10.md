@@ -49,6 +49,28 @@ If you end up drawing and labeling these, remember X / Y is the same as Top / Le
 
 ![labeles](Images/labels.png)
 
+###Character Refactor
+We're going to need to know some information about the character that we don't already know. Nameley we will need to know the center point of the character, and the bounding rectangle of the character. Remember, these can be different for every frame. 
+
+You should have enough information to figure these attributes out. Implement these getters:
+
+```cs
+public PointF Center {
+    get {
+        // TODO
+    }
+}
+
+public Rectangle Rect {
+    get {
+        // TODO
+    }
+}
+```
+
+If you have any questions about the implementation of these, don't hesitate to ask.
+
+
 ###A better way
 Some of this code might seem a bit convoluted, expecially because we move link horizontally, resolve collisions, then move him vertically. It's a bit of a mess. But it's not a bad way to handle the situation. All mission critical code is local to the ```PlayerCharacter``` class. 
 
