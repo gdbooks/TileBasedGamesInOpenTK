@@ -16,6 +16,8 @@ If the intersection(red) rectangle has an area greater than 0 (That is, if a col
 ###Intersection
 From the above description it becomes clear that we need to be able to get an intersection rectangle between two rectangles. We're going to add this ability to a common helper class. If this method is looking alien try to draw out all of the intersection cases on paper and follow it trough for each.
 
+Let's make a new file, call it **Intersections.cs** and add the follwoing class to it:
+
 ```cs
 using System.Drawing;
 
@@ -52,7 +54,7 @@ If you end up drawing and labeling these, remember X / Y is the same as Top / Le
 ###Character Refactor
 We're going to need to know some information about the character that we don't already know. Nameley we will need to know the center point of the character, and the bounding rectangle of the character. Remember, these can be different for every frame. 
 
-You should have enough information to figure these attributes out. Implement these getters:
+We're going to add some getters for the missing information, remember this is going in the ```Character``` class, not _PlayerCharacter_. You should have enough information to figure these attributes out. Implement these getters:
 
 ```cs
 public PointF Center {
@@ -68,8 +70,43 @@ public Rectangle Rect {
 }
 ```
 
-If you have any questions about the implementation of these, don't hesitate to ask.
+If you have any questions about the implementation of these, don't hesitate to ask. While we're in the ```Character``` let's update the **Render** function with some debug code.
 
+```cs
+public void Render() {
+    GraphicsManager.Instance.DrawRect(Rect, Color.Red);
+    TextureManager.Instance.Draw(Sprite, new Point((int)Position.X,(int)Position.Y), 1.0f, SpriteSource[currentSprite][currentFrame]);
+    Rectangle center = new Rectangle((int)Center.X - 5, (int)Center.Y - 5, 10, 10);
+    GraphicsManager.Instance.DrawRect(center, Color.Yellow);
+}
+```
+
+Adding the debug code should draw link with a red square the size of his bounding box behind him and with a yellow box at his sprites center:
+
+![SCREEN](Images/wallscreen1.PNG)
+
+###Resolving collisions
+Nine times out of ten resolving collisions is going to go in the same function that handles input. (What's the case when this isn't how it happens? When solving continous integration systems in a Physics engine). In order to resolve collisions we need to know a few things. 
+
+* Get a list of obstacles the character can hit.
+* Move the character
+* Check if character has hit obstacle
+  * If so, undo the move action (clamp to obstacle)
+
+Pretty simple. We basically move, check if the move is valid and undo the move if it's not.
+
+###PlayerCharacter Refactor
+Before getting any of the obstacles or anything, let's update the ```PayerCharacter``` class. To keep thinks loosley coupled, the player character will not know about ```Game```. Instead we're going to add obstacles as an argument to input. This keeps all movement code local to ```PlayerCharacter```. Find this line:
+
+```cs
+public void Update(float deltaTime) {
+```
+
+and change it to this
+
+```cs
+public void Update(float deltaTime, Rectangle[] obstacles) {
+```
 
 ###A better way
 Some of this code might seem a bit convoluted, expecially because we move link horizontally, resolve collisions, then move him vertically. It's a bit of a mess. But it's not a bad way to handle the situation. All mission critical code is local to the ```PlayerCharacter``` class. 
