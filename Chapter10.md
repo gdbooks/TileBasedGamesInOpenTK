@@ -341,3 +341,28 @@ if (i.KeyDown(OpenTK.Input.Key.A) || i.KeyDown(OpenTK.Input.Key.Left)) {
 * Do walking Up after the Left sample. Up is easyer than Right
 * When handling Right & Down, keep in mind that the players position 0,0 is top right
   * You will have to subtract player width or height from the clamp position
+
+###Smooth movement
+Right now walking around you can kind of get stuck in the wall at random spots. We can fix that. You get stuck in walls because the animation method changes the height of the player sprite. So we do collision checking on one frame with one height, but then turning left will change the height. Changing the height between aniamtions causes us to get stuck. It's an easy fix, find this code in **PlayerCharacter.cs**
+
+```cs
+public PlayerCharacter(string spritePath, Point pos) : base(spritePath, pos) {
+    AddSprite("Down", new Rectangle(59, 1, 24, 30), new Rectangle(87, 1, 24, 30));
+    AddSprite("Up", new Rectangle(115, 3, 22, 28), new Rectangle(141, 3, 22, 28));
+    AddSprite("Left", new Rectangle(1, 1, 26, 30), new Rectangle(31, 1, 26, 31));
+    AddSprite("Right", new Rectangle(195, 1, 26, 30), new Rectangle(167, 1, 26, 29));
+    SetSprite("Down");
+}
+```
+
+And change it to have a uniform height
+
+``cs
+public PlayerCharacter(string spritePath, Point pos) : base(spritePath, pos) {
+    AddSprite("Down", new Rectangle(59, 1, 24, 30), new Rectangle(87, 1, 24, 30));
+    AddSprite("Up", new Rectangle(115, 3, 22, 30), new Rectangle(141, 3, 22, 30));
+    AddSprite("Left", new Rectangle(1, 1, 26, 30), new Rectangle(31, 1, 26, 30));
+    AddSprite("Right", new Rectangle(195, 1, 26, 30), new Rectangle(167, 1, 26, 30));
+    SetSprite("Down");
+}
+```
