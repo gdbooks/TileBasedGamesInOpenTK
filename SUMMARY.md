@@ -17,7 +17,7 @@
    * [On Your Own](Practice/PracticeTheHero.md)
 * [Keys To Move](Chapter9.md)
    * [On Your Own](Practice/PracticeMoving.md)
-* [X Hit The Wall](Chapter10.md)
+* [Hit The Wall](Chapter10.md)
 * [X Open The Door](Chapter11.md)
 * [X Jumping](Chapter12.md)
 * [X Clouds](Chapter13.md)
