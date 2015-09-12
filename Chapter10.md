@@ -227,3 +227,16 @@ This render function actually demonstrates HOW we're going to use the ```GetTile
 Running your game, you should get something like the below screenshot. The blue / violet squares might not always be evenly distributed. That is at some points you might only see 2 tiles get colored. Walk around, you should see a few patterns.
 
 ![SCREEN](Images/wallscreen3.PNG)
+
+###Refactoring PlayerCharacter
+Now comes the fun part. We're actually going to resolve collisions! **BUT FIRST**, lets do some house keeping! Let's make it so that the character can walk both up/down AND left/right at the same time. Find and change:
+
+```cs
+else if (i.KeyDown(OpenTK.Input.Key.W) || i.KeyDown(OpenTK.Input.Key.Up)) {
+```
+
+to
+
+```cs
+if (i.KeyDown(OpenTK.Input.Key.W) || i.KeyDown(OpenTK.Input.Key.Up)) {
+```
