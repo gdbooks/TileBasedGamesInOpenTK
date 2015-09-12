@@ -35,7 +35,11 @@ namespace HitTheWall {
 
                 int right = System.Math.Min(a.Right, b.Right);
                 int bottom = System.Math.Min(a.Bottom, b.Bottom);
-
+                
+                // Originally i assumed there might be an error in this function, because what if
+                // right is less than result.X? After reviewing the above math on paper i realize
+                // that these concerns where ungrounded, and that right will ALWAYS be greater!
+                
                 result.Width = right - result.X;
                 result.Height = bottom - result.Y;
             }
@@ -85,73 +89,141 @@ Adding the debug code should draw link with a red square the size of his boundin
 
 ![SCREEN](Images/wallscreen1.PNG)
 
+Let's also change the characters position from a getter to a variable. Find this line in **Character.cs**
+
+```cs
+public PointF Position { get; set; }
+```
+
+And change it to
+
+```cs
+public PointF Position = new PointF(0.0f, 0.0f);
+```
+
+Now that Position is a variable and not a getter we can modify the X and Y properties of the value directly. Open up **PlayerCharacter.cs** 
+
+Find and remove these two lines
+
+```cs
+PointF positionCpy = Position;
+// ...
+Position = positionCpy;
+```
+
+And replace every instance of ```positionCpy``` with ```Position```
+
+We're going to change one last thing about the ```Character``` class. Back in **Character.cs** add the following code to the class
+
+```cs
+public PointF[] Corners {
+    get {
+        float w = SpriteSource[currentSprite][currentFrame].Width;
+        float h = SpriteSource[currentSprite][currentFrame].Height;
+        return new PointF[] {
+            new PointF(Position.X, Position.Y),             // Top Left
+            new PointF(Position.X + w, Position.Y),         // Top Right
+            new PointF(Position.X, Position.Y + h),         // Bottom Left
+            new PointF(Position.X + w, Position.Y + h)      // Bottom Right
+        };
+    }
+}
+
+public static readonly int CORNER_TOP_LEFT = 0;
+public static readonly int CORNER_TOP_RIGHT = 1;
+public static readonly int CORNER_BOTTOM_LEFT = 2;
+public static readonly int CORNER_BOTTOM_RIGHT = 3;
+```
+
+The ```Corners``` accessor will return an array of 4 points. Each point is one of the corners of the player sprite. After that we have some named constants. These constants will allow us to access the ```Corners``` array by name isntead of having to remember hard coded numbers. Like so:
+
+```cs
+Rectangle topRight = heroChar.Corners[2]; // Flaky, we don't want to do this
+Rectangle topLeft = heroChar.Corners[Hero.CORNER_TOP_LEFT]; // Sexy, ALWAYS DO THIS!
+```
+
+Let's visualize what this looks like. Change the ```Render``` function in **Character.cs** to:
+
+```cs
+public void Render() {
+    GraphicsManager.Instance.DrawRect(Rect, Color.Red);
+    TextureManager.Instance.Draw(Sprite, new Point((int)Position.X, (int)Position.Y), 1.0f, SpriteSource[currentSprite][currentFrame]);
+    Rectangle center = new Rectangle((int)Center.X - 5, (int)Center.Y - 5, 10, 10);
+    GraphicsManager.Instance.DrawRect(center, Color.Yellow);
+    foreach(PointF corner in Corners) {
+        Rectangle rect = new Rectangle((int)corner.X - 5, (int)corner.Y - 5, 10, 10);
+        GraphicsManager.Instance.DrawRect(rect, Color.Green);
+    }
+}
+```
+
+Your code at this point should look like this:
+
+![SCREEN](Images/wallscreen2.PNG)
+
 ###Resolving collisions
 Nine times out of ten resolving collisions is going to go in the same function that handles input. (What's the case when this isn't how it happens? When solving continous integration systems in a Physics engine). In order to resolve collisions we need to know a few things. 
 
-* Get a list of obstacles the character can hit.
 * Move the character
+* Get a list of obstacles the character can hit.
 * Check if character has hit obstacle
   * If so, undo the move action (clamp to obstacle)
 
 Pretty simple. We basically move, check if the move is valid and undo the move if it's not.
 
-###PlayerCharacter Refactor
-Before getting any of the obstacles or anything, let's update the ```PayerCharacter``` class. To keep thinks loosley coupled, the player character will not know about ```Game```. Instead we're going to add obstacles as an argument to input. This keeps all movement code local to ```PlayerCharacter```. Find this line:
+If you are being clever and getting obstacles relative to theplayer, it's very important that you move the character first, then get the list of obstacles. This is because the list of obstacles will usually change based on the characters position. If the character moves you need the latest, most up to date obstacles. We're going to be clever and do this :)
+
+The other option is to brute force the deal, this means checking and trying to resolve the characters collision against every collidable object all the time. This method might work for smaller games, but the list of collisions to check will quickly grow out of hand. Most of the time brute force will simply not be an option due to performance reasons. We will **not** be doing brute force.
+
+###Game Refactor
+Looking at the above list of how to resolve collisions we already know how to move the character. We however don't know how to get a list of obstacles that the character can collide with. This functionality is going to be given to **Game.cs**.
+
+We're not going to call any new functions in Game. Instead we're going to add helper functions that will be called from inside of ```PlayerCharacter``` we can do this because ```Game``` is a singleton. We're going to write two helper functions ```GetTile``` and ```GetTileRect``` both of them are going to take a ```PointF``` as an argument.
+
+How are these new functions going to be used? Inside of ```PlayerCharacter``` we're going to get the tile for one of the corners of the character. If the tile is NOT walkable, we're going to get it's rectangle (again, using one of the corner points). We will try to resolve collisions against this rectangle.
+
+With that, add these functions to **Game.cs**
 
 ```cs
-public void Update(float deltaTime) {
-```
+public Tile GetTile(PointF pixelPoint) {
+    // TODO: Get the x and y indices of the tile from pixelPoint
+    // Return the appropriate tile
+    return null; // Just so this compiles
+}
 
-and change it to this
-
-```cs
-public void Update(float deltaTime, Rectangle[] obstacles) {
-```
-
-###A better way
-Some of this code might seem a bit convoluted, expecially because we move link horizontally, resolve collisions, then move him vertically. It's a bit of a mess. But it's not a bad way to handle the situation. All mission critical code is local to the ```PlayerCharacter``` class. 
-
-If it makes more sense to you, adding the player movement and collision resolution code directly into the ```Game``` class is also a valid option. It will bloat the size of the **Game.cs** file, but the update will be easyer to read. Something like this:
-
-```
-// PSEUDO CODE, NOT PRODUCTION!
-
-void Game.Update(float dt) {
-    InputManager.Update();
-    
-    // Update the hero
-    if (GetKey(Keys.Right)) {
-        hero.Animate(dt);
-        
-        hero.Position.X += speed * dt;
-        if (IsCollidingWithMap(hero)) {
-            hero.Position.X -= GetCollisionWidth(hero, GetCollisionTile(hero));
-        }
-    }
-    else if (GetKey(Keys.Left)) {
-        hero.Animate(dt);
-        
-        hero.Position.X -= speed * dt;
-        if (IsCollidingWithMap(hero)) {
-            hero.Position.X += GetCollisionWidth(hero, GetCollisionTile(hero));
-        }
-    }
-    
-    // Do the same for Up and Down
-    hero.SetAnimStateToDefault();
-    
-    // TODO: Update all enemies and other objects
+public Rectangle GetTileRect(PointF pixelPoint) {
+    // TODO: Convert pixel point into a Rectangle that is on the tile grid
+    // Hint, xTile * tileSize = Grid X Position
+    // return the resulting rectangle
+    return new Rectangle(); // Just so this compiles
 }
 ```
 
-You can see how this **DEEPLY** couples the ```PlayerCharacter``` and ```Game``` classes together. This deep coupling is why we didn't do it like this in the tutorial. But this does reinforce the above statement about the nature of moving objects:
+Try to fill those functions in. Let's also change how the rendering of the game works by adding more debug symbols! Change the ```Render``` function in **Game.cs** to this:
 
-* First,move the Object
-* Next, check if there is a collision
-  * If there was resolve the collision
+```cs
+public void Render() {
+    for (int h = 0; h < map.Length; h++) {
+        for (int w = 0; w < map[h].Length; w++) {
+            map[h][w].Render();
+        }
+    }
 
-Collisions are usually resolved by moving the character back by some intersection amount.
+    foreach (PointF corner in hero.Corners) {
+        if (GetTile(corner).Walkable) {
+            GraphicsManager.Instance.DrawRect(GetTileRect(corner), Color.Blue);
+        }
+        else {
+            GraphicsManager.Instance.DrawRect(GetTileRect(corner), Color.Violet);
+        }
+    }
 
-Anyway, the way we did collision is one way. The way outlined in Pseudo Code above is another way. And there are many, many more ways of handling all of this. Once we get to 3D objects, we will see other ways of handling these situations.
+    hero.Render();
+}
+```
 
-For now spend some time thinking about how we are handling and resolving collisions. Are you happy with it? If you are we will move on. If you're not how would you make the situation better? Try to code it up, see if you can make your own version work!
+This render function actually demonstrates HOW we're going to use the ```GetTile``` and ```GetTileRect``` functions. Any tile that one of the player corners falls on is colored Blue or Violet. Blue tiles are walkable, Violet ones are not. When it comes time to Resolve Collisions, we only have to check the violet tiles. Checking so few tiles will make our game super performant. 
+
+Running your game, you should get something like the below screenshot. The blue / violet squares might not always be evenly distributed. That is at some points you might only see 2 tiles get colored. Walk around, you should see a few patterns.
+
+![SCREEN](Images/wallscreen3.PNG)
