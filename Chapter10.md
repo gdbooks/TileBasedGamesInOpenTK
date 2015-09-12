@@ -262,4 +262,52 @@ Again, inside of the ```Update``` function replace everywhere aimation is set to
 
 **Run the game** it should at this point run as expected. Now it's time to resolve some collisions! The key to efficient collision resolution is to check as few things as possible. As long as the character is the same size or smaller than the tiles there can be at most two collisions at a time:
 
-![SCREEN](Images/collision.png)
+![SCREEN](Images/collisions.png)
+
+When link is moving in one direction, only his corners in that direction need to be checked. And it's not even his corners, it's the tile his corners fall on. In the middle example above, both the top and bottom corners fall on the same tile, so only one is checked. Here is a breakdown of which corners to check:
+
+* Moving Left
+  * Check Top Left Corner
+  * Check Bottom Left Corner
+* Moving Right
+  * Check Top Right Corner
+  * Check Bottom Right Corner
+* Moving Up
+  * Check Top Left Corner
+  * Check Top Right Corner
+* Moving Down
+  * Check Bottom Left Corner
+  * Check Bottom Right Corner
+
+How do we actually go about checking these? Let's walk trough adding collision resolution when moving left. First, locate the code that moves link left:
+
+```cs
+if (i.KeyDown(OpenTK.Input.Key.A) || i.KeyDown(OpenTK.Input.Key.Left)) {
+    SetSprite("Left");
+    Animate(deltaTime);
+    positionCpy.X -= speed * deltaTime;
+    
+    // Add collision resolution
+}
+```
+
+* To add collision resolution, first lets check the TopLeftCorner. 
+* Use the Game class to get the tile at the top left corners Point
+* Check to see if the tile is walkable. IF NOT:
+  * Get the intersection rectangle of the player and the tile
+  * An intersection happens if the intersection rect has an area > 0
+  * Check if intersect.W * intersect.H > 0, IF IT IS:
+    * Clamp player X to intersection rectangle right
+
+Let's see what this would look like in code:
+
+```cs
+if (!Game.Instance.GetTile(Corners[CORNER_TOP_LEFT]).Walkable) {
+    Rectangle intersection = Intersections.Rect(Rect, Game.Instance.GetTileRect(Corners[CORNER_TOP_LEFT]));
+    if (intersection.Width * intersection.Height > 0) { // W * H == 0 if NO intersection happened!
+        Position.X = intersection.Right;
+    }
+}
+```
+
+We don't need to fully qualify ```Rect```, ```Corner``` or ```CORNER_TOP_LEFT``` because we inherited them from ```Character```. We can access the helper functions of ```Game``` trough it's singleton instance.
