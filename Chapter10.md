@@ -261,3 +261,5 @@ protected void Animate(float deltaTime) {
 Again, inside of the ```Update``` function replace everywhere aimation is set to true ```animating = true;``` to a call to Animate ```Animate(deltaTime```.
 
 **Run the game** it should at this point run as expected. Now it's time to resolve some collisions! The key to efficient collision resolution is to check as few things as possible. As long as the character is the same size or smaller than the tiles there can be at most two collisions at a time:
+
+![SCREEN](Images/collision.png)
