@@ -13,6 +13,9 @@ Using these two rectangles we want to see if they intersect. To do this we look 
 
 If the intersection(red) rectangle has an area greater than 0 (That is, if a collision has happened) we must resolve the collision. We do this by moving the character to the left, right up or down by the width or height of the intersection.
 
+###New Project
+Let's make a new project, call it **HitTheWall** and get this project up to par with the **MovingPractice** section of the writeup. We're going to work from here.
+
 ###Intersection
 From the above description it becomes clear that we need to be able to get an intersection rectangle between two rectangles. We're going to add this ability to a common helper class. If this method is looking alien try to draw out all of the intersection cases on paper and follow it trough for each.
 
