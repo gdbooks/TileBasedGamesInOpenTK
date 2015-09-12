@@ -310,4 +310,34 @@ if (!Game.Instance.GetTile(Corners[CORNER_TOP_LEFT]).Walkable) {
 }
 ```
 
-We don't need to fully qualify ```Rect```, ```Corner``` or ```CORNER_TOP_LEFT``` because we inherited them from ```Character```. We can access the helper functions of ```Game``` trough it's singleton instance.
+We don't need to fully qualify ```Rect```, ```Corner``` or ```CORNER_TOP_LEFT``` because we inherited them from ```Character```. We can access the helper functions of ```Game``` trough it's singleton instance. 
+
+That takes care of the top left collision of moving left, we need to also check bottom left. It's going to more or less be the same code. Here is the entire key checker part of the code:
+
+```cs
+if (i.KeyDown(OpenTK.Input.Key.A) || i.KeyDown(OpenTK.Input.Key.Left)) {
+    SetSprite("Left");
+    Animate(deltaTime);
+    Position.X -= speed * deltaTime;
+
+    if (!Game.Instance.GetTile(Corners[CORNER_TOP_LEFT]).Walkable) {
+        Rectangle intersection = Intersections.Rect(Rect, Game.Instance.GetTileRect(Corners[CORNER_TOP_LEFT]));
+        if (intersection.Width * intersection.Height > 0) { // W * H == 0 if NO intersection happened!
+            Position.X = intersection.Right;
+        }
+    }
+
+    if (!Game.Instance.GetTile(Corners[CORNER_BOTTOM_LEFT]).Walkable) {
+        Rectangle intersection = Intersections.Rect(Rect, Game.Instance.GetTileRect(Corners[CORNER_BOTTOM_LEFT]));
+        if (intersection.Width * intersection.Height > 0) { // W * H == 0 if NO intersection happened!
+            Position.X = intersection.Right;
+        }
+    }
+}
+```
+
+**Run the game**, walking to the left collisions should now happen. But you can walk trough tiles in any other direction. Go ahead and add collision resolution code to the rest of the movement directions. Keep in mind:
+
+* Do walking Up after the Left sample. Up is easyer than Right
+* When handling Right & Down, keep in mind that the players position 0,0 is top right
+  * You will have to subtract player width or height from the clamp position
