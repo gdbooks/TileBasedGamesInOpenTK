@@ -229,7 +229,7 @@ Running your game, you should get something like the below screenshot. The blue 
 ![SCREEN](Images/wallscreen3.PNG)
 
 ###Refactoring PlayerCharacter
-Now comes the fun part. We're actually going to resolve collisions! **BUT FIRST**, lets do some house keeping! Let's make it so that the character can walk both up/down AND left/right at the same time. Find and change:
+Now comes the fun part. We're actually going to resolve collisions! **BUT FIRST**, lets do some house keeping! Let's make it so that the character can walk both up/down AND left/right at the same time. Inside **PLayerCharacter.cs** find and change:
 
 ```cs
 else if (i.KeyDown(OpenTK.Input.Key.W) || i.KeyDown(OpenTK.Input.Key.Up)) {
@@ -240,3 +240,24 @@ to
 ```cs
 if (i.KeyDown(OpenTK.Input.Key.W) || i.KeyDown(OpenTK.Input.Key.Up)) {
 ```
+
+The way we do animations now is good, but an animation frame might change the Width / Height of our sprite. If the width or height is going to change, we want that to happen sooner, rather than later. Inside **PlayerCharacter.cs** we have a variable ```bool animating = false;``` Remove that.
+
+Find the animation code at the bottom of ```Update``` and remove it. We're going to refactor it into an ```Animate``` function, this is what it's going to look like:
+
+```cs
+protected void Animate(float deltaTime) {
+    animTimer += deltaTime;
+    if (animTimer > animFPS) {
+        currentFrame += 1;
+        animTimer -= animFPS;
+        if (currentFrame > SpriteSource[currentSprite].Length - 1) {
+            currentFrame = 0;
+        }
+    }
+}
+```
+
+Again, inside of the ```Update``` function replace everywhere aimation is set to true ```animating = true;``` to a call to Animate ```Animate(deltaTime```.
+
+**Run the game** it should at this point run as expected. Now it's time to resolve some collisions! The key to efficient collision resolution is to check as few things as possible. As long as the character is the same size or smaller than the tiles there can be at most two collisions at a time:
