@@ -357,7 +357,7 @@ public PlayerCharacter(string spritePath, Point pos) : base(spritePath, pos) {
 
 And change it to have a uniform height
 
-``cs
+```cs
 public PlayerCharacter(string spritePath, Point pos) : base(spritePath, pos) {
     AddSprite("Down", new Rectangle(59, 1, 24, 30), new Rectangle(87, 1, 24, 30));
     AddSprite("Up", new Rectangle(115, 3, 22, 30), new Rectangle(141, 3, 22, 30));
@@ -366,3 +366,8 @@ public PlayerCharacter(string spritePath, Point pos) : base(spritePath, pos) {
     SetSprite("Down");
 }
 ```
+
+**DONE**, Run the game. Moving is smooth as a button and collisions work correctly in all directions.
+
+##Check in
+Check in with me when you finished this part before moving onto the next bit. I want to review the code written up to this point.
