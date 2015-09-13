@@ -92,19 +92,26 @@ public void Update(float dt) {
         for (int col = 0; col < currentLayout[row].Length; ++col) {
         
             // Tile 2 is a door.
-            if (currentLayout[row][col] == 2) {
-                // Construct a rectangle for the door:
-                Rectangle doorRect = GetTileRect(new PointF(col * 30, row * 30));
-                
-                // Consruct a 10x10 rectangle at player center
-                Rectangle playerCenter = new Rectangle((int)hero.Center.X, (int)hero.Center.Y, 10, 10);
-                
-                // Look for an intersection
-                Rectangle intersection = Intersection.Rect(doorRect, playerCenter);
-                
-                // Intersection happens 
-                if (intersection.Width * intersection.Height > 0) {
-                    Console.WriteLine("Player door intersection! Go to room 2!");
+            if (intersection.Width * intersection.Height > 0) {
+                // If we are in room1, move to room 2
+                if (currentRoom == room1) {
+                    // Set active room
+                    currentRoom = room2;
+                    currentLayout = room2Layout;
+
+                    // Reposition hero to tile outside of door
+                    hero.Position.X = 1 * 30; // Column 1
+                    hero.Position.Y = 1 * 30; // Row 1
+                }
+                // If we are in room 2, move to room 1
+                else {
+                    // Set active room
+                    currentRoom = room1;
+                    currentLayout = room1Layout;
+
+                    // Reposition hero to tile outside of door
+                    hero.Position.X = 6 * 30; // Column 6
+                    hero.Position.Y = 4 * 30; // Row 4
                 }
             }
         }
