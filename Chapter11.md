@@ -77,47 +77,60 @@ Of course running the game, link still starts out in ```room1```. this is becaus
 ###Walking trough the door
 The last thing left to do is to add the logic to walk link trough that door. And this is going to be pretty simple. In the ```Update``` method of **Game.cs**, we're going to check if the player rectangle intersects with any door rectangles. If it does, based on the door number we will set currentRoom to the appropriate room. Finally, we will set the position of the player to look like he's walked trough the door.
 
-One thing you might have noticed about the above logic, if we transport the player as soon as he touches the door, it might not look natural. It definateley won't look like link is walking trough the door... More like he accidentally touched a magic portal. Because of this, instead of checking links bounding box, we're going to construct a 10PX rectangle at his center. And we will test this against intersecting with the door.
+One thing you might have noticed about the above logic, if we transport the player as soon as he touches the door, it might not look natural. It definateley won't look like link is walking trough the door... More like he accidentally touched a magic portal. Because of this, instead of checking links bounding box, we're going to construct a 4PX rectangle at his center. And we will test this against intersecting with the door.
 
 I originally wanted to make this an "On Your Own" exercise, but the code is pretty straight forward, and it's hard to give instructions on it. So, read the below code carefully, and let me know if you have any questions.
 
 ```cs
 public void Update(float dt) {
+    // Let the hero move, and sort out any collision issues
     hero.Update(dt);
-    
     // We need to check for doors AFTER the player has moved
-    
+
     // Loop torugh the layout, the Tile class does not know if it is a door or not.
     for (int row = 0; row < currentLayout.Length; ++row) {
         for (int col = 0; col < currentLayout[row].Length; ++col) {
-        
-            // Tile 2 is a door.
-            if (intersection.Width * intersection.Height > 0) {
-                // If we are in room1, move to room 2
-                if (currentRoom == room1) {
-                    // Set active room
-                    currentRoom = room2;
-                    currentLayout = room2Layout;
+            // The tile is a door if it had a 2 in the layout!
+            if (currentLayout[row][col] == 2) {
+                // Get the door's bounding rectangle
+                Rectangle doorRect = GetTileRect(new PointF(col * 30, row * 30));
 
-                    // Reposition hero to tile outside of door
-                    hero.Position.X = 1 * 30; // Column 1
-                    hero.Position.Y = 1 * 30; // Row 1
-                }
-                // If we are in room 2, move to room 1
-                else {
-                    // Set active room
-                    currentRoom = room1;
-                    currentLayout = room1Layout;
+                // Get a small rectangle in the center of the player
+                Rectangle playerCenter = new Rectangle((int)hero.Center.X - 2, (int)hero.Center.Y - 2, 4, 4);
 
-                    // Reposition hero to tile outside of door
-                    hero.Position.X = 6 * 30; // Column 6
-                    hero.Position.Y = 4 * 30; // Row 4
+                // Look for an intersection
+                Rectangle intersection = Intersection.Rect(doorRect, playerCenter);
+
+                // Intersection happens if the intersect rectangle has an area > 0
+                if (intersection.Width * intersection.Height > 0) {
+                    // If we are in room1, move to room 2
+                    if (currentRoom == room1) {
+                        // Set active room
+                        currentRoom = room2;
+                        currentLayout = room2Layout;
+
+                        // Reposition hero to tile outside of door
+                        hero.Position.X = 1 * 30; // Column 1
+                        hero.Position.Y = 1 * 30; // Row 1
+                    }
+                    // If we are in room 2, move to room 1
+                    else {
+                        // Set active room
+                        currentRoom = room1;
+                        currentLayout = room1Layout;
+
+                        // Reposition hero to tile outside of door
+                        hero.Position.X = 6 * 30; // Column 6
+                        hero.Position.Y = 4 * 30; // Row 4
+                    }
                 }
             }
         }
     }
 }
 ```
+
+**Run the game**, you should now be able to walk from room to room!
 
 You might be thinking to yourself, we could make things easyer by storing a bolean in the ```Tile``` class, then we wouldn't need to loop trough the tileLayout array.... And you are correct! In fact, that's what the next section is all about. Read on!
 
