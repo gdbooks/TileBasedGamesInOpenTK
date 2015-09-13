@@ -99,3 +99,9 @@ foreach (int w in walkable) {
     }
 }
 ```
+
+
+* Change ```Tile[][] room1 = null;``` to ```Map room1 = null```
+* Repeat the above for room2
+* Repeat the above for currentRoom
+* Delet the ```GenerateMap``` function from **Game.cs**
