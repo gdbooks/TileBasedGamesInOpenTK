@@ -53,7 +53,12 @@ protected int[][] room2Layout = new int[][] {
 Inside of the **Initialize** function, make sure that ```room2``` is created! Also, inside **Destroy** make sure that ```room2``` is unloaded.
 
 ###The current room
-At this point we have two rooms, but they are kind of useless. This is because every function is hard-coded to work with room1. Let's fix that by introducing a ```currentRoom``` variable!
+At this point we have two rooms, but they are kind of useless. This is because every function is hard-coded to work with room1. Let's fix that by introducing a ```currentRoom``` variable! Start off by adding these two member variables:
+
+```
+ protected Tile[][] currentRoom = null;
+protected int[][] currentLayout = null;
+```
 
 ###Walking trough the door
 
