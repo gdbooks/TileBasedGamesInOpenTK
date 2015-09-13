@@ -11,7 +11,18 @@ The nice thing here, none of the code for this is going to have to go inside the
 Let's make a new project, call it **OpenTheDoor** and get this project up to par with the **HitTheWall** section of the writeup. We're going to work from here.
 
 ###The door tile
-First thing is first, let's add our door tile that will lead into the second room.
+First thing is first, let's add our door tile that will lead into the second room. Right now we define the map layout in the ```mapLayout``` variable where tile 1 is a wall and tile 0 is walkable. Let's add tile 2, which will be the door. 
+
+* In the ```mapLayout``` varibale, change the appropriate tile to be a door
+  * Look at the above screnshot, it's the tile in the lower right
+* Add ```new Rectangle(32, 187, 30, 30)``` to the ```spriteSources``` array
+* Make tile 2 walkable. So tiles 0 and 2 should both be walkable.
+
+Be careful when walking around! While you should be able to walk a little bit into the door, if you walk too far into the new door tile the game will crash. This is expected. After the above changes, running the game should look like this:
+
+![DOOR1](Images/door1.PNG)
+
+Be careful
 
 #Cleaning Up
 Follow along to the code in the **Cleaning** Up subsection inside of this (OpenTheDoor) project. The **Cleaning Up** section just gives us an easy way to store room's as objects, instead of cluttering up the **Game.cs** file.
