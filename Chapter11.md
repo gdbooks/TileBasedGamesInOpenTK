@@ -22,7 +22,11 @@ Be careful when walking around! While you should be able to walk a little bit in
 
 ![DOOR1](Images/door1.PNG)
 
-Be careful
+###The second room
+
+###Walking trough the door
+
+###Going back
 
 #Cleaning Up
 Follow along to the code in the **Cleaning** Up subsection inside of this (OpenTheDoor) project. The **Cleaning Up** section just gives us an easy way to store room's as objects, instead of cluttering up the **Game.cs** file.
