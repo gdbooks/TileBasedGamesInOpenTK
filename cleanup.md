@@ -36,4 +36,35 @@ This isn't the last refactor we're going to make to the Tile class in this secti
 
 ###Map class
 
-Go ahead and create a new file, let's call it **Map.cs**. 
+Go ahead and create a new file, let's call it **Map.cs**. We're not going to add a lot of new code to this class, or the most part we're just going to move code out of **Game.cs** and into here.
+
+A map is just a 2D array of ```Tile``` objects, so lets add a protected 2D ```Tile``` array to this class and call it **tileMap**. If we expose the same API as an array being used, then the ```Map``` class and a 2D int array will behave the same (inside of **Game.cs**). So what do we need to mimic an array API? We need a bracket accessor and a .Length property.
+
+So far our class looks like this:
+
+```cs
+using System.Drawing;
+
+namespace OpenTheDoor {
+    class Map {
+        protected Tile[][] tileMap = null;
+
+        // Accessor to the tileMap variable. With this we can index the map object
+        // without directly exposing the underlying tileMap. EX:
+        // Map myMap = new Map();
+        // myMap[row][col] = new Tile(row, col);
+        public Tile[] this[int i] {
+            get { return tileMap[i]; }
+        }
+
+        // We may need to know how many rows / columns there are in the map, that's what
+        // this function is great for!
+        public int Length {
+            get {
+                return tileMap.Length;
+            }
+        }
+    }
+}
+```
+
