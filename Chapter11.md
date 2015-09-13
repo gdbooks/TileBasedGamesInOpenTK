@@ -50,7 +50,7 @@ protected int[][] room2Layout = new int[][] {
 };
 ```
 
-Inside of the **Initialize** function, make sure that ```room2``` is created!
+Inside of the **Initialize** function, make sure that ```room2``` is created! Also, inside **Destroy** make sure that ```room2``` is unloaded.
 
 ###Walking trough the door
 
