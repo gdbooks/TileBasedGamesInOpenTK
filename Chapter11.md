@@ -11,7 +11,7 @@ The nice thing here, none of the code for this is going to have to go inside the
 Let's make a new project, call it **OpenTheDoor** and get this project up to par with the **HitTheWall** section of the writeup. We're going to work from here.
 
 ###The door tile
-First thing is first, let's add our door tile that will lead into the second room. Right now we define the map layout in the ```mapLayout``` variable where tile 1 is a wall and tile 0 is walkable. Let's add tile 2, which will be the door. 
+First thing is first, let's add our door tile that will lead into the second room. We're going to be working in **Game.cs**. Right now we define the map layout in the ```mapLayout``` variable where tile 1 is a wall and tile 0 is walkable. Let's add tile 2, which will be the door. 
 
 * In the ```mapLayout``` varibale, change the appropriate tile to be a door
   * Look at the above screnshot, it's the tile in the lower right
@@ -23,6 +23,32 @@ Be careful when walking around! While you should be able to walk a little bit in
 ![DOOR1](Images/door1.PNG)
 
 ###The second room
+Sweet we now have a door (well, visually at least), but it doesn't lead anywhere! We're going to add a second map. Still in **Game.cs**, refactor the name of the ```map``` variable to be ```room1```. To do this, right click on ```map``` and select **Rename**
+
+![RENAME](Images/rename_map.png)
+
+This will cause the ```map``` variable to highlight in some strange green color, just start typing and the name of the variable will change. When you are done, hit enter and all instances of ```map``` will be autmatically renamed for you.
+
+![GREEN](Images/green_map.PNG)
+
+Now rename the ```mapLayout``` variable to be named ```room1Layout```. 
+
+**Run The Game** at this point it's important for you to run the game and make sure it still works correctly!
+
+Next, let's add the definition of ```room2``` and ```room2Layout```. Seeing how this is mostly a copy / paste job of ```room1``` with minor alterations, use this clode:
+
+```
+protected Tile[][] room2 = null;
+
+protected int[][] room2Layout = new int[][] {
+    new int[] { 1, 1, 1, 1, 1, 1, 1, 1 },
+    new int[] { 2, 0, 0, 0, 1, 0, 0, 1 },
+    new int[] { 1, 0, 0, 0, 0, 0, 0, 1 },
+    new int[] { 1, 0, 0, 0, 0, 0, 0, 1 },
+    new int[] { 1, 0, 0, 0, 1, 0, 0, 1 },
+    new int[] { 1, 1, 1, 1, 1, 1, 1, 1 }
+};
+```
 
 ###Walking trough the door
 
