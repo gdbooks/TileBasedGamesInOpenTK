@@ -68,3 +68,34 @@ namespace OpenTheDoor {
 }
 ```
 
+Next, let's add a constructor:
+
+```cs
+public Map(int[][] layout, string sheets, Rectangle[] sources, params int[] walkable) {
+```
+
+If you notice the constructor here has a very similar signature to the ```GenerateMap``` function inside of **Game.cs**. That's because it essentially does the same thing. Go ahead and migrate the ```GenerateMap``` function into the map constructor.
+
+Take these lines:
+
+```cs
+result[i][j].Walkable = layout[i][j] == 0 || layout[i][j] == 2;
+result[i][j].IsDoor = layout[i][j] == 2;
+```
+
+And replace them with sane defaults (don't worry, we will change these later):
+
+```cs
+result[i][j].Walkable = false;
+result[i][j].IsDoor = false;
+```
+
+After setting all defaults, we want to loop trough the params argument at the end. If the value of the tile we just created is in the walkable array, then we should mark the tile as walkable.  Because an array doesn't have a search function, we will just do a linear search manually:
+
+```cs
+foreach (int w in walkable) {
+    if (layout[i][j] == w) {
+        tileMap[i][j].Walkable = true;
+    }
+}
+```
