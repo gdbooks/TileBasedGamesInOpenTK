@@ -156,3 +156,55 @@ If the player leaves the room, ```ResolveDoors``` will return the new room the p
 
 
 ###Tile refactor
+Door tiles will need to know two more pieces of information, where the door should take the player in pixels on screen and which room to take the player to. With that in mind, add these two variables to **Tile.cs**
+
+* ```public Map DoorTarget = null;```
+* ```public Point DoorLocation = new Point();```
+
+Set them to good defaults (null, and empty Point). Next we're going to make a function that sets both of these, and the IsDoor variable. Lets call this function **MakeDoor** The function is super straight forward, this is what it looks like:
+
+```cs
+public void MakeDoor(Map target, Point location) {
+    DoorTarget = target;
+    DoorLocation = location;
+    IsDoor = true;
+}
+```
+
+That's it, for the moment the ```Tile``` class is done. We're not going to be touching it for the rest of this section.
+
+###Map Refactor
+Let's add a new method to the ```Map``` class. This is the method we're going to use to test if a door intersection has happened.Let's call that method ```ResolveDoors``` and give it the following signature:
+
+```cs
+public Map ResolveDoors(PlayerCharacter hero) {
+```
+
+Go ahead and **try to move** the door related update function out of **Game.cs** and into **Map.cs** I expect you will have a hard time with the code that decides that a collision has happened. Again, the code here is pretty straight forward, i'll include my version:
+
+```cs
+public Map ResolveDoors(PlayerCharacter hero) {
+    Map result = this; // Return this map by default!
+
+    for (int row = 0; row < tileMap.Length; ++row) {
+        for (int col = 0; col < tileMap[row].Length; ++col) {
+            if (tileMap[row][col].IsDoor) {
+                Rectangle doorRect = new Rectangle(col * 30, row * 30, 30, 30);
+                Rectangle playerCenter = new Rectangle((int)hero.Center.X - 2, (int)hero.Center.Y - 2, 4, 4);
+                Rectangle intersection = Intersection.Rect(doorRect, playerCenter);
+
+                // Intersection happens if the intersect rectangle has an area > 0
+                if (intersection.Width * intersection.Height > 0) {
+                    result = tileMap[row][col].DoorTarget;
+                    hero.Position.X = tileMap[row][col].DoorLocation.X * 30;
+                    hero.Position.Y = tileMap[row][col].DoorLocation.Y * 30;
+                }
+            }
+        }
+    }
+
+    return result;
+}
+```
+
+That's a short, good looking function!
