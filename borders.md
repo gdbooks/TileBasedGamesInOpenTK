@@ -1,0 +1,2 @@
+#Screen Borders
+The door section was a bit more intense than originally expected. Luckly for you, this section of the tutorial has no code for you to write. I just wanted to present you with an alternate way to use doors. There are of course many more ways to use them, not just the one we have already seen and the one we're about to see. I encourage you to think about and play with door mechanics.
