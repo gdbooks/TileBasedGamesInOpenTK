@@ -100,8 +100,59 @@ foreach (int w in walkable) {
 }
 ```
 
+It makes no sense for the ```Game``` class to have to loop torugh a room and destroy all textures indevidually. Same thing with rendering, why is the ```Game``` class looping? Let's fix that by moving the loops into the ```Map``` class like so:
+
+```cs
+public void Render() {
+    for (int h = 0; h < tileMap.Length; h++) {
+        for (int w = 0; w < tileMap[h].Length; w++) {
+            tileMap[h][w].Render();
+        }
+    }
+}
+
+public void Destroy() {
+    for (int h = 0; h < tileMap.Length; h++) {
+        for (int w = 0; w < tileMap[h].Length; w++) {
+            tileMap[h][w].Destroy();
+        }
+    }
+}
+```
+
+That's our first round on the ```Map``` object, let's see what we need to do to **Game.cs** to make it work:
+
+###Game refactor
+We have to do a little bit of re-factoring in the ```Game``` class to make it work with our new ```Map``` class. Here is a pretty comprehensive list of what needs to happen
 
 * Change ```Tile[][] room1 = null;``` to ```Map room1 = null```
 * Repeat the above for room2
 * Repeat the above for currentRoom
+* Change the ```Initialize``` function to create a new ```Map```
+  * Last argument (params) is going to be 2 and 0 as they are walkable
+* Inside ```Initialize``` still, map 1: manually set tile 4, 7 IsDoor to true
+* Inside ```Initialize``` still, map 2: manually set tile 0, 2 IsDoor to true
 * Delet the ```GenerateMap``` function from **Game.cs**
+* In the **Game.cs**  ```Destory``` function, don't loop torugh maps. 
+  * Call that map object's ```Destroy``` function instead
+* In the **Game.cs** ```Render``` function, don't loop trough the currentMap.
+  * Instead just call ```currentMap.Render();```
+
+If you need a reference, at this point my **Game.cs** looks like [This](https://gist.github.com/gszauer/e4564c7a53582ecfeedf). 
+
+**Run the game**, at this point your game should run like if nothing had changed.
+
+###Whats next?
+The project is a little bit better orgonized now. We removed some code from ***Game.cs**, but not enough. I think we should be able to make the ```Update``` function into a 2 line function. I want it to work like this
+
+```
+// PSEUDOCODE, NOT FOR PRODUCTION
+public void Update(float dt) {
+    hero.Update(dt);
+    currentMap = currentMap.ResolveDoors(hero);
+```
+
+If the player leaves the room, ```ResolveDoors``` will return the new room the player is in, and move the player to the correct new location. In order to do this the map class will need to be able to check for doors, and the doors will need to know where to take the player. 
+
+
+###Tile refactor
