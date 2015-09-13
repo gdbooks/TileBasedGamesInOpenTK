@@ -207,4 +207,115 @@ public Map ResolveDoors(PlayerCharacter hero) {
 }
 ```
 
-That's a short, good looking function!
+That's a short, good looking function! And with that we are done refactoring the ```Map``` class. We just need to fix up **Game.cs** now.
+
+###Game Refactor
+I order to utilize these shiny new features we've added we have to do some refactoring on **Game.cs**, luckly, it's just two things:
+
+* In initialize, wehre we where setting ```IsDoor`` to true, don't do that
+  * Instead call the ```MakeDoor``` function of ```Tile```
+* In Update, tear out that big ugly nested loop ment for door checks.
+  *  Replace it with: ```currentRoom = currentRoom.ResolveDoors(hero);``` 
+
+And that's it! You should now be able to **Run Your Game**, and it should look exactly like our game did at the begening of the tutorial. The big difference? The code is now maintainable! In fact, the **Game.cs** class ended up so small, i'm going to include it verbatin:
+
+```cs
+using GameFramework;
+using System.Drawing;
+using Collision;
+
+namespace OpenTheDoor {
+    class Game {
+        protected Point spawnTile = new Point(2, 1);
+        protected PlayerCharacter hero = null;
+        protected string heroSheet = "Assets/Link.png";
+        public OpenTK.GameWindow Window = null;
+
+        Map room1 = null;
+        Map room2 = null;
+        Map currentRoom = null;
+
+        protected int[][] room1Layout = new int[][] {
+            new int[] { 1, 1, 1, 1, 1, 1, 1, 1 },
+            new int[] { 1, 0, 0, 0, 0, 0, 0, 1 },
+            new int[] { 1, 0, 1, 0, 0, 0, 0, 1 },
+            new int[] { 1, 0, 0, 0, 0, 1, 0, 1 },
+            new int[] { 1, 0, 0, 0, 0, 0, 0, 2 },
+            new int[] { 1, 1, 1, 1, 1, 1, 1, 1 }
+        };
+
+        protected int[][] room2Layout = new int[][] {
+            new int[] { 1, 1, 1, 1, 1, 1, 1, 1 },
+            new int[] { 2, 0, 0, 0, 1, 0, 0, 1 },
+            new int[] { 1, 0, 0, 0, 0, 0, 0, 1 },
+            new int[] { 1, 0, 0, 0, 0, 0, 0, 1 },
+            new int[] { 1, 0, 0, 0, 1, 0, 0, 1 },
+            new int[] { 1, 1, 1, 1, 1, 1, 1, 1 }
+        };
+
+        protected string spriteSheets = "Assets/HouseTiles.png";
+        protected Rectangle[] spriteSources = new Rectangle[] {
+            new Rectangle(466,32,30,30),
+            new Rectangle(466,1,30,30),
+            new Rectangle(32, 187, 30, 30),
+            new Rectangle(32, 187, 30, 30)
+        };
+        
+        public Tile GetTile(PointF pixelPoint) {
+            return currentRoom[(int)pixelPoint.Y / 30][(int)pixelPoint.X / 30];
+        }
+
+        public Rectangle GetTileRect(PointF pixelPoint) {
+            int xTile = (int)pixelPoint.X / 30;
+            int yTile = (int)pixelPoint.Y / 30;
+            Rectangle result = new Rectangle(xTile * 30, yTile * 30, 30, 30);
+            return result;
+        }
+
+        private static Game instance = null;
+
+        public static Game Instance {
+            get {
+                if (instance == null) {
+                    instance = new Game();
+                }
+                return instance;
+            }
+        }
+
+        protected Game() {
+
+        }
+
+        public void Initialize(OpenTK.GameWindow window) {
+            Window = window;
+            window.ClientSize = new Size(room1Layout[0].Length * 30, room1Layout.Length * 30);
+            TextureManager.Instance.UseNearestFiltering = true;
+
+            hero = new PlayerCharacter(heroSheet, new Point(spawnTile.X * 30, spawnTile.Y * 30));
+            room1 = new Map(room1Layout, spriteSheets, spriteSources, 0, 2); // 0 and 2 ae walkable
+            room2 = new Map(room2Layout, spriteSheets, spriteSources, 0, 2); // 0 and 2 are walkable
+            currentRoom = room1;
+
+            room1[4][7].MakeDoor(room2, new Point(1, 1)); // Go to room2, at tile 1, 1
+            room2[1][0].MakeDoor(room1, new Point(6, 4)); // To to room1, at tile 6, 4
+        }
+
+        public void Update(float dt) {
+            hero.Update(dt);
+            currentRoom = currentRoom.ResolveDoors(hero);
+        }
+
+        public void Render() {
+            currentRoom.Render();
+            hero.Render();
+        }
+
+        public void Shutdown() {
+            room1.Destroy();
+            room2.Destroy();
+            hero.Destroy();
+        }
+    }
+}
+```
