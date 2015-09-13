@@ -60,9 +60,59 @@ protected Tile[][] currentRoom = null;
 protected int[][] currentLayout = null;
 ```
 
-###Walking trough the door
+At the end of the initialize function point the ```currentRoom``` and ```currentLayout``` references at room2, like so:
 
-###Going back
+```
+currentRoom = room2;
+currentLayout = room2Layout;
+```
+
+Of course running the game, link still starts out in ```room1```. this is because nothing is using the ```currentRoom``` variable yet. Update the following to use ```currentRoom``` instead of ```room1```:
+
+* GetTile function
+* Render function
+
+**Running the game**, link should now be in room2. Make sure the collisions are correct.
+
+###Walking trough the door
+The last thing left to do is to add the logic to walk link trough that door. And this is going to be pretty simple. In the ```Update``` method of **Game.cs**, we're going to check if the player rectangle intersects with any door rectangles. If it does, based on the door number we will set currentRoom to the appropriate room. Finally, we will set the position of the player to look like he's walked trough the door.
+
+One thing you might have noticed about the above logic, if we transport the player as soon as he touches the door, it might not look natural. It definateley won't look like link is walking trough the door... More like he accidentally touched a magic portal. Because of this, instead of checking links bounding box, we're going to construct a 10PX rectangle at his center. And we will test this against intersecting with the door.
+
+I originally wanted to make this an "On Your Own" exercise, but the code is pretty straight forward, and it's hard to give instructions on it. So, read the below code carefully, and let me know if you have any questions.
+
+```cs
+public void Update(float dt) {
+    hero.Update(dt);
+    
+    // We need to check for doors AFTER the player has moved
+    
+    // Loop torugh the layout, the Tile class does not know if it is a door or not.
+    for (int row = 0; row < currentLayout.Length; ++row) {
+        for (int col = 0; col < currentLayout[row].Length; ++col) {
+        
+            // Tile 2 is a door.
+            if (currentLayout[row][col] == 2) {
+                // Construct a rectangle for the door:
+                Rectangle doorRect = GetTileRect(new PointF(col * 30, row * 30));
+                
+                // Consruct a 10x10 rectangle at player center
+                Rectangle playerCenter = new Rectangle((int)hero.Center.X, (int)hero.Center.Y, 10, 10);
+                
+                // Look for an intersection
+                Rectangle intersection = Intersection.Rect(doorRect, playerCenter);
+                
+                // Intersection happens 
+                if (intersection.Width * intersection.Height > 0) {
+                    Console.WriteLine("Player door intersection! Go to room 2!");
+                }
+            }
+        }
+    }
+}
+```
+
+You might be thinking to yourself, we could make things easyer by storing a bolean in the ```Tile``` class, then we wouldn't need to loop trough the tileLayout array.... And you are correct! In fact, that's what the next section is all about. Read on!
 
 #Cleaning Up
 Follow along to the code in the **Cleaning** Up subsection inside of this (OpenTheDoor) project. The **Cleaning Up** section just gives us an easy way to store room's as objects, instead of cluttering up the **Game.cs** file.
