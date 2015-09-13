@@ -50,6 +50,8 @@ protected int[][] room2Layout = new int[][] {
 };
 ```
 
+Inside of the **Initialize** function, make sure that ```room2``` is created!
+
 ###Walking trough the door
 
 ###Going back
