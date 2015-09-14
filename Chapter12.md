@@ -136,7 +136,42 @@ Next, we need to change the update method.
 
 **Run the game** now, and nothing has changed! If you did everything correctly you should be able to walk around, fall off the platform, all kinds of fun! Let's add the code to actually jump. Before applying gravity to velocity, check is the space bar is pressed. If it is, **set velocity equal to impulse**. This is how we apply the impulse force. **Run the game now** and you should be able to jump after having fallen off the platform the character starts on.
 
-The jumping might feel a bit floaty right now, but that's ok. We will fix that later. Right now we have a bigger problem. There is no top collision! You can jump right out of the game!
+The jumping might feel a bit floaty right now, but that's ok. We will fix that later. Right now we have a bigger problem. There is no top collision! You can jump right out of the game! Kind of an easy fix. We already have code to prevent link from moving trough tiles upwards in the commented out ```#if``` block, let's go ahead and add that back in. Paste the top collision checking code after the code to check for floor collision. This is the bit that i'm talking about:
+
+```cs
+if (!Game.Instance.GetTile(Corners[CORNER_TOP_LEFT]).Walkable) {
+    Rectangle intersection = Intersection.Rect(Rect, Game.Instance.GetTileRect(Corners[CORNER_TOP_LEFT]));
+    if (intersection.Width * intersection.Height > 0) {
+        Position.Y = intersection.Bottom;
+    }
+}
+if (!Game.Instance.GetTile(Corners[CORNER_TOP_RIGHT]).Walkable) {
+    Rectangle intersection = Intersection.Rect(Rect, Game.Instance.GetTileRect(Corners[CORNER_TOP_RIGHT]));
+    if (intersection.Width * intersection.Height > 0) {
+        Position.Y = intersection.Bottom;
+    }
+}
+```
+
+It's almost perfect. However if you jump up and hit your head, you kind of float around for a while... This is immediateley obvious when you jump below the first platform. The reason for this should be obvious by now, velocity is pulling link up, but the tile collision clamps his position. This however doesn't stop velocity from pulling him up. 
+
+The fix is simple, we need to change velocity! We need to apply this code in two places, after each collision handler (```Position.Y = intersection.Bottom;```, still inside the area check if statement). But what do we set ```velocity``` to??? As it turns out we have three options, i encourage you to try all three:
+
+* **0** - This will cause link to fall from the top of his parabola. That is, slowly
+  * Can be visually jarring if you hit something mid jump. 
+  * This is because the falling / jumping speed is different based on jump time
+* **gravity** - This will cause a very abrupt fall.
+  * Can be visually jarring, if link is at the top of his jump his fal will be super fast
+* **Math.Abs(velocity)** or **velocity * -1.0f**. This will keep fall speed the same as jump speed.
+  * The speed in which link travels stays the same, only direction changes 
+  * The most visually appealing in my opinion. 
+
+So yeah, in my code i set ```velocity = Math.Abs(velocity);```, i suggest you do the same, it looks the best and is closest to what would actually happen in the real world.
+
+**Run the game**, at this point we have jumping all nice and working! It might feel a bit floaty, but we are going to fix that in the next section.
+
+###Jump animation
+
 
 #Links
 * http://excitemike.com/JumpingControlTester
