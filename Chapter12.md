@@ -136,6 +136,8 @@ Next, we need to change the update method.
 
 **Run the game** now, and nothing has changed! If you did everything correctly you should be able to walk around, fall off the platform, all kinds of fun! Let's add the code to actually jump. Before applying gravity to velocity, check is the space bar is pressed. If it is, **set velocity equal to impulse**. This is how we apply the impulse force. **Run the game now** and you should be able to jump after having fallen off the platform the character starts on.
 
+The jumping might feel a bit floaty right now, but that's ok. We will fix that later. Right now we have a bigger problem. There is no top collision! You can jump right out of the game!
+
 #Links
 * http://excitemike.com/JumpingControlTester
 * http://www.piratehearts.com/blog/2012/11/30/deriving-the-mathematics-of-jumping-physics-part-1-of/
