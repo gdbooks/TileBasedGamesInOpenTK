@@ -7,6 +7,8 @@ So, can we actually do this? Come up with a way to specify height and duration i
 
 ###The jumping system
 
+![JUMP_GRAPH](Images/jump_graph.png)
+
 In the above picture there are four forces controlling the jump:
 
 * **height**: The maximum peak height of our jump in world units
