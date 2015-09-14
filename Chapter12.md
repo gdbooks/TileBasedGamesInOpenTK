@@ -173,7 +173,20 @@ So yeah, in my code i set ```velocity = Math.Abs(velocity);```, i suggest you do
 **Run the game**, at this point we have jumping all nice and working! It might feel a bit floaty, but we are going to fix that in the next section.
 
 ###Jump animation
-Now that the jump is functional, let's add an animation to it. If you look at the link sprite sheet, he has a jump animation!
+Now that the jump is functional, let's add an animation to it. If you look at the link sprite sheet, he has a jump animation! First, add the jump sprite to the player character:
+
+```cs
+AddSprite("Jump", new Rectangle(122, 75, 23, 30), new Rectangle(154, 76, 22, 30));
+```
+
+Next, in the if statement that sets impulse, set the sprite as well
+
+```cs
+if (i.KeyPressed(OpenTK.Input.Key.Space)) {
+    velocity = impulse;
+    SetSprite("Jump");
+}
+```
 
 #Links
 * http://excitemike.com/JumpingControlTester
