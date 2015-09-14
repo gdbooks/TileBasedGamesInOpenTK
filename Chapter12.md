@@ -233,10 +233,3 @@ if (i.KeyPressed(OpenTK.Input.Key.Space) && velocity == gravity) {
 
 ###Next
 We're almost done! Jumping is mechanically correct and the visuals look decent. The only problem is the "feel" of the jump. It's a bit floaty for my taste, i also think it could go a tad higher. We're going to fix that in the next section.
-
-#Links
-* http://excitemike.com/JumpingControlTester
-* http://www.piratehearts.com/blog/2012/11/30/deriving-the-mathematics-of-jumping-physics-part-1-of/
-* http://error454.com/2013/10/23/platformer-physics-101-and-the-3-fundamental-equations-of-platformers/
-* http://higherorderfun.com/blog/2012/05/20/the-guide-to-implementing-2d-platformers/
-* http://www.atomjack.net/blog/2014/12/9/dev-blog-designing-a-jump
