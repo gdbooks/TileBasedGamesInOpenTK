@@ -49,6 +49,60 @@ if (!Game.Instance.GetTile(Corners[CORNER_BOTTOM_RIGHT]).Walkable) {
     }
 }
 ```
+
+**Run the game** again and you should now be colliding with tiles. Link starts off on a platform and can walk left or right to fall. You can even enter the other room!
+
+###Jumping Theory
+If you are trying to figure out how to make a 2D character jump, google will sooner or later take you to [this stack overflow answer](http://gamedev.stackexchange.com/questions/29617/how-to-make-a-character-jump#29618). The answer gives the standard jump parabola, to jump you need two forces:
+
+* **Gravity** - always pulls the player down
+* **Velocity** - can push player up or down
+
+We're going to use these two forces, but they will not both effect the player. Gravity is going to be constantly pulling velocity down. Velocity will be moving the player. We will also introduce a third force, **Impulse**. 
+
+* **Impulse** - force exerted by character to change velocity
+
+Gravity will always be pulling velocity down, and velocity will move the character. So how can velocity ever push the character up? In order to do so we have to apply another force to velocity, this force is impulse. While gravity is constantly pulling down, impulse will suddenly push up.
+
+**Example 1:** Character is at (30, 60). Our velocity is 0. Gavity is 2.
+* Frame 1: 
+  * Character is moved down by velocity (0) to y pixel (60)
+  * Velocity is pulled down by gravity (2) it's now 2
+* Frame 2:
+  * Character is moved down by velocity (2) to y pixel (58)
+  * Velocity is pulled down by gravity (2) it's now 4
+* Frame 3:
+  * Character is moved down by velocity (4) to y pixel (54)
+  * Velocity is pulled down by gravity (2) it's now 6
+* Frame 4:
+  * Character is moved down by velocity (6) to y pixel (48)
+  * Velocity is pulled down by gravity (2) it's now 8
+* Frame 5:
+  * Character is moved down by velocity (8) to y pixel (40)
+  * Velocity is pulled down by gravity (2) it's now 10
+
+As you can see from this 5 frame example, the simple model outlined above has one simple flaw, velocity is constantly increasing! The longer the character falls, the faster he will fall! We're going to fix this by clamping velocity to gravity: ```velocity = Math.Min(velocity, gravity```. I don't think i need to include an example for the clamped velocity. But let's see an example with it in place where we apply an impulse!
+
+**Example 2:** Character is at (30, 60). Our velocity is 0. Gavity is 2. Impulse is 5
+* Frame 1: 
+  * Character is moved down by velocity (0) to y pixel (60)
+  * Velocity is pulled down by gravity (2) it's now 2
+* Frame 2:
+  * Character is moved down by velocity (2) to y pixel (58)
+  * Velocity is pulled down by gravity (2) it's 4, it gets clamped back to 2 (the value of gravity)
+* Frame 3:
+  * Character is moved down by velocity (2) to y pixel (56)
+  * Velocity is pulled down by gravity (2) it's 4, it gets clamped back to 2 (the value of gravity)
+* Frame 4:
+  * Character is moved down by velocity (2) to y pixel (54)
+  * Velocity is pulled down by gravity (2) it's 4, it gets clamped back to 2 (the value of gravity)
+* Frame 5:
+  * Character is moved down by velocity (2) to y pixel (52)
+  * Velocity is pulled down by gravity (2) it's 4, it gets clamped back to 2 (the value of gravity)
+* Frame 6: **Impulse is added**
+
+###Jumping implementation
+
 #Links
 * http://excitemike.com/JumpingControlTester
 * http://www.piratehearts.com/blog/2012/11/30/deriving-the-mathematics-of-jumping-physics-part-1-of/
