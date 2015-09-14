@@ -119,12 +119,12 @@ As you can see from this 5 frame example, the simple model outlined above has on
 I feel like a companion gif would be really helpful, but i have no idea how to make proper gif images. If the above doesn't make sense give me a call and i will try my best to explain it!
 
 ###Jumping implementation
-Let's start by adding our new variables:
+Let's start by adding our new variables. Gravity and impulse are constant forces, they don't change frame over frame. But velocity does:
 
 ```cs
- float gravity = 210.0f; // Fall 7 tiles / second
-float velocity = 0.0f; // Changes
+float gravity = 210.0f; // Fall 7 tiles / second, constant
 float impulse = 180.0f; // Randomly chosen, constant
+float velocity = 0.0f; // Changes every frame
 ```
 
 #Links
