@@ -65,10 +65,10 @@ We're going to use these two forces, but they will not both effect the player. G
 Gravity will always be pulling velocity down, and velocity will move the character. So how can velocity ever push the character up? In order to do so we have to apply another force to velocity, this force is impulse. While gravity is constantly pulling down, impulse will suddenly push up.
 
 **Example 1:** Character is at (30, 60). Our velocity is 0. Gavity is 2.
-* Frame 1: 
-  * Character is moved down by velocity (0) to y pixel (60)
+* Frame 1: _Character in initial position_
+  * Character is stationary velocity is 0, character at y pixel 60
   * Velocity is pulled down by gravity (2) it's now 2
-* Frame 2:
+* Frame 2: _Character starts falling_
   * Character is moved down by velocity (2) to y pixel (58)
   * Velocity is pulled down by gravity (2) it's now 4
 * Frame 3:
@@ -83,11 +83,11 @@ Gravity will always be pulling velocity down, and velocity will move the charact
 
 As you can see from this 5 frame example, the simple model outlined above has one simple flaw, velocity is constantly increasing! The longer the character falls, the faster he will fall! We're going to fix this by clamping velocity to gravity: ```velocity = Math.Min(velocity, gravity```. I don't think i need to include an example for the clamped velocity. But let's see an example with it in place where we apply an impulse!
 
-**Example 2:** Character is at (30, 60). Our velocity is 0. Gavity is 2. Impulse is 5
-* Frame 1: 
-  * Character is moved down by velocity (0) to y pixel (60)
+**Example 2:** Character is at (30, 60). Our velocity is 0. Gavity is 2. Impulse is -6
+* Frame 1: _Character in initial position_
+  * Character is stationary velocity is 0, character at y pixel 60
   * Velocity is pulled down by gravity (2) it's now 2
-* Frame 2:
+* Frame 2: _Character starts falling_
   * Character is moved down by velocity (2) to y pixel (58)
   * Velocity is pulled down by gravity (2) it's 4, it gets clamped back to 2 (the value of gravity)
 * Frame 3:
@@ -100,8 +100,32 @@ As you can see from this 5 frame example, the simple model outlined above has on
   * Character is moved down by velocity (2) to y pixel (52)
   * Velocity is pulled down by gravity (2) it's 4, it gets clamped back to 2 (the value of gravity)
 * Frame 6: **Impulse is added**
+  * Character is moved down by velocity (2) to y pixel (50)
+  * Velocity is pulled down by gravity (2) it's 4, it gets clamped back to 2 (the value of gravity)
+  * Impulse (-6) is added to velocity (2), velocity is now -4
+* Frame 7: _Character is moving up_ 
+  * Character is pushed up by velocity (-4) to y pixel (56)
+  * Velocity is pulled down by gravity (2) it's now -2  
+* Frame 8:
+  * Character is pushed up by velocity (-2) to y pixel (54)
+  * Velocity is pulled down by gravity (2) it's now 0
+* Frame 9: _nothings happening_
+  * Character is stationary velocity is 0, character at y pixel 60
+  * Velocity is pulled down by gravity (2) it's now 2
+* Frame 10: _falling down again_
+  * Character is moved down by velocity (2) to y pixel (56)
+  * Velocity is pulled down by gravity (2) it's now 2
+
+I feel like a companion gif would be really helpful, but i have no idea how to make proper gif images. If the above doesn't make sense give me a call and i will try my best to explain it!
 
 ###Jumping implementation
+Let's start by adding our new variables:
+
+```cs
+ float gravity = 210.0f; // Fall 7 tiles / second
+float velocity = 0.0f; // Changes
+float impulse = 180.0f; // Randomly chosen, constant
+```
 
 #Links
 * http://excitemike.com/JumpingControlTester
@@ -109,4 +133,3 @@ As you can see from this 5 frame example, the simple model outlined above has on
 * http://error454.com/2013/10/23/platformer-physics-101-and-the-3-fundamental-equations-of-platformers/
 * http://higherorderfun.com/blog/2012/05/20/the-guide-to-implementing-2d-platformers/
 * http://www.atomjack.net/blog/2014/12/9/dev-blog-designing-a-jump
-* http://gamedev.stackexchange.com/questions/29617/how-to-make-a-character-jump#29618
