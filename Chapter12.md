@@ -168,10 +168,12 @@ The fix is simple, we need to change velocity! We need to apply this code in two
 
 So yeah, in my code i set ```velocity = Math.Abs(velocity);```, i suggest you do the same, it looks the best and is closest to what would actually happen in the real world.
 
+###Double Jumps
+
 **Run the game**, at this point we have jumping all nice and working! It might feel a bit floaty, but we are going to fix that in the next section.
 
 ###Jump animation
-
+Now that the jump is functional, let's add an animation to it. If you look at the link sprite sheet, he has a jump animation!
 
 #Links
 * http://excitemike.com/JumpingControlTester
