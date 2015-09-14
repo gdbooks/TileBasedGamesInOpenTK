@@ -123,9 +123,18 @@ Let's start by adding our new variables. Gravity and impulse are constant forces
 
 ```cs
 float gravity = 210.0f; // Fall 7 tiles / second, constant
-float impulse = 180.0f; // Randomly chosen, constant
+float impulse = -180.0f; // Randomly chosen, constant
+// Impulse is negative because the force is going up!
 float velocity = 0.0f; // Changes every frame
 ```
+
+Next, we need to change the update method. 
+
+* Instead of adding ```gravity * deltaTime``` to ```Position.Y``` add ```velocity * deltaTime```
+* Above that, add ```gravity * deltaTime``` to velocity! This moves velocity down.
+* Don't forget to clamp ```velocity```, it can never be greater than gravity!
+
+**Run the game** now, and nothing has changed! If you did everything correctly you should be able to walk around, fall off the platform, all kinds of fun! Let's add the code to actually jump. Before applying gravity to velocity, check is the space bar is pressed. If it is, **set velocity equal to impulse**. This is how we apply the impulse force. **Run the game now** and you should be able to jump after having fallen off the platform the character starts on.
 
 #Links
 * http://excitemike.com/JumpingControlTester
