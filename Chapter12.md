@@ -182,11 +182,42 @@ AddSprite("Jump", new Rectangle(122, 75, 23, 30), new Rectangle(154, 76, 22, 30)
 Next, in the if statement that sets impulse, set the sprite as well
 
 ```cs
-if (i.KeyPressed(OpenTK.Input.Key.Space)) {
+if (i.KeyPressed(OpenTK.Input.Key.Space) && velocity == gravity) {
     velocity = impulse;
     SetSprite("Jump");
 }
 ```
+
+Lastly, after the above if statement add a new one. We're going to check if velocity is anything else than gravity. If so, we're going to call animate, because link is mid-jump.
+
+```cs
+if (velocity != gravity) {
+    Animate(deltaTime);
+}
+```
+
+**Run the game** and you're going to notice several stange artifacts. Link starts out animated. Landing a jump shows the wrong sprite. Landing on a higher platform keeps the animation playing. These are simple bugs introduced by the new animation. Luckly we can fix them pretty easy. Let's do that one at a time.
+
+Link start out animated, this is the easyest one. When the game starts velocity is equal to 0, not gravity. So, technically even tough link has hit a platform he is still falling. Find the code that handles links collision with objects below him, and set velocity equal to gravity. Hint: You will have to do this in two places, just like the code where he hit his head.
+
+Now, when link lands a jumphe stays in a strange sate that is just his last jump sprite. The fix would be to set the sprite back to link left or link right, but we don't know which direction he started the jump from. While we could add some bools and figure this out, let's take a more creative approach. Find the code where link lands on an object below him. Before setting velocity to gravity, if velocity does not equal gravity, set his sprite to down. Like so:
+
+```cs
+if (intersection.Width * intersection.Height > 0) {
+    Position.Y = intersection.Top - Rect.Height;
+    if (velocity != gravity) {
+        SetSprite("Down");
+    }
+    velocity = gravity;
+}
+```
+
+This works because the only time link connects with the ground and has a velocity different from gravity is if he is comming out of a jump. When link falls his velocity is already equal to gravity. One more big bug remains, if you jump and press left or right to move mid jump, link plays his walk animation. Luckily we can fix this using the same trick.
+
+Find where you set links sprite to left and right, and wrap it in an if statement. The if statement should check if velocity equals gravity (```if (velocity == gravity) {```) and encompas both the SetSprite call and the Animate call.
+
+###Next
+We're almost done! Jumping is mechanically correct and the visuals look decent. The only problem is the "feel" of the jump. It's a bit floaty for my taste, i also think it could go a tad higher. We're going to fix that in the next section.
 
 #Links
 * http://excitemike.com/JumpingControlTester
