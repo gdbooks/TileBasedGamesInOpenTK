@@ -168,10 +168,6 @@ The fix is simple, we need to change velocity! We need to apply this code in two
 
 So yeah, in my code i set ```velocity = Math.Abs(velocity);```, i suggest you do the same, it looks the best and is closest to what would actually happen in the real world.
 
-###Double Jumps
-
-**Run the game**, at this point we have jumping all nice and working! It might feel a bit floaty, but we are going to fix that in the next section.
-
 ###Jump animation
 Now that the jump is functional, let's add an animation to it. If you look at the link sprite sheet, he has a jump animation! First, add the jump sprite to the player character:
 
@@ -182,7 +178,7 @@ AddSprite("Jump", new Rectangle(122, 75, 23, 30), new Rectangle(154, 76, 22, 30)
 Next, in the if statement that sets impulse, set the sprite as well
 
 ```cs
-if (i.KeyPressed(OpenTK.Input.Key.Space) && velocity == gravity) {
+if (i.KeyPressed(OpenTK.Input.Key.Space)) {
     velocity = impulse;
     SetSprite("Jump");
 }
@@ -215,6 +211,25 @@ if (intersection.Width * intersection.Height > 0) {
 This works because the only time link connects with the ground and has a velocity different from gravity is if he is comming out of a jump. When link falls his velocity is already equal to gravity. One more big bug remains, if you jump and press left or right to move mid jump, link plays his walk animation. Luckily we can fix this using the same trick.
 
 Find where you set links sprite to left and right, and wrap it in an if statement. The if statement should check if velocity equals gravity (```if (velocity == gravity) {```) and encompas both the SetSprite call and the Animate call.
+
+
+###Double Jumps
+Right now link can jump indefinateley, i think that might actually be called flying at this point! Let's limit him so he can only do one jump at a time. Now, one jump is a bit tricky, he will be able to jump if he's on the ground, or mid fall (so long as he is falling from a platform, not a jump). 
+
+The fix here is easy, only add impulse if the players velocity is not the same as gravity. Because the players velocity is only the same as gravity if they are on the ground, or if they are falling from a platform. So find this bit of code:
+
+```cs
+if (i.KeyPressed(OpenTK.Input.Key.Space)) {
+    velocity = impulse;
+    SetSprite("Jump");
+}
+```
+
+And change the if statement to this:
+
+```cs
+if (i.KeyPressed(OpenTK.Input.Key.Space) && velocity == gravity) {
+```
 
 ###Next
 We're almost done! Jumping is mechanically correct and the visuals look decent. The only problem is the "feel" of the jump. It's a bit floaty for my taste, i also think it could go a tad higher. We're going to fix that in the next section.
