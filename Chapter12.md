@@ -134,9 +134,11 @@ Next, we need to change the update method.
 * Above that, add ```gravity * deltaTime``` to velocity! This moves velocity down.
 * Don't forget to clamp ```velocity```, it can never be greater than gravity!
 
-**Run the game** now, and nothing has changed! If you did everything correctly you should be able to walk around, fall off the platform, all kinds of fun! Let's add the code to actually jump. Before applying gravity to velocity, check is the space bar is pressed. If it is, **set velocity equal to impulse**. This is how we apply the impulse force. **Run the game now** and you should be able to jump after having fallen off the platform the character starts on.
+**Run the game** now, and nothing has changed! If you did everything correctly you should be able to walk around, fall off the platform, all kinds of fun! Let's add the code to actually jump. *Before applying gravity to velocity, check is the space bar is pressed*. If it is, **set velocity equal to impulse**. This is how we apply the impulse force. **Run the game now** and you should be able to jump after having fallen off the platform the character starts on.
 
-The jumping might feel a bit floaty right now, but that's ok. We will fix that later. Right now we have a bigger problem. There is no top collision! You can jump right out of the game! Kind of an easy fix. We already have code to prevent link from moving trough tiles upwards in the commented out ```#if``` block, let's go ahead and add that back in. Paste the top collision checking code after the code to check for floor collision. This is the bit that i'm talking about:
+**Hint** The above paragraph contains some code instructions that are easy to miss I tried to bold it to make them stand out.
+
+**Run the game and confirm you can jump.** The jumping might feel a bit floaty right now, but that's ok. We will fix that later. Right now we have a bigger problem. There is no top collision! You can jump right out of the game! Kind of an easy fix. We already have code to prevent link from moving trough tiles upwards in the commented out ```#if``` block, let's go ahead and add that back in. Paste the top collision checking code after the code to check for floor collision. This is the bit that i'm talking about:
 
 ```cs
 if (!Game.Instance.GetTile(Corners[CORNER_TOP_LEFT]).Walkable) {
