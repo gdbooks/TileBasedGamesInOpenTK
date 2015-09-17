@@ -59,4 +59,10 @@ room1 = new Map(room1Layout, spriteSheets, spriteSources, 2, 0, 4, 8, 9, 10);
 room2 = new Map(room2Layout, spriteSheets, spriteSources, 0, 2, 4, 8, 9, 10);
 ```
 
-The new rooms have adjacent doors. **On your own, update the door tiles**. Remember, there 
+The new rooms have adjacent doors. **On your own, update the door tiles**.
+
+**Running the game**, you should see these two rooms:
+
+![ROOMS](Images/sidebyside.png)
+
+You should be able to walk around without crashing. Confirm that you can walk from room 1 to room 2 and from room 2 from room one. You are ready to proceed when it works.
