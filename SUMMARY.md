@@ -23,7 +23,7 @@
    * [Screen Borders](borders.md)
 * [Jumping](Chapter12.md)
    * [Configurable Jumping](jumpconfig.md) 
-* [X Clouds](Chapter13.md)
+* [Clouds](Chapter13.md)
 * [X Ladders](Chapter14.md)
 * [X Simple Enemy](Chapter15.md)
 * [X More Enemy](Chapter16.md)
