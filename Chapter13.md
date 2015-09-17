@@ -4,12 +4,12 @@ A cloud is a pretty simple construct in a platformer. You can walk trough a clou
 ###New Project
 Let's make a new project, call it **Clouds** and get this project up to par with the **Configurable Jumping** section of the writeup. We're going to work from here.
 
-###New tile sheet
-I've updated **HouseTiles.png** to be a new image. Right click on the below image, save as and overwrite your old one. (This revised copy is 512x512 pixels)
+###Updated tile sheet
+I've updated **HouseTiles.png** to be a new image. Right click on the below image, save as and overwrite your old one. This tile sheet is still shared between projects, i didn't touch any of the existing tiles, instead the sheet is now larger at 512x512 pixels.
 
 ![TILES](Images/HouseTiles_revision1.png)
 
-###New rooms
+###Updated rooms
 In **Game.cs** replace the **SpriteSources** array with this revised version:
 
 ```cs
@@ -52,3 +52,11 @@ protected int[][] room2Layout = new int[][] {
     new int[] { 5, 5, 5, 5, 5, 5, 5, 3 }
 };
 ```
+
+Find where we make the rooms, and add 4, 8, 9 and 10 as walkable tiles:
+```cs
+room1 = new Map(room1Layout, spriteSheets, spriteSources, 2, 0, 4, 8, 9, 10);
+room2 = new Map(room2Layout, spriteSheets, spriteSources, 0, 2, 4, 8, 9, 10);
+```
+
+The new rooms have adjacent doors. **On your own, update the door tiles**. Remember, there 
