@@ -2,10 +2,6 @@
 
 * [Introduction](README.md)
 * [Starting Out](Chapter1.md)
-   * [GraphicsManager](GraphicsManager.md)
-   * [TextureManager](TextureManager.md)
-   * [InputManager](InputManager.md)
-   * [SoundManager](AudioManager.md)
    * [Game](Game.md)
    * [Program](Program.md)
 * [Why Tiles?](Chapter2.md)
