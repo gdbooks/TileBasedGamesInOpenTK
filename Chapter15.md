@@ -63,6 +63,15 @@ public void Update(float deltaTime) {
     Animate(deltaTime);
 
     if (moveUpDown) {
+        // Direction is VERY important here. If it's positive the enemy moves up.
+        // If its negative the player moves down. This happens because direction can
+        // only be 1 or -1, so the code essentially translates to:
+        // y += +(speed * delta) OR y += -(speed * delta)
+        // depending on the value of direction. Nifty! 
+        // The alternate to this is to add a bunch of bools (movingLeft, movingRight, etc...)
+        // and flip them during collisions and add or subtract from y based on those bools
+        // The bool approach is obviously aweful! Just multiplying a positive or -1 is very elegant.
+        // Remember this trick, it's going to save you so many if statements down the line.
         Position.Y += direction * speed * deltaTime;
         
         // TODO: Handle wall collision (4 possible collisions)
@@ -73,3 +82,5 @@ public void Update(float deltaTime) {
     }
 }
 ```
+
+This enemy is taking shape niceley! If we where to add him to the game right now it would just start walking in a direction and never stop. All we have to do is add wall collision and we are done with the enemy class.
