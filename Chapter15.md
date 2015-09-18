@@ -55,3 +55,21 @@ public EnemyCharacter(string spritePath, Point pos, bool movingUpDown) : base(sp
     }
 }
 ```
+
+The **Update** method for the enemy is very important. It animates the enemy, moves the enemys position and handles wall collisions. Let's write all of this in one go. I'm going to start you off with a template of the update function that animates and moves the enemy:
+
+```cs
+public void Update(float deltaTime) {
+    Animate(deltaTime);
+
+    if (moveUpDown) {
+        Position.Y += direction * speed * deltaTime;
+        
+        // TODO: Handle wall collision (4 possible collisions)
+    }
+    else {
+        Position.X += direction * speed * deltaTime;
+        // TODO: Handle wall collision (4 possible collisions)
+    }
+}
+```
