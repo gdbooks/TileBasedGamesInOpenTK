@@ -186,3 +186,7 @@ public void Update(float deltaTime) {
     }
 }
 ```
+
+Go ahead and fill out the collision for the other directions of the enemy. Unfortunitaley we can't test our progress at this point as we havent added any enemies to the game yet. Lets go ahead and fix that!
+
+###Refactoring Map
