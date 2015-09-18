@@ -25,3 +25,33 @@ This refactor is super simple. Take the **Animate** method from ```PlayerCharact
 ###Creating EnemyCharacter
 The enemy characters are going to be simple. They are either going to move up or down. They are going to start walking and keep walking until they hit a wall. Once they hit a wall they are going to change direction. This is about as easy as you can get with an enemy, coincidentally most enemies in Super Mario work like this.
 
+Add a new file, let's call it **EnemyCharacter.cs**, in it make the ```EnemyCharacter``` class a child class of ```Character``` (Just like PlayerCharacter is a subclass of Character). Add three variables to this new class:
+
+* float **speed** = 60.0f;
+  * Determines how fast an enemy walks. Measured in pixels per second. 
+  * The player moves at 90, so the enemies are a little slower.
+  * 60 pixels per second on a 30 pixel grid means enemies move 2 tiles / second
+* bool **moveUpDown** = false;
+  * If true, the enemy will move in an up and down direction
+  * If false, the enemy will move in a left to right direction
+* float **direction** = 1.0f;
+  * Multiplies speed to determine which direction the enemy walks 
+  * If positive the enemy will move down or right
+  * If negative the enemy will move up or left
+ 
+The **Constructor** for the enemy class is trivial, it does almost exactly what the Player constructor does. The only exception is the last argument that determines if the enemy is moving up/down or left/right. Also note, the sprite positions are different, i looked these values up using Paint.Net for you.
+
+```cs
+public EnemyCharacter(string spritePath, Point pos, bool movingUpDown) : base(spritePath, pos) {
+    AddSprite("Down", new Rectangle(68, 112, 29, 30), new Rectangle(101, 112, 29, 30));
+    AddSprite("Up", new Rectangle(134, 112, 30, 29), new Rectangle(167, 112, 30, 29));
+    AddSprite("Left", new Rectangle(1, 113, 30, 30), new Rectangle(34, 112, 30, 30));
+    AddSprite("Right", new Rectangle(201, 112, 30, 29), new Rectangle(234, 113, 30, 29));
+    SetSprite("Down");
+
+    moveUpDown = movingUpDown;
+    if (!moveUpDown) {
+        SetSprite("Right");
+    }
+}
+```
