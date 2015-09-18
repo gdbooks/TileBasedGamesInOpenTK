@@ -1,1 +1,2 @@
-#Chapter 15 - Simple Enemy
+#Simple Enemy
+Having a game where your hero is in an empty room is not much fun! Let's add some enemies to the game! For now they are going to be simple enemies, mario style. The enemy will spawn and start walking. It will walk until it hits a wall, then turn around. If at any point the enemy touches the player, the player dies. Just like mario.
