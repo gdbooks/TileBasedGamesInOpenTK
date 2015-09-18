@@ -1,2 +1,14 @@
 #Simple Enemy
 Having a game where your hero is in an empty room is not much fun! Let's add some enemies to the game! For now they are going to be simple enemies, mario style. The enemy will spawn and start walking. It will walk until it hits a wall, then turn around. If at any point the enemy touches the player, the player dies. Just like mario.
+
+###The Plan
+How will this work? First off, we need to make an ```EnemyCharacter``` class. Games have multiple ```EnemyCharacter``` classes, one for each type of enemy. So for zelda you might have **MoblinEnemyCharacter**, **ChompChompEnemyCharacter**, **ChickenEnemyCharacter** and so on. We are only going to have one enemy class for now ```EnemyCharacter```. 
+
+So, where do enemies go? Right now the ```Game``` owns the ```PlayerCharacter```. Can we just put an enemy array in ```Game```? Not really. Because our game has multiple rooms (or levels, whatever we are calling them), each room has it's own set of enemies. If you are in ```Room1``` then the enemies in ```Room2``` should not update or render! Therefore it makes sense to add a ```EnemyCharacter``` array inside of the ```Map``` class.
+
+Now that map has a list of enemy characters it's going to need an update method. It needs this so the enemies can update themselves. It would also make sense to check for player collision in here! Instead of the player having to know about all the enemies, we just mape the map know about the player. Because map knows about the enemies and the player it's trivial to check for collision in there.
+
+Finally, we need to add a game over state. This is going to be a simple bool in the ```Game``` class that controls what text we see on screen.
+
+###New Project
+Let's make a new project, call it **SimpleEnemy** and get this project up to par with the cleaned up version of the **OpenTheDoor** section of the writeup. We're going to work from here.
