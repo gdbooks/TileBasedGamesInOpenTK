@@ -190,3 +190,118 @@ public void Update(float deltaTime) {
 Go ahead and fill out the collision for the other directions of the enemy. Unfortunitaley we can't test our progress at this point as we havent added any enemies to the game yet. Lets go ahead and fix that!
 
 ###Refactoring Map
+Inside of **Map.cs** add a new ```List``` of enemies to the ```Map``` class. We are going to use a list, not an array because we don't know in advance how many enemies a map will contain.
+
+Let's add a new function to ```Map```, we're going to call this function ```AddEnemy``` all it's going to do is add a new enemy to the enemy list. It's as straight forward as things get. This will allow us to add enemies to a room even at runtime! So if the player trips a trap an enemy can spawn.
+
+```cs
+public void AddEnemy(string spritePath, Point pos, bool movingUpDown) {
+    enemies.Add(new EnemyCharacter(spritePath, pos, movingUpDown));
+}
+```
+
+Update the **Render** method of ```Map``` to loop trough all the enemies and call ```Render``` on them.
+
+Update the **Destroy** method of ```Map``` to loop trough all the enemies and call ```Destroy``` on them.
+
+Add a new **Update** method to ```Map```, it should take a ```float``` as an argument (```delatTime```). In the new ```Update``` method loop trough all the enemies and call ```Update``` on them.
+
+That's it for now. This is the minimum ammount of code we need to add to support enemies. We will add player collision soon, but first let's get to a state where we can visually confirm that the enemies are working.
+
+###Refactoring Game
+We added a **Update** method to ```Map```. Make sure to call ```Udpate``` on the **currentRoom** in the ```Game`` class. Let's add a new constant to game:
+
+```cs
+protected string npsSheet = "Assets/NPC.png";
+```
+
+It's a good idea to make all commonly used strings, integers and other constants into variables. This way if you decide that ALL NPC characters should use "Assets/Baddies.png" later, you only have to change the path in one place instead of tracking down every occurance of the old string.
+
+Now, inside of **Initialize**, let's add a couple of enemies:
+
+```cs
+room1.AddEnemy(npsSheet, new Point(6 * 30, 1 * 30), true);
+room2.AddEnemy(npsSheet, new Point(1 * 30, 4 * 30), false);
+```
+
+That should to it. Run the game and you should see this:
+
+![DEMO](Images/simple_enemy.png)
+
+They don't do much yet, but the enemies should walk until they hit a wall and then turn around.
+
+###Loosing the game
+Before adding collision to the player and enemy, let's add support for loosing the game to **Game.cs**. Add a new member variable, call it **GameOver** with a default state of false. This new variable should be public! Change the update method to respect this new variable.
+
+In **Update**, if ```GameOver``` is true check to see if the space key was pressed. If the space key was pressed:
+
+* Set game over to false
+* Set currentMap to room1
+* Set the hero position X to be at the spawn tile
+* Set the hero position y to be at the spawn tile
+
+else (if wame over was false) update the game like normal. Let's also update the Render method, if GameOver is true it should print a game over message over the existing screen. By not updating the game state, but still rendering it, we make it look like the game gets paused when there is a game over. It's a cool effect. Here is what the render should look like:
+
+```cs
+public void Render() {
+    currentMap.Render();
+    hero.Render();
+
+    if (GameOver) {
+        GraphicsManager.Instance.DrawRect(new Rectangle(0, 70, 240, 50), Color.CadetBlue);
+
+        GraphicsManager.Instance.DrawString("Game Over", new PointF(70, 80), Color.Black);
+        GraphicsManager.Instance.DrawString("Game Over", new PointF(69, 79), Color.White);
+
+        GraphicsManager.Instance.DrawString("Press Space to play again", new PointF(5, 96), Color.Black);
+        GraphicsManager.Instance.DrawString("Press Space to play again", new PointF(4, 95), Color.White);
+
+    }
+}
+```
+
+###Enemy collision
+Working in **Map.cs**. Let's update the **Update** method of the ```Map``` class to check for collision against the player.
+
+First, add a new argument to the Update method, it should be of type ```PlayerCharacter```.  Next, after updating the enemy check if it collides with the player. If it does use the ```Game``` singleton to set ```GameOver``` to true. 
+
+How do we check if a player an an enemy collide? Both classes inherit the ```Rect``` getter from ```Character``` which returns their bounding rectangle. Check if the bounding rectangles intersection area is greater than 0. If it is, an intersection has happened.
+
+```cs
+public void Update(float dt, PlayerCharacter hero) {
+    foreach (EnemyCharacter enemy in enemies) {
+        enemy.Update(dt);
+
+        Rectangle intersection = Intersections.Rect(enemy.Rect, hero.Rect);
+        if (intersection.Width * intersection.Height > 0) {
+            Game.Instance.GameOver = true;
+        }
+    }
+}
+```
+
+Don't forget to add the exta argument to the function call in **Game.cs**. This is what my entire Update for Game looks like:
+
+```cs
+public void Update(float dt) {
+    if (GameOver) {
+        if (InputManager.Instance.KeyPressed(OpenTK.Input.Key.Space)) {
+            GameOver = false;
+            currentMap = room1;
+            hero.Position.X = spawnTile.X * 30;
+            hero.Position.Y = spawnTile.Y * 30;
+        }
+    }
+    else {
+        currentMap = currentMap.ResolveDoors(hero);
+        currentMap.Update(dt, hero);
+        hero.Update(dt);
+    }
+}
+```
+
+Run the game and walk into an enemy, you should see a game over message, and pressing space should let you start playing again!
+
+![GameOver](Images/wompwomp.PNG)
+
+Thats it! We now have support for simple enemies!
