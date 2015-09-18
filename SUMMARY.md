@@ -24,7 +24,6 @@
 * [Jumping](Chapter12.md)
    * [Configurable Jumping](jumpconfig.md) 
 * [Clouds](Chapter13.md)
-* [X Ladders](Chapter14.md)
 * [X Simple Enemy](Chapter15.md)
 * [X More Enemy](Chapter16.md)
 * [X Shooting](Chapter17.md)
