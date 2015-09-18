@@ -83,4 +83,106 @@ public void Update(float deltaTime) {
 }
 ```
 
-This enemy is taking shape niceley! If we where to add him to the game right now it would just start walking in a direction and never stop. All we have to do is add wall collision and we are done with the enemy class.
+This enemy is taking shape niceley! If we where to add him to the game right now it would just start walking in a direction and never stop. All we have to do is add wall collision and we are done with the enemy class. Lickly we have a template for collision code! We wrote all collision cases for the player class, all we have to do is copy them over and modify them slightly. I'll get you started with an example. Let's look at what the player character does when the up button is pressed:
+
+```cs
+if (i.KeyDown(OpenTK.Input.Key.W) || i.KeyDown(OpenTK.Input.Key.Up)) {
+    SetSprite("Up");
+    Animate(deltaTime);
+    Position.Y -= speed * deltaTime;
+    if (!Game.Instance.GetTile(Corners[CORNER_TOP_LEFT]).Walkable) {
+        Rectangle intersection = Intersections.Rect(Rect, Game.Instance.GetTileRect(Corners[CORNER_TOP_LEFT]));
+        if (intersection.Width * intersection.Height > 0) {
+            Position.Y = intersection.Bottom;
+        }
+    }
+    if (!Game.Instance.GetTile(Corners[CORNER_TOP_RIGHT]).Walkable) {
+        Rectangle intersection = Intersections.Rect(Rect, Game.Instance.GetTileRect(Corners[CORNER_TOP_RIGHT]));
+        if (intersection.Width * intersection.Height > 0) {
+            Position.Y = intersection.Bottom;
+        }
+    }
+}
+```
+
+This is more than what we need. We don't care about keyboard input, and we already took care of moving. All we really need out of that top blob is the collision code, like so:
+
+```cs
+if (!Game.Instance.GetTile(Corners[CORNER_TOP_LEFT]).Walkable) {
+    Rectangle intersection = Intersections.Rect(Rect, Game.Instance.GetTileRect(Corners[CORNER_TOP_LEFT]));
+    if (intersection.Width * intersection.Height > 0) {
+        Position.Y = intersection.Bottom;
+    }
+}
+if (!Game.Instance.GetTile(Corners[CORNER_TOP_RIGHT]).Walkable) {
+    Rectangle intersection = Intersections.Rect(Rect, Game.Instance.GetTileRect(Corners[CORNER_TOP_RIGHT]));
+    if (intersection.Width * intersection.Height > 0) {
+        Position.Y = intersection.Bottom;
+    }
+}
+```
+
+This is checking for the TOP collision. Meaning if the enemy is walking upwards he will hit the wall and not do anything, just keep walking into the wall. But hey at least there is collision and he won't walk off the screen! Let's add code in there to flip the enemy direction:
+
+```cs
+if (!Game.Instance.GetTile(Corners[CORNER_TOP_LEFT]).Walkable) {
+    Rectangle intersection = Intersections.Rect(Rect, Game.Instance.GetTileRect(Corners[CORNER_TOP_LEFT]));
+    if (intersection.Width * intersection.Height > 0) {
+        Position.Y = intersection.Bottom;
+        direction = 1.0f;
+        SetSprite("Down");
+    }
+}
+if (!Game.Instance.GetTile(Corners[CORNER_TOP_RIGHT]).Walkable) {
+    Rectangle intersection = Intersections.Rect(Rect, Game.Instance.GetTileRect(Corners[CORNER_TOP_RIGHT]));
+    if (intersection.Width * intersection.Height > 0) {
+        Position.Y = intersection.Bottom;
+        direction = 1.0f;
+        SetSprite("Down");
+    }
+}
+```
+
+Our update method should look like this now:
+
+```cs
+public void Update(float deltaTime) {
+    Animate(deltaTime);
+
+    if (moveUpDown) {
+        // Direction is VERY important here. If it's positive the enemy moves up.
+        // If its negative the player moves down. This happens because direction can
+        // only be 1 or -1, so the code essentially translates to:
+        // y += +(speed * delta) OR y += -(speed * delta)
+        // depending on the value of direction. Nifty! 
+        // The alternate to this is to add a bunch of bools (movingLeft, movingRight, etc...)
+        // and flip them during collisions and add or subtract from y based on those bools
+        // The bool approach is obviously aweful! Just multiplying a positive or -1 is very elegant.
+        // Remember this trick, it's going to save you so many if statements down the line.
+        Position.Y += direction * speed * deltaTime;
+        
+        if (!Game.Instance.GetTile(Corners[CORNER_TOP_LEFT]).Walkable) {
+            Rectangle intersection = Intersections.Rect(Rect, Game.Instance.GetTileRect(Corners[CORNER_TOP_LEFT]));
+            if (intersection.Width * intersection.Height > 0) {
+                Position.Y = intersection.Bottom;
+                direction = 1.0f;
+                SetSprite("Down");
+            }
+        }
+        if (!Game.Instance.GetTile(Corners[CORNER_TOP_RIGHT]).Walkable) {
+            Rectangle intersection = Intersections.Rect(Rect, Game.Instance.GetTileRect(Corners[CORNER_TOP_RIGHT]));
+            if (intersection.Width * intersection.Height > 0) {
+                Position.Y = intersection.Bottom;
+                direction = 1.0f;
+                SetSprite("Down");
+            }
+        }
+        // TODO: Bottom collision (2 if statements)
+    }
+    else {
+        Position.X += direction * speed * deltaTime;
+        // TODO: Left collision (2 if statements)
+        // TODO: Right collision (2 if statements)
+    }
+}
+```
