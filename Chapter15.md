@@ -16,4 +16,12 @@ Let's make a new project, call it **SimpleEnemy** and get this project up to par
 ###Character refactor
 Before creating the enemy class we need to refactor the ```Character``` and ```PlayerCharacter``` classes a bit. Right now all of the animation code is in ```PlayerCharacter``` seeing how both the player and the enemy will animate, we should move this functionality into the **Character** class.
 
-The collision handling code is also all in ```PlayerCharacter```, and both player and enemy are going to collide with the wall, but for now we're going to duplicate the collision code across these two classes
+The collision handling code is also all in ```PlayerCharacter```, and both player and enemy are going to collide with the wall, but for now we're going to duplicate the collision code across these two classes.
+
+This refactor is super simple. Take the **Animate** method from ```PlayerCharacter``` and move it into ```Character```. Next take the **animFPS** and **animTimer** variables and also move them into ```Character```. That's it. The animation code is now shared for all characters!
+
+**Run the game**, everything should work like before.
+
+###Creating EnemyCharacter
+The enemy characters are going to be simple. They are either going to move up or down. They are going to start walking and keep walking until they hit a wall. Once they hit a wall they are going to change direction. This is about as easy as you can get with an enemy, coincidentally most enemies in Super Mario work like this.
+
