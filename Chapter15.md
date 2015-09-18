@@ -12,3 +12,8 @@ Finally, we need to add a game over state. This is going to be a simple bool in 
 
 ###New Project
 Let's make a new project, call it **SimpleEnemy** and get this project up to par with the cleaned up version of the **OpenTheDoor** section of the writeup. We're going to work from here.
+
+###Character refactor
+Before creating the enemy class we need to refactor the ```Character``` and ```PlayerCharacter``` classes a bit. Right now all of the animation code is in ```PlayerCharacter``` seeing how both the player and the enemy will animate, we should move this functionality into the **Character** class.
+
+The collision handling code is also all in ```PlayerCharacter```, and both player and enemy are going to collide with the wall, but for now we're going to duplicate the collision code across these two classes
