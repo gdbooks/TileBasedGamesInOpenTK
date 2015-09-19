@@ -24,7 +24,7 @@ This class will have 4 member variables:
 * Point **Position**
   * Where on screen to draw the sprite of the item
 
-The constructor will take 1 argument for each of these, and simply set the appropriate values. We will have a **Render** function that just draws the subsprite to screen. Because this class holds on to a texture reference we must add a **Destroy** function, in which the textur emanager unloads textures. Try to implement the class yourself first, here is my implementation:
+The constructor will take 1 argument for each of these, and simply set the appropriate values. We will have a **Render** function that just draws the subsprite to screen. Because this class holds on to a texture reference we must add a **Destroy** function, in which the textur emanager unloads textures. For good measure we also implement a Rect getter, the X and Y are provided by Position while the width and height are provided by Source. Try to implement the class yourself first, here is my implementation:
 
 ```cs
 class Item {
@@ -32,7 +32,13 @@ class Item {
     protected Rectangle Source;
     public int Value { get; private set; }
     public Point Position;
-
+    
+    public Rectangle Rect {
+        get {
+            return new Rectangle(Position.X, Position.Y, Source.Width, Source.Height);
+        }
+    }
+    
     public Item(string spriteSheet, Rectangle sourceRect, int value, Point position) {
         Sprite = TextureManager.Instance.LoadTexture(spriteSheet);
         Source = sourceRect;
@@ -49,3 +55,19 @@ class Item {
     }
 }
 ```
+
+###Refactoring Map
+Just like we have unique enemies in each room, we have unique items in each room. Therefore it makes sense to make the ```Map``` class be the owner of the items list. We need a list because we don't know how many items we're going to have in advance, but more importantly because we're going to remove items as they are collected.
+
+Make a new **List** of type **Item** in **Map.cs**, i call mine ```items```. Make sure to initialize this list.
+
+In **Render**, loop trough all of the items and call Render on each one.
+
+In **Destroy**, loop trough all of the items and call Destroy on each one.
+
+Inside the **Update** function, AFTER the loop that goes trough all the enemies, add a loop that loops trough all the items. We're going to potentially delete stuff from the list, so loop appropriately. Loop trough every item, and check for collision against the hero. If a collision occurs, remove the item. (At this point we just want to remove it, we're not keeping track of score just yet.
+
+Now, when we created enemies, we added a very helpful **AddEnemy** function. Do the same for items. This function should of course take the same arguments as an item constructor. Call this new function **AddItem**.
+
+###Refactoring Game
+This is perhaps the simplest refactor, we simply have to 
