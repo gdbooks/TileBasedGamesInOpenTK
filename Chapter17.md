@@ -92,3 +92,10 @@ Inside this loop:
   * remove the loop index (i?) from the projectiles array. 
 
 Remember, you can use the ```RemoveAt``` function of a vector to remove an item at a specific location. Next, let's update the way you check for enemu collision. Right now you have a loop counting up. Make this loop count down, we are going to potentially be deleting specific enemies from the ```enemies``` array.
+
+This next bit can get tricky. After the game over check, loop trough all the projectiles. You probably want to loop in reverse, we might remove things from this array.. For every projectile, see if it intersects with the current enemy. If it does, remove the enemy, and remove the projectile.
+
+**Hint**, at this point the game might break. That is because even tough the enemy was removed we might still be checking for collision against the projectiles for the removed enemy. Therefore when a projectile and enemy collide, break out of the inner (j) loop.
+
+###That's it!
+**Run the game** you are now a bad-ass who can walk around and shoot monsters just for the fun of it!
