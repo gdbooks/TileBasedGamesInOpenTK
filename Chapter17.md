@@ -33,3 +33,10 @@ class Bullet {
     }
 }
 ```
+
+###Game Refactor
+To actually shoot / use bullets we need to refactor the **Game** class a little bit. First thing is first, add a new member variable, let's call it **projectiles** its type is going to be ```List<Bullet>```, don't forget to initialize this new list.
+
+In the **Render** function, after rendering the hero, but before rendering the game over screen, loop trough every projectile in projectiles and call render on all of them.
+
+In the **Update** method, after updating the hero, but before updating the map, loop trough all theprojectiles and call ```Update``` on each of them, passing in deltaTime.
