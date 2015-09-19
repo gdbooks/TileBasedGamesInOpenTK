@@ -68,3 +68,18 @@ if (InputManager.Instance.KeyPressed(OpenTK.Input.Key.Space)3) {
 **Run the game**, every time you press space there shoudl be a new projectile. Each projectile shoots, and eventually makes it off-screen. You may have notices that we don't have a Destroy function for the projectiles, that's because they don't need a Destroy function. The projectiles just draw squares, if no texture / resources are being held onto then a resource class is useless.
 
 ###Map Refactor
+Becuse the **Map** class knows about both walkable / non-walkable tiles AND enemies, it seems as good a place as any to add logic that will make bullets dissapear. There are two instances where bullets will dissapear, if they hit a non walkable tile; or if they hit an enemy.
+
+Inside the **Update**method of the ``map``` class. Add a new artument. A ```List<Bullet>```, call this argument ```projectiles```. You want to loop trough this array before looping trough the enemies array. Remember, you are going to be removing items for the array, loop accordinly.
+
+Inside this loop:
+* Find the xTile of the projectile
+* Fint the yTile of the projectile
+* If the xTile is out of bounds
+  * remove the loop index (i?) from the projectiles array.
+* ELSE If the yTile is out of bounds
+  * remove the loop index (i?) from the projectiles array.
+* ELSE If the tile at [yTile][xTile] is not Walkable
+  * remove the loop index (i?) from the projectiles array. 
+
+Remember, you can use the ```RemoveAt``` function of a vector to remove an item at a specific location. Next, let's update the way you check for enemu collision. Right now you have a loop counting up. Make this loop count down, we are going to potentially be deleting specific enemies from the ```enemies``` array.
