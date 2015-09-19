@@ -14,6 +14,15 @@ class Bullet {
     public PointF Position = new PointF(0.0f, 0.0f);
     public PointF Velocity = new PointF(0.0f, 0.0f);
 
+    // Eventually everything that renders as a square 
+    // is going to ned access to its area. Adding a Rect 
+    // getter is a good habit to get into
+    public Rectangle Rect {
+        get {
+            return new Rectangle( (int)Position.X - 5, (int)Position.Y - 5, 10, 10 );
+        }
+    }
+
     public Bullet(PointF pos, PointF vel) {
         Position = pos;
         Velocity = vel;
