@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
 * [Starting Out](Chapter1.md)
+   * [Frameworks](FrameworksSources.md) 
    * [Game](Game.md)
    * [Program](Program.md)
 * [Why Tiles?](Chapter2.md)
