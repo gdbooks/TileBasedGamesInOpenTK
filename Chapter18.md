@@ -91,3 +91,8 @@ GraphicsManager.Instance.DrawRect(new Rectangle(150, 0, 90, 20), Color.CadetBlue
 GraphicsManager.Instance.DrawString("Score:" + Score, new PointF(155, 3), Color.Black);
 GraphicsManager.Instance.DrawString("Score:" + Score, new PointF(154, 2), Color.White);
 ```
+
+###Adding up the score
+All that's left is to add up the score. Go back into **Map.cs**, find where we Destory and Remove items on collision with the player. In this same block add one to the ```Score``` variable of game. You can access the Score variable using the games singleton instance.
+
+**Run the game** you should now be able to collect items for points! That's all there is to it!
