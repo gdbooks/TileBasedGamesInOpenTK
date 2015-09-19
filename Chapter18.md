@@ -67,7 +67,27 @@ In **Destroy**, loop trough all of the items and call Destroy on each one.
 
 Inside the **Update** function, AFTER the loop that goes trough all the enemies, add a loop that loops trough all the items. We're going to potentially delete stuff from the list, so loop appropriately. Loop trough every item, and check for collision against the hero. If a collision occurs, remove the item. (At this point we just want to remove it, we're not keeping track of score just yet.
 
+When you remove an item from the list it will no longer be referencable. Therefore it will no longer be auto unloaded by Destroy. Make sure to call the items ```Destroy`` function before reoving it from the list.
+
 Now, when we created enemies, we added a very helpful **AddEnemy** function. Do the same for items. This function should of course take the same arguments as an item constructor. Call this new function **AddItem**.
 
 ###Refactoring Game
-This is perhaps the simplest refactor, we simply have to 
+In **Game.cs** find where we added the enemies to the rooms. Use the following code to add items:
+
+```cs
+room1.AddItem(spriteSheets, new Rectangle(350, 255, 16, 16), 10, new Point(3 * 30 + 7, 2 * 30 + 7));
+room1.AddItem(spriteSheets, new Rectangle(381, 256, 13, 15), 20, new Point(5 * 30 + 7, 4 * 30 + 7));
+room2.AddItem(spriteSheets, new Rectangle(412, 256, 16, 15), 30, new Point(4 * 30 + 7, 2 * 30 + 7));
+```
+
+**Run the game** you should have items in the roomw. You should also be able to walk around and pick up said items! Here is what the first map looks like:
+
+![MAP](Images/fmap_item.PNG)
+
+Lets add the ability to view a score that increases when items are piced up. Add a public integer to the ```Game``` class, call it **Score**. Add the follwoing at the end of the **Render** function (outside any if statements) to display the new score:
+
+```cs
+GraphicsManager.Instance.DrawRect(new Rectangle(150, 0, 90, 20), Color.CadetBlue);
+GraphicsManager.Instance.DrawString("Score:" + Score, new PointF(155, 3), Color.Black);
+GraphicsManager.Instance.DrawString("Score:" + Score, new PointF(154, 2), Color.White);
+```
