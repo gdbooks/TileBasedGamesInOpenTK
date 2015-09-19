@@ -60,6 +60,11 @@ if (InputManager.Instance.KeyPressed(OpenTK.Input.Key.Space)3) {
     else if (hero.currentSprite == "right") {
         velocity.X = 100;
     }
+    // projectiles is the name of my member variable that is of type List<Bullet>
     projectiles.Add(new Bullet(hero.Center, velocity));
 }
 ```
+
+**Run the game**, every time you press space there shoudl be a new projectile. Each projectile shoots, and eventually makes it off-screen. You may have notices that we don't have a Destroy function for the projectiles, that's because they don't need a Destroy function. The projectiles just draw squares, if no texture / resources are being held onto then a resource class is useless.
+
+###Map Refactor
