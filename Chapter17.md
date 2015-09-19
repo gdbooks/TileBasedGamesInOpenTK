@@ -39,4 +39,27 @@ To actually shoot / use bullets we need to refactor the **Game** class a little 
 
 In the **Render** function, after rendering the hero, but before rendering the game over screen, loop trough every projectile in projectiles and call render on all of them.
 
-In the **Update** method, after updating the hero, but before updating the map, loop trough all theprojectiles and call ```Update``` on each of them, passing in deltaTime.
+In the **Update** method, after updating the hero, but before updating the map, loop trough all theprojectiles and call ```Update``` on each of them, passing in deltaTime. 
+
+At this point we still can't see anything on screen. We need to add some code to actually shoot the projectile. Above the loop that updates all the projectiles, add an if statement. In this if statement check if the space key was pressed. If it was, use the hero objects ```currentSprite``` variable to determine which direction the velocity needs to face. Velocity should be either 90, or -90, that is 3 tiles per second. 
+
+Once you know which way the velocity goes, add a new bullet at the center of the player. Like so:
+
+```cs
+if (InputManager.Instance.KeyPressed(OpenTK.Input.Key.Space)3) {
+    PointF velocity = new PointF(0.0f, 0.0f);
+    if (hero.currentSprite == "down") {
+        velocity.Y = 100;
+    }
+    else if (hero.currentSprite == "up") {
+        velocity.Y = -100;
+    }
+    if (hero.currentSprite == "left") {
+        velocity.X = -100;
+    }
+    else if (hero.currentSprite == "right") {
+        velocity.X = 100;
+    }
+    projectiles.Add(new Bullet(hero.Center, velocity));
+}
+```
