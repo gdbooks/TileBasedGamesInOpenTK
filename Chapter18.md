@@ -5,3 +5,8 @@ Why do i call items the opposite of bullets? Because they don't interesect the e
 
 ###New Project
 Let's make a new project, call it **GettingItems** and get this project up to par with the **Shooting** section of the writeup. We're going to work from here.
+
+###Getting Started
+Let's get started by updating the **HouseTiles.png** texture atlas with a new version that i've added some items to:
+
+![ATLAS](Images/HouseTiles_Items.png)
