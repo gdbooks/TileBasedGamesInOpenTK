@@ -23,7 +23,6 @@
 * [Simple Enemy](Chapter15.md)
 * [Shooting](Chapter17.md)
 * [Getting Items](Chapter18.md)
-* [X Moving Tiles](Chapter19.md)
 * [X Scrolling](Chapter20.md)
 * [X More Scrolling](Chapter21.md)
 * [X Depth](Chapter22.md)
