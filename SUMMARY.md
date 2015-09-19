@@ -21,7 +21,6 @@
    * [Configurable Jumping](jumpconfig.md) 
 * [Clouds](Chapter13.md)
 * [Simple Enemy](Chapter15.md)
-* [X More Enemy](Chapter16.md)
 * [X Shooting](Chapter17.md)
 * [X Getting Items](Chapter18.md)
 * [X Moving Tiles](Chapter19.md)
