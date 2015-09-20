@@ -41,3 +41,5 @@ This is what camera space for our game looks like (assuming a camera that is 8 t
 
 ![CAMERA_SPACE](Images/camera_space.PNG)
 
+The red square is camera space. Notice how the obstacle on the top left is at tile 5, 4 relative to the world, but at tile 0, 0 relative to the camera.... That's world space vs camera space!
+
