@@ -39,3 +39,5 @@ That might sound complicated, but there is a simple formula to transform an obje
 
 This is what camera space for our game looks like (assuming a camera that is 8 tiles wide and 6 tiles tall):
 
+![CAMERA_SPACE](Images/camera_space.PNG)
+
