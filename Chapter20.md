@@ -84,4 +84,4 @@ public void Render(PointF offsetPosition) {
 }
 ```
 
-Go ahead
+Go ahead and implement this offsetting to every function. After adding this code to every render function **run the game**. Now the game should scroll around with link!
