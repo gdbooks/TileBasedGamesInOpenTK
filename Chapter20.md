@@ -47,5 +47,41 @@ The red square is camera space. Notice how the obstacle on the top left is at ti
 
 ![SCREEN_SPACE](Images/screen_space.PNG)
 
-###Implementation Plan
-To wrap up this page i want to talk about a plan on implementing this scrolling. I'll give a more in-depth explanation and some code in the **Implementation** section. But i think the description given here might be enough to implement scrolling on your own. I would urge you to try to implement scrolling on your own following this page before following the **Implementation** section.
+###Implementation
+Let's go ahead and actually implement scrolling. This should be pretty simple, much less complex than the theory that goes behind it. 
+
+The first thing to do is to **make the map bigger**. Go ahead and make room1 two, or maybe three times bigger. Running the game you will see that the screen resizes to fit your new room size. Go into the ```Initialization``` function of game and make the window size be only 8 by 6 tiles:
+
+```cs
+window.ClientSize = new Size(8 * tileSize, 6 * tileSize);
+```
+
+Cool, now you should be able to walk off screen. The rest of this section is rendering related. In **Game.cs** find your render function. The first thing we need to do is determine a world to camera space transformation. We want the camera's to be centered around link. That means we want it's upper left to be 120 pixels (4 * tileSize) to the left and 90 pixels (3 * tileSize) to the top. This will center link.
+
+This world to camera transformation is going to be stored as a ```PointF```. I'm going to call mine ```offsetPosition```. Simply make a new ```PointF``` at the heros center and subtract half of the window width and height:
+
+```cs
+PointF offsetPosition = new PointF();
+offsetPosition.X = hero.Position.X - (float)(4 * tileSize);
+offsetPosition.Y = hero.Position.Y - (float)(3 * tileSize);
+```
+
+Now comes a bit of refactoring. Pass offsetPosition in to every render function that the **Game**'s render function calls. Next track down each of these functions, and add a ```PointF offsetPosition``` argument to them. Some functions call Render on other objects, Like the **Map** object calls **Render** on both EnemyCharacter and Tile. Add the argument to each of these as well. Every render function should take a PointF offsetPosition as an argument!
+
+Inside each render function offset the X and Y positions of what is being rendered by the  offsetPosition being passed in (subtract the camera offset from the x and y of what would be rendered). For example, this is what the **Render** function of ```Character``` becomes.
+
+```cs
+public void Render(PointF offsetPosition) {
+    // This is where we would render in world space
+    Point renderPosition = new Point((int)Position.X, (int)Position.Y);
+    
+    // Apply the camera offset, bring us to rendering in camera space
+    renderPosition.X -= (int)offsetPosition.X;
+    renderPosition.Y -= (int)offsetPosition.Y;
+
+    // Draw the character
+    TextureManager.Instance.Draw(Sprite, renderPosition, 1.0f, SpriteSources[currentSprite][currentFrame]);
+}
+```
+
+Go ahead
