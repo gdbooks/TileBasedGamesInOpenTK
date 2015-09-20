@@ -118,7 +118,7 @@ for (int h = minY; h < maxY; h++) {
             continue;
         }
         // Upper bounds check
-        if (h >= tileMap.Length || w >= tileMap[y].Length) {
+        if (h >= tileMap.Length || w >= tileMap[h].Length) {
             continue;
         }
         tileMap[h][w].Render(offsetPosition);
