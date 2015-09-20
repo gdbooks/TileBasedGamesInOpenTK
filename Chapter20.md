@@ -84,4 +84,46 @@ public void Render(PointF offsetPosition) {
 }
 ```
 
-Go ahead and implement this offsetting to every function. After adding this code to every render function **run the game**. Now the game should scroll around with link!
+Go ahead and implement this offsetting to every function. After adding this code to every render function **run the game**. Now the game should scroll around with link! This is scrolling in it's most basic form! If you have any questions, give me a call.
+
+###Optimization
+There is one small optimization problem. Even tough we only see a small section of the map at a time ALL of it is rendered! Even the bits that are off-screen. You can confirm this by resizing the window, notice that ALL of the off-screen bits of the map are rendering here. This isn't an issue until we get HUGE maps, on the scale of thousands by thousands of tiles.
+
+How can we optimize this? By rendering only what can be seen. This bit of code is going to go into the ```Map``` class, because after all the Map class is responsible for rendering tiles. Unfortunitaley, we don't have enough information to do this at the moment! We could make some assumptions and figure out the bounds of the render rect, but that's a lot of effort. We're just going to add function arguments.
+
+Find the **Render** function of ```Map```, add a new ```PointF``` argument, call it cameraCenter. Next, we need to make 4 integers inside the function, Camera Min and Max X and Y. We're going to figure out the minimum X and Y pixels that are visible on screen. This is a bit hard to explain, but you basically take the center point, subtract half of the tiles (plus one tile for good measure) and you have the min. Now convert these to tile coordinates. Do the opposite for max. Here is how i did it in my code:
+
+```cs
+ public void Render(PointF offsetPosition, PointF cameraCenter) {
+    // Find the visible corners of the screen in pixel position
+    int minX = (int)cameraCenter.X - 4 * 30 - 30;
+    int minY = (int)cameraCenter.Y - 3 * 30 - 30;
+    int maxX = (int)cameraCenter.X + 4 * 30 + 30;
+    int maxY = (int)cameraCenter.Y + 3 * 30 + 30;
+
+    // Convert visible corners to tile indexes
+    minX /= 30;
+    minY /= 30;
+    maxX /= 30;
+    maxY /= 30;
+```
+
+Finally, right under this bit of code is nested a for loop. This for loop goes trough all the tiles and render them. Change this loop so instead of looping from 0 to the number of rows or columns it loops from Min to Max. It's worth noting that Min and MAx might be out of bounds, so be sure to add bounds checks. Here is what mine looks like:
+
+```cs
+for (int h = minY; h < maxY; h++) {
+    for (int w = minX; w < maxX; w++) {
+        // Lower bounds check
+        if (h < 0 || w < 0) {
+            continue;
+        }
+        // Upper bounds check
+        if (h >= tileMap.Length || w >= tileMap[y].Length) {
+            continue;
+        }
+        tileMap[h][w].Render(offsetPosition);
+    }
+}
+```
+
+Thats it! Now we're only rendering what is visible on screen! Want to confirm it? Resize your window! Make it larger and take not how only the area which is visible is being rendered. And that's it. We're done with basic scrolling.
