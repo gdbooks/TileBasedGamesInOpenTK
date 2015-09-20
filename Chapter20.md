@@ -46,3 +46,6 @@ The red square is camera space. Notice how the obstacle on the top left is at ti
 **Screen Space**, this is what actually appears on screen. Up until now we have seen the entire sceen! Really all **Screen Space** is just what you see on screen. For the most part we just want to see the bit of camera on screen. We want to chop off anything outside the camera view, and that's screen space. Here is a screenshot:
 
 ![SCREEN_SPACE](Images/screen_space.PNG)
+
+###Implementation Plan
+To wrap up this page i want to talk about a plan on implementing this scrolling. I'll give a more in-depth explanation and some code in the **Implementation** section. But i think the description given here might be enough to implement scrolling on your own. I would urge you to try to implement scrolling on your own following this page before following the **Implementation** section.
