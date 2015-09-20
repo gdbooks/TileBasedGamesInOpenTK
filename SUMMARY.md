@@ -2,7 +2,7 @@
 
 * [Introduction](README.md)
 * [Starting Out](Chapter1.md)
-   * [Managers](FrameworksSources.md) 
+   * [Managers](FrameworksSources.md)
    * [Game](Game.md)
    * [Program](Program.md)
 * [Why Tiles?](Chapter2.md)
@@ -19,7 +19,7 @@
    * [Cleaning Up](cleanup.md)
    * [Screen Borders](borders.md)
 * [Jumping](Chapter12.md)
-   * [Configurable Jumping](jumpconfig.md) 
+   * [Configurable Jumping](jumpconfig.md)
 * [Clouds](Chapter13.md)
 * [Simple Enemy](Chapter15.md)
 * [Shooting](Chapter17.md)
