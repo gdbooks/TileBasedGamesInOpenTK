@@ -41,5 +41,8 @@ This is what camera space for our game looks like (assuming a camera that is 8 t
 
 ![CAMERA_SPACE](Images/camera_space.PNG)
 
-The red square is camera space. Notice how the obstacle on the top left is at tile 5, 4 relative to the world, but at tile 0, 0 relative to the camera.... That's world space vs camera space!
+The red square is camera space. Notice how the obstacle on the top left is at tile 5, 4 relative to the world, but at tile 0, 0 relative to the camera.... That's world space vs camera space! For us the camera is going to be centered around the character, it's position is tied to character position.
 
+**Screen Space**, this is what actually appears on screen. Up until now we have seen the entire sceen! Really all **Screen Space** is just what you see on screen. For the most part we just want to see the bit of camera on screen. We want to chop off anything outside the camera view, and that's screen space. Here is a screenshot:
+
+![SCREEN_SPACE](Images/screen_space.PNG)
