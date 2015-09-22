@@ -25,7 +25,7 @@
 * [Shooting](Chapter17.md)
 * [Getting Items](Chapter18.md)
 * [Scrolling](Chapter20.md)
-   * [X Limit Scrolling](Chapter21.md)
+   * [Limit Scrolling](Chapter21.md)
 * [X Depth](Chapter22.md)
 * [X Ismetric View](Chapter23.md)
 * [X Mouse To Move](Chapter24.md)
