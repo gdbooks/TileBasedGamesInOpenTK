@@ -9,4 +9,6 @@ Let's make a new project, call it **DepthBase** and get this project up to par w
 ###Character
 We're going to start by changing the scrolling behaviour of the character class. Starting with the character is nice, we get the effects of it applied to both the player character and enemy character! We're only going to add depth on the Y axis for now, it's rare to see depth on the X axis.
 
-![DEPTH_EXPLAINED](Images/depth_explain)
+We are going to hard code the height of the character to some number (In this example
+
+![DEPTH_EXPLAINED](Images/depth_explain.png)
