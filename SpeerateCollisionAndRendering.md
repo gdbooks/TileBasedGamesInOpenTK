@@ -30,6 +30,8 @@ GraphicsManager.Instance.DrawRect(positionLocator, Color.Yellow);
 
 This should draw a 3x3 yellow rectangle centered at the top left pixel of the character. If you run your game you should see this:
 
+![TOP_LEFT](Images/topleft_pixel.png)
+
 ###Applying Depth
 First, we have to add a new member variable to the ```Character``` class. Make it a protected **float** and call it ```Height```. Set it to **-1** by default. If the new variable is less than 0 we will not apply the depth effect to the character, if it is greater than 0 we will apply a depth effect.
 
@@ -48,8 +50,11 @@ Change the **Corners** getter. Right now it uses this bit of code to add height 
 Finally, change the **Render** function. After subtracting ```offsetPosition``` from ```renderPosition```, if the new ```Height``` variable is >= 0 find the height difference of the frame height and the hard coded height:
 
 ```cs
-int difference = SpriteSources[currentSprite][currentFrame].Height - Height;
+int difference = SpriteSources[currentSprite][currentFrame].Height - (int)Height;
 ```
 
 and subtract it from from ```renderPosition.Y```. That should do it. **Run the game** and you should be able to walk up to walls and overlap them a bit. Links head should be above the yellow debug indicator. our game should look like this:
 
+![DONE_HEIGHT](Images/done_height.PNG)
+
+Notice how the moblins yellow indicator pixel is at his top left, while link's is slightly below his head. Also, links head slightly overlaps the obstacle. This is what we expected.
