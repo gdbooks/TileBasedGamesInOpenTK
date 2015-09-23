@@ -39,4 +39,5 @@ Finally, change the **Render** function. After subtracting ```offsetPosition``` 
 int difference = SpriteSources[currentSprite][currentFrame].Height - Height;
 ```
 
-and subtract it from from ```renderPosition.Y```.
+and subtract it from from ```renderPosition.Y```. That should do it. **Run the game** and you should be able to walk up to walls and overlap them a bit. Links head should be above the yellow debug indicator. our game should look like this:
+
