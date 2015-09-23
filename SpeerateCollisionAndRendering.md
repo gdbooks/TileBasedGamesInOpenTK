@@ -16,7 +16,19 @@ These changes will cause a 20px gap at the top of our characters. This part of t
 ![DEPTH_EXPLAINED](Images/depth_explained.png)
 
 ###Debug Rendering
-// TODO: Debug
+Before we start coding anything, let's make our lives easyer by adding a little debug indicator to the ```Character``` class. At the end of the **Render** function, add this bit of code:
+
+```
+// Get a 3x3 rectangle, centered on the top left pixel
+Rectangle positionLocator = new Rectangle((int)Position.X - 1, (int)Position.Y - 1, 3, 3);
+// Apply camera offset
+positionLocator.X -= (int)offsetPosition.X;
+positionLocator.Y -= (int)offsetPosition.Y;
+// Draw indicator
+GraphicsManager.Instance.DrawRect(positionLocator, Color.Yellow);
+```
+
+This should draw a 3x3 yellow rectangle centered at the top left pixel of the character. If you run your game you should see this:
 
 ###Applying Depth
 First, we have to add a new member variable to the ```Character``` class. Make it a protected **float** and call it ```Height```. Set it to **-1** by default. If the new variable is less than 0 we will not apply the depth effect to the character, if it is greater than 0 we will apply a depth effect.
