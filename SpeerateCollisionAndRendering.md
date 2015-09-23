@@ -60,4 +60,35 @@ and subtract it from from ```renderPosition.Y```. That should do it. **Run the g
 Notice how the moblins yellow indicator pixel is at his top left, while link's is slightly below his head. Also, links head slightly overlaps the obstacle. This is what we expected.
 
 ##Tiles
-The character having depth is awesome, but we're going to want the tiles to have depth too! Unlike character however we always know the height of a tile, it's 30! Because we already know the height of the tile, all we need to change is the ```Render``` function in **Tile.cs**
+The character having depth is awesome, but we're going to want the tiles to have depth too! Unlike character however we always know the height of a tile, it's 30! Because we already know the height of the tile, all we need to change is the ```Render``` function in **Tile.cs**.
+
+This is what the current tile render function looks like (I've added comments to help readability):
+
+```cs
+public void Render(PointF offsetPosition) {
+    // Find the world render position of this tile
+    Point renderPos = new Point(WorldPosition.X, WorldPosition.Y);
+    // Apply scale to tile offset
+    renderPos.X = (int)(Scale * renderPos.X);
+    renderPos.Y = (int)(Scale * renderPos.Y);
+    // Move the tile into camera space
+    renderPos.X -= (int)offsetPosition.X;
+    renderPos.Y -= (int)offsetPosition.Y;
+    // Draw the tile
+    TextureManager.Instance.Draw(Sprite, renderPos, Scale, Source);
+}
+```
+
+After moving the tile into camera space, make a new rectangle, call it renderRect and copy Source into is, then use this new renderRect to draw instead of Source (Change last argument). You can copy one rect into another with only two arguments like so:
+
+```cs
+Rectangle renderRect = new Rectangle(Source.Location, Source.Size);
+```
+
+After creating renderRect, check it's height. If renderRect.Height **is not equal to** 30 we will want to offset the tile render position. 
+
+To offset the render position, first find the ```heightDifference``` by subtracting 30 from renderRect.Height, i suggest storing this in a variable. Then, subtract ```heightDifference``` from ```renderRect.Y```.
+
+That's it! Tiles now have the same depth support that the character does. We will not be able to test this right now for two resons. First, we don't have any tiles that are taler than 30 pixels. 
+
+Second, because we draw all the tiles first, then the character on top, we would never see the character behind a tile. We're going to fix this in the next section.
