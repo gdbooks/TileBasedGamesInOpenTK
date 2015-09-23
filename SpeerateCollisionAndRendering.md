@@ -6,7 +6,7 @@ The first thing we need to do in order to add depth to our game is to seperate t
 ###New Project
 Let's make a new project, call it **DepthBase** and get this project up to par with the **LimitedScrolling** section of the writeup. We're going to work from here.
 
-###Character
+##Character
 We're going to start by changing the scrolling behaviour of the character class. Starting with the character is nice, we get the effects of it applied to both the player character and enemy character! We're only going to add depth on the Y axis for now, it's rare to see depth on the X axis.
 
 We are going to hard code the height of the character to some constant number (In this example 20px). Whenever the corners or bounding rectangle of the character is requested we're going to change the return to have 20 hard coded to it. Then we're going to change the render function, we're going to change it to render the sprite at Position.Y - 20 instead of Position.Y.
@@ -58,3 +58,6 @@ and subtract it from from ```renderPosition.Y```. That should do it. **Run the g
 ![DONE_HEIGHT](Images/done_height.PNG)
 
 Notice how the moblins yellow indicator pixel is at his top left, while link's is slightly below his head. Also, links head slightly overlaps the obstacle. This is what we expected.
+
+##Tiles
+The character having depth is awesome, but we're going to want the tiles to have depth too! Unlike character however we always know the height of a tile, it's 30! Because we already know the height of the tile, all we need to change is the ```Render``` function in **Tile.cs**
