@@ -24,3 +24,5 @@ if (InputManager.Instance.KeyPressed(OpenTK.Input.Key.Y)) {
 With this code in place, every time you press the **Y** button the depth buffer will be saved next to the Asets directory and solution file.
 
 ###Explicit Depth Buffer
+
+The task at hand is to figure out how to sort tiles, enemies, characters and items; then to apply Z values directly. Right now we don't have controll of the z buffer directly, which is why i updated the 
