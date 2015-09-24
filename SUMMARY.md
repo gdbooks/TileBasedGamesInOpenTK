@@ -28,6 +28,7 @@
    * [Limit Scrolling](Chapter21.md)
 * [Depth](Chapter22.md)
    * [Collision & Rendering](SpeerateCollisionAndRendering.md) 
+   * [Visual Tweaks](AddingAHouse.md)
    * [X Depth Buffer](DepthBuffer.md) 
    * [X Painters algorithm](PaintersAlgorithm.md) 
 * [X Ismetric View](Chapter23.md)
