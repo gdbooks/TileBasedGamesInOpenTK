@@ -44,3 +44,6 @@ public void SetDepth(float depth)
   * Allows us to hard code the depth value for the next draw call
 
 Out of all these functions, we only need SetDepth. Before rendering a tile or the character or anything we're going to explicitly set it's z-depth by calling **SetDepth**. This way we can be in total controll! The only question is, how to we figure out the depth of a thing (tile, character, item, etc...)??? Oh, and what resolution depth buffer do we need?
+
+The image of the depth buffer we saw in the last section on this page actually gives us a pretty decent strategy for dealing with depth. The further down something is the higher it's depth. The further right something is, the higher it's depth! Here is a pretty good demonstration of what i mean:
+
