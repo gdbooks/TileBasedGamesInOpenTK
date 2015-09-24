@@ -11,6 +11,9 @@ This is the general concept of a z-buffer. It's a pretty important concept, if y
 ###New Project
 Let's make a new project, call it **DepthBuffer** and get this project up to par with the **VisualTweaks** section of the writeup. We're going to work from here.
 
+###Update Graphics Manager
+GraphicsManager does not support all the functionality you need to get the project off the ground right now. You can fix this by grabing the latest manager [from my github](https://raw.githubusercontent.com/gszauer/2DOpenTKFramework/master/2DFramework/Framework/GraphicsManager.cs) and pasting it into your file.
+
 ###Existing Depth Buffer
 The graphics frameworks is already using buffers under the hood. When you call ```GraphicsManager.Instance.ClearScreen(System.Drawing.Color.CadetBlue);``` in **Program.cs** the depth buffer is cleared to 0 (Pure white). 
 
