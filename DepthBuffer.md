@@ -57,7 +57,7 @@ Here is a visual demonstration using a height of 8 and a width of 10 (even tough
 ###Real World Values
 So now that we know how to get the depth of each tile, and the depth range, what should it be for our game?!?!? Take a look at the **Render** function of **Map.cs** our width rendering ranges from -8 to +8, and our height rendering ranges from -6 to + 6. We also add one extra tile (the + 30) for padding. This means we have 17 tiles accross and 13 tiles up and down. 
 
-Let's round those numbers up to the nearest ten. Make the **depth range = 0, 20 x 20**. The depth function for each tile is going to be **y * 20 + x**.
+Let's round those numbers up to the nearest ten. Make the **depth range = 0, 21 x 21**. The depth function for each tile is going to be **y * 20 + x**. Wait, whats the extra 1 for? We did 21 x 21 but are only calculating with 20.... That extra 1 is padding. It's a good idea to add a little bit.
 
 Set the depth range in the Initialize function of **Game.cs**
 
@@ -81,3 +81,5 @@ I'm going to leave implementation a little bit open ended. I'll make suggestions
 **For Items** Do the same thing you did for the player. Instead of adding 0.5f to it, add an offset of 0.2f
 
 **For Projectiles**, in **Game.cs** find where you render each projectile with ```projectiles[i].Render(offsetPosition);``` and before that set the depth to 19*19. We set it super high because these projectiles should be rendering above everything!
+
+Lastly, in **Game.cs** before hte game over check (this line): ```if (GameOver) {``` make sure to set the depth to **20*20**, to make sure that all game over text renders above the game
