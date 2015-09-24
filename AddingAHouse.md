@@ -1,6 +1,8 @@
 #Visual Tweaks
 Before moving on to the next section i feel like we need to do some house cleaning. There are a few things i want to change in the code in order to add houses that have depth to them visually. Also, while reviewing your code i found a bug that was made because i gave bad instructions in the last tutorial section.
 
+Do all the work for this section in the **DepthBase** project from the last section.
+
 Let's start off by updating our **HouseTiles.png** to the following image:
 
 ![MORE_TILES](Images/HouseTiles_Expanded.png)
