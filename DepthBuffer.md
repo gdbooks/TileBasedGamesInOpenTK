@@ -1,7 +1,15 @@
-Z Comes out of the screen!
+#Z-Buffer
+
+The concept of a [Z buffer](https://en.wikipedia.org/wiki/Z-buffering) is pretty simple. Everything in the game has thre component coordinates: x, y and z. The game has two buffers, a color buffer and a depth buffer. When you try to draw something, the first thing that happens is the z value is written to the depth buffer. The depth buffer is a black and white image, low z values are black, high z values are white. 
+
+So, the z value is written to the z buffer, the thing is, not every pixel might be written to the z buffer! If the object is partially occluded (if the buffer has lighter pixels over a part of the object), then those values are not written to the z buffer. This is called rejecting the pixel. It's also called a z test.
+
+If a pixel fails the z test it is not written into the color buffer. If a pixel passes the z test, it is written into the color buffer.
+
+This is the general concept of a z-buffer. It's a pretty important concept, if you are having trouble with it give me a call and we can talk it oer.
 
 ###New Project
-Let's make a new project, call it **DepthBase** and get this project up to par with the **LimitedScrolling** section of the writeup. We're going to work from here.
+Let's make a new project, call it **DepthBuffer** and get this project up to par with the **VisualTweaks** section of the writeup. We're going to work from here.
 
 ###Existing Depth Buffer
 The graphics frameworks is already using buffers under the hood. When you call ```GraphicsManager.Instance.ClearScreen(System.Drawing.Color.CadetBlue);``` in **Program.cs** the depth buffer is cleared to 0 (Pure white). 
@@ -64,7 +72,7 @@ Let's round those numbers up to the nearest ten. Make the **depth range = 0, 21 
 
 Set the depth range in the Initialize function of **Game.cs**
 
-###Implementing it
+###Implementation
 **Hint**: all depth should be set based on **WORLD SPACE**, not camera space.
 
 I'm going to leave implementation a little bit open ended. I'll make suggestions on where to call the **SetDepth** function, but you are welcome to call it anywhere.
