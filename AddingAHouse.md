@@ -1,7 +1,9 @@
 #Visual Tweaks
-Before adding depth, it would be nice if we could render some buildings which have depth.
+Before moving on to the next section i feel like we need to do some house cleaning. There are a few things i want to change in the code in order to add houses that have depth to them visually. Also, while reviewing your code i found a bug that was made because i gave bad instructions in the last tutorial section.
 
-TODO
+Let's start off by updating our **HouseTiles.png** to the following image:
+
+![MORE_TILES](Images/HouseTiles_Expanded.png)
 
 Edit ```spriteSources``` in **Game.cs** to include some of the new tiles. I went ahead and measured these out for you:
 
@@ -83,3 +85,9 @@ The problem is where we calculate worldPosition.X and worldPosition.Y. We multip
 worldPosition.X = (int)(j * 30);
 worldPosition.Y = (int)(i * 30);
 ```
+
+There is one last think i'd like to address. If you collect an item and close the game you get a yellow warning in the console about an unreleased texture. This only happens when you collect an item. That tells me that at the point when we remove the item from the map, you don't release it's texture. Go ahead and fix this.
+
+Now we're good to go to the next section! If you run the game you will be able to walk on the top 10 pixels of one of the houses, this is expected behaviour. In the next section we're going to add proper depth sorting to make it look like you are behind the house. Until then, this is what your game will probably look like at this point:
+
+![FIDDLER](Images/fiddler_on_the_roof.PNG)
