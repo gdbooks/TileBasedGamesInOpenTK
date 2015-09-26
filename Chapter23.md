@@ -98,6 +98,8 @@ Next we have a minor change to make in **Tile.cs**, remember how we hard coded t
 
 While we are in **Tile.cs**, let's update the tiles visual render position! After the offset has been applyed to render pos, update the render position by calling Map.CartToIso on the render position and assigning the return of the function back into render position.
 
+There is one more place where we hard-coded 30 as the tile size that we have to fix. Let's go into **Map.cs**
+
 **Run the game**, you should see your first isometric map be rendered:
 
 ![FIRST](Images/first_iso.PNG)
