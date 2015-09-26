@@ -68,3 +68,25 @@ public static PointF IsoToCart(PointF isometric) {
 }
 ```
 
+###Changine the map
+Let's start by refactoring the map to render in an isometric fasion!
+
+In **Game.cs**:
+
+* Change the value of ```spriteSheets```
+  * From: **"Assets/HouseTiles.png"**
+  * To: **"Assets/isometric.png"**
+* Change the value of ```spriteSources``` to
+  * _/\*Index 0:\*/_ new Rectangle(120, 166, 138, 71),
+  * _/\*Index 1:\*/_ new Rectangle(294, 147, 138, 90),
+  * _/\*Index 2:\*/_ new Rectangle(120, 166, 138, 71)
+* Change the value of ```room1Layout``` to
+  * new int[] { 1, 1, 1, 1, 1, 1, 1, 1 },
+  * new int[] { 1, 0, 0, 0, 0, 0, 0, 1 },
+  * new int[] { 1, 0, 0, 0, 1, 0, 0, 1 },
+  * new int[] { 1, 0, 1, 0, 0, 0, 0, 1 },
+  * new int[] { 1, 0, 0, 0, 0, 0, 0, 2 },
+  * new int[] { 1, 1, 1, 1, 1, 1, 1, 1 } 
+* Change where room1 doctor is assigned:
+  * From ```room1[4][13].MakeDoor(room2, new Point(1, 1));```
+  * To: ```room1[7][4].MakeDoor(room2, new Point(1, 1));```
