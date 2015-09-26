@@ -69,9 +69,7 @@ public static PointF IsoToCart(PointF isometric) {
 ```
 
 ###Changine the map
-Let's start by refactoring the map to render in an isometric fasion!
-
-In **Game.cs**:
+Let's start by refactoring the map to render in an isometric fasion! Let's start by editing **Game.cs**:
 
 * Change the value of ```spriteSheets```
   * From: **"Assets/HouseTiles.png"**
@@ -93,3 +91,6 @@ In **Game.cs**:
 * Change where room2 is assigned:
   * From: ```room2[1][0].MakeDoor(room1, new Point(12, 4));```  
   * To: ```room2[1][0].MakeDoor(room1, new Point(6, 4));```
+* Hard code ```offsetPosition``` to 0,0 for now (We are not scrolling yet!)
+
+Next we have a minor change to make in **Tile.cs**, remember how we hard coded the visual tile height to 30? Well we need to undo it. Find where in the ```Render``` code wecompare to and subtract 30 to give the illusion of depth, now change that to 138.
