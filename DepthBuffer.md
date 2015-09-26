@@ -68,6 +68,10 @@ Here is a visual demonstration using a height of 8 and a width of 10 (even tough
 
 ![GRID](Images/index_grid.png)
 
+Here is another example of what we are trying to do:
+
+![EXAMPLE](Images/flatten_array.png)
+
 ###Real World Values
 So now that we know how to get the depth of each tile, and the depth range, what should it be for our game?!?!? Take a look at the **Render** function of **Map.cs** our width rendering ranges from -8 to +8, and our height rendering ranges from -6 to + 6. We also add one extra tile (the + 30) for padding. This means we have 17 tiles accross and 13 tiles up and down. 
 
