@@ -43,6 +43,11 @@ To This
 
 Why 138 / 2 and 70? Because the tiles are placed half the width and half width and half height apart. The width of the white base tile is 138, it's height is 70. Take a look at the image below, this is row 0:
 
+![ROW0](Images/row0.png)
+
+Now how far away on the X and Y are each new tiles in row 0?
+
+![SIZE](Images/iso_size.png)
 
 **Run the game**, you should see your first isometric map be rendered:
 
