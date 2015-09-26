@@ -92,4 +92,4 @@ In **Game.cs**:
   * To: ```room1[4][7].MakeDoor(room2, new Point(1, 1));```
 * Change where room2 is assigned:
   * From: ```room2[1][0].MakeDoor(room1, new Point(12, 4));```  
-  * To: ```room2[1][0].MakeDoor(room1, new Point(12, 4));```
+  * To: ```room2[1][0].MakeDoor(room1, new Point(6, 4));```
