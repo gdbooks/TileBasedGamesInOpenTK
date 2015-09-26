@@ -97,3 +97,7 @@ Let's start by refactoring the map to render in an isometric fasion! Let's start
 Next we have a minor change to make in **Tile.cs**, remember how we hard coded the visual tile height to 30? Well we need to undo it. Find where in the ```Render``` code wecompare to and subtract 30 to give the illusion of depth, now change that to 138.
 
 While we are in **Tile.cs**, let's update the tiles visual render position! After the offset has been applyed to render pos, update the render position by calling Map.CartToIso on the render position and assigning the return of the function back into render position.
+
+**Run the game**, you should see your first isometric map be rendered:
+
+![FIRST](Images/first_iso.PNG)
