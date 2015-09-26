@@ -31,3 +31,35 @@ Notice how in the top, the registration point for both the flat and tall tiles a
 Same thing with player, we place him on top of the flat diamond, his registration point is where the tip of the tile would be (On the y axis).
 
 Everything is set up relative to a base tile, in this case the base tile is just a flat outline. If you want to sprouce up the artwork you can follow some [tutorials](http://www.2dgameartguru.com/2012/02/building-isometric-art-in-vectors-step.html) to figure out how to make iso graphics... Or just [rip them](http://www.spriters-resource.com/pc_computer/diablo2diablo2lordofdestruction/) from a Diablo game
+
+So, when rotating these tiles, what direction becomes which direction? The way i think about it is that we are doing a counter clockwise rotation. Like so (Each side is numbered):
+
+![ROTATE](Images/the_isometric_grid.jpg)
+
+###Coordinates
+At the core of any isometric engine is being able to convert from cartesian coordinates to isometric coordinates. The top-down view we've been using up until now.
+
+Atop down view grid is called cartesian coordinate system. The perspective view grid we are building is no longer using a cartesian coordinate system, it is going to be using an isometric one.
+
+How to convert from **cartesian to isometric**?
+
+* isoX = cartX - cartY;
+* isoY = (cartX + cartY) / 2;
+
+That's a nifty trick, how about going from **isometric to cartesian**?
+
+* cartX = (2 * isoY + isoX) / 2;
+* cartY = (2 * isoY - isoX) / 2;
+
+Why do we need to convert both ways? I don't know if we _need_ to at this point yet. But we are going to keep doing updates in world space. Only the view is changine to cartesian, not the logic!
+
+###On Your Own
+Fill out these four functions.
+
+```cs
+PointF CartToIso(PointF cartesian) {
+
+}
+
+PointF IsoToCart(PointF 
+```
