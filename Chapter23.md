@@ -88,5 +88,8 @@ In **Game.cs**:
   * new int[] { 1, 0, 0, 0, 0, 0, 0, 2 },
   * new int[] { 1, 1, 1, 1, 1, 1, 1, 1 } 
 * Change where room1 doctor is assigned:
-  * From ```room1[4][13].MakeDoor(room2, new Point(1, 1));```
-  * To: ```room1[7][4].MakeDoor(room2, new Point(1, 1));```
+  * From: ```room1[4][13].MakeDoor(room2, new Point(1, 1));```
+  * To: ```room1[4][7].MakeDoor(room2, new Point(1, 1));```
+* Change where room2 is assigned:
+  * From: ```room2[1][0].MakeDoor(room1, new Point(12, 4));```  
+  * To: ```room2[1][0].MakeDoor(room1, new Point(12, 4));```
