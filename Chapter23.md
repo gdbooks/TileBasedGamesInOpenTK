@@ -53,7 +53,15 @@ That's a nifty trick, how about going from **isometric to cartesian**?
 
 Why do we need to convert both ways? I don't know if we _need_ to at this point yet. But we are going to keep doing updates in world space. Only the view is changine to cartesian, not the logic!
 
-**GABOR TODO**: Explain math behind this!
+###Layout
+
+It may not immediateley be obvious how iso tiles are rendered. As an example, let's see where ROW 0 is on an iso map:
+
+![ROW0](Images/row0.png)
+
+The positioning of the tiles can also be misleading. This is because the registration points are not always where you expect them to be. 
+
+In order to draw the second tile of row 0, we had to go 1/2 the width of the first tile on the X and the height of the first tile on the Y. Like so: 
 
 ###On Your Own
 Add these functions to **Map.cs**
