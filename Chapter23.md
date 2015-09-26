@@ -53,6 +53,8 @@ That's a nifty trick, how about going from **isometric to cartesian**?
 
 Why do we need to convert both ways? I don't know if we _need_ to at this point yet. But we are going to keep doing updates in world space. Only the view is changine to cartesian, not the logic!
 
+**GABOR TODO**: Explain math behind this!
+
 ###On Your Own
 Add these functions to **Map.cs**
 
@@ -65,3 +67,4 @@ public static PointF IsoToCart(PointF isometric) {
     // TODO 
 }
 ```
+
