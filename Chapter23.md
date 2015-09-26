@@ -63,6 +63,10 @@ The positioning of the tiles can also be misleading. This is because the registr
 
 In order to draw the second tile of row 0, we had to go 1/2 the width of the first tile on the X and the height of the first tile on the Y. Like so: 
 
+![SIZE](Images/iso_size.png)
+
+This means that on an iso map, if a tile's source rect is: 
+
 ###On Your Own
 Add these functions to **Map.cs**
 
