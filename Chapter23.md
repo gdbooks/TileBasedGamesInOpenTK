@@ -25,3 +25,9 @@ Speaking of art assets, i made a new tile sheet, we are going to use this sheet 
 The positioning of the tiles on the source image is very, very important! The origin of each tile must line up. Remember how in the depth section we have a few tiles that where taller than 30? This is the same concept. Take a look:
 
 ![TUT16B](Images/tut16b.gif)
+
+Notice how in the top, the registration point for both the flat and tall tiles are in the same spot? If we where to use a flat tile as the base of the tall tile, that's where the tip would be (On the y axis).
+
+Same thing with player, we place him on top of the flat diamond, his registration point is where the tip of the tile would be (On the y axis).
+
+Everything is set up relative to a base tile, in this case the base tile is just a flat outline. If you want to sprouce up the artwork you can follow some [tutorials](http://www.2dgameartguru.com/2012/02/building-isometric-art-in-vectors-step.html) to figure out how to make iso graphics... Or just [rip them](http://www.spriters-resource.com/pc_computer/diablo2diablo2lordofdestruction/) from a Diablo game
