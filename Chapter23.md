@@ -58,8 +58,12 @@ Fill out these four functions.
 
 ```cs
 PointF CartToIso(PointF cartesian) {
-
+    // TODO
 }
 
-PointF IsoToCart(PointF 
+PointF IsoToCart(PointF isometric) {
+    // TODO 
+}
+
+
 ```
