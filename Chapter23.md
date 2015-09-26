@@ -53,7 +53,7 @@ That's a nifty trick, how about going from **isometric to cartesian**?
 
 Why do we need to convert both ways? I don't know if we _need_ to at this point yet. But we are going to keep doing updates in world space. Only the view is changine to cartesian, not the logic!
 
-###Layout
+###Layout & Size
 
 It may not immediateley be obvious how iso tiles are rendered. As an example, let's see where ROW 0 is on an iso map:
 
@@ -65,7 +65,11 @@ In order to draw the second tile of row 0, we had to go 1/2 the width of the fir
 
 ![SIZE](Images/iso_size.png)
 
-This means that on an iso map, if a tile's source rect is: 
+This means that on an iso map, if a tile's source rect is ```Rectangle(120, 166, 138, 70),```, then:
+
+* Tile Height = 70
+* Tile Width = 69
+  * 138 / 2 = 69 
 
 ###On Your Own
 Add these functions to **Map.cs**
