@@ -94,3 +94,5 @@ Let's start by refactoring the map to render in an isometric fasion! Let's start
 * Hard code ```offsetPosition``` to 0,0 for now (We are not scrolling yet!)
 
 Next we have a minor change to make in **Tile.cs**, remember how we hard coded the visual tile height to 30? Well we need to undo it. Find where in the ```Render``` code wecompare to and subtract 30 to give the illusion of depth, now change that to 138.
+
+While we are in **Tile.cs**, let's update the tiles visual render position!
