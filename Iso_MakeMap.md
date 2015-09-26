@@ -23,7 +23,7 @@ Let's start by refactoring the map to render in an isometric fasion! Let's start
 * Change where room2 is assigned:
   * From: ```room2[1][0].MakeDoor(room1, new Point(12, 4));```  
   * To: ```room2[1][0].MakeDoor(room1, new Point(6, 4));```
-* Hard code ```offsetPosition``` to **-150, 200** for now (We are not scrolling yet!)
+* Hard code ```offsetPosition``` to **-200, 150** for now (We are not scrolling yet!)
 * Make the client window size **990 x 550**
 
 ###Tile.cs
