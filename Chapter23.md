@@ -22,4 +22,6 @@ Speaking of art assets, i made a new tile sheet, we are going to use this sheet 
 
 ![ISO](Images/isometric.png)
 
-The positioning of the tiles on the source image is very, very important!
+The positioning of the tiles on the source image is very, very important! The origin of each tile must line up. Remember how in the depth section we have a few tiles that where taller than 30? This is the same concept. Take a look:
+
+![TUT16B](Images/tut16b.gif)
