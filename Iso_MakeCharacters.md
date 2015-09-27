@@ -46,7 +46,7 @@ In **Tile.cs** we hard coded the debug render size to 69x70. Switch these to be 
 
 **Run the game**, if you switch into debug view, even tough link is the wrong size he can walk around the map. He just looks small. Confirm that collision and shooting work before moving on to the next section.
 
-####Refactoring the Character
+####Display the Character
 Let's take a little bit of time to refactor **Character.cs**. The first thing i'm going to do is remove the code that renders the debug yellow square at the characters registration point.
 
 Next, we're going to updat the character sprites. In **PlayerCharacter.cs** and in **EnemyCharacter.cs**, change the sprite sources to:
@@ -55,3 +55,9 @@ Next, we're going to updat the character sprites. In **PlayerCharacter.cs** and 
 * AddSprite("Up", new Rectangle(266, 19, 85, 84)); 
 * AddSprite("Left", new Rectangle(155, 19, 85, 84)); 
 * AddSprite("Right", new Rectangle(375, 19, 85, 84)); 
+
+Back in **Character.cs**, let's go ahead and project these characters into an isometric space. In the ```Render``` method after the offset is applyed to ```renderPosition```, but before the y correction takes place go ahead and call ```Map.CartToIso```. 
+
+```MapCartToIso``` will transform ```renderPosition``` from a cartesian space into an isometric space. Do this the same way you have already done it for **Tile.cs**
+
+Lastly, back in **Game.cs**, go ahead and change ```heroSheet``` and ```npcSheet``` to point to the isometric sprite sheet.
