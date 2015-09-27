@@ -45,3 +45,13 @@ Update the constructor of **Map.cs** to use the constants from ```Game```, inste
 In **Tile.cs** we hard coded the debug render size to 69x70. Switch these to be the constants in ```Game.cs```, also, there is a height text of 70 hard coded in there, change that 70 to ```Game.TILE_H```.
 
 **Run the game**, if you switch into debug view, even tough link is the wrong size he can walk around the map. He just looks small. Confirm that collision and shooting work before moving on to the next section.
+
+####Refactoring the Character
+Let's take a little bit of time to refactor **Character.cs**. The first thing i'm going to do is remove the code that renders the debug yellow square at the characters registration point.
+
+Next, we're going to updat the character sprites. In **PlayerCharacter.cs** and in **EnemyCharacter.cs**, change the sprite sources to:
+
+* AddSprite("Down", new Rectangle(52, 19, 85, 84)); 
+* AddSprite("Up", new Rectangle(266, 19, 85, 84)); 
+* AddSprite("Left", new Rectangle(155, 19, 85, 84)); 
+* AddSprite("Right", new Rectangle(375, 19, 85, 84)); 
