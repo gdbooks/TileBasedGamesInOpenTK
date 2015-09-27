@@ -35,3 +35,7 @@ We have a global define in **Game.cs**, find the ```tileSize``` global variable 
 public static readonly int TILE_W = 69; // 138 / 2
 public static readonly int TILE_H = 70; // 70
 ```
+
+We just caused a lot of compiler errors be removing ```tileSize```, go ahead and fix these. Instead of ```tileSize```, use ```TILE_W``` and ```TILE_H``` wherever appropriate. Appy H to Y values and W to X values.
+
+Now it's time to replace EVERY OTHER INSTANCE of 30. Search the entire project _(Control + shift + F)_ for **30**, replace every instance with TILE_W or TILE_H, depending on which one is appropriate. 
