@@ -79,4 +79,6 @@ Just like the size of each tile is no longer the same as the size of it's sprite
 
 ```Character``` alredy has a ```height``` variable. Delete it. Change the constructor to just do nothing with the height argument, ignore it.
 
-Inside the ```Rect``` getter, make two new local intgers: ```width``` and ```height```. ```width``` is going to equal the current sprites width, divided by two. ```height``` is going to equal ```width```.
+Inside the ```Rect``` getter, make two new local intgers: ```width``` and ```height```. ```width``` is going to equal the current sprites width, divided by two. ```height``` is going to equal ```width```. Return a rectangle at ```Positon`, with a size of ```width```, ```height```. The if statement in here is no longer needed.
+
+The ```Center``` getter already uses the ```Rect``` getter, there is nothing to change here.
