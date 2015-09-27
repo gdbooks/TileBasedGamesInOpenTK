@@ -60,4 +60,8 @@ Back in **Character.cs**, let's go ahead and project these characters into an is
 
 ```MapCartToIso``` will transform ```renderPosition``` from a cartesian space into an isometric space. Do this the same way you have already done it for **Tile.cs**
 
-Lastly, back in **Game.cs**, go ahead and change ```heroSheet``` and ```npcSheet``` to point to the isometric sprite sheet.
+Lastly, back in **Game.cs**, go ahead and change ```heroSheet``` and ```npcSheet``` to point to the isometric sprite sheet. 
+
+**Run the game**, the isometric view should look pretty close to correct. Moving around is going to be broken, but visually it's close to good. This is what your game should look like:
+
+![DONT_MOVE](Images/dont_move.PNG)
