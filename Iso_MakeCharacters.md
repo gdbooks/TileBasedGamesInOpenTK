@@ -24,3 +24,14 @@ Further more, when ``````Game.ViewWorldSpace``` is true and we render a rectangl
 
 ![NON_ISO](Images/non_iso.PNG)
 
+###No more 30
+Now that we can view world space just fine, we notice that the size of the world space tiles is MUCH larger than the size of our player and enemy tiles. Let's go ahead and fix this next.
+
+The sizing issue happens because the map is rendering with our worlds current tile size, while the character an enemy have 30 hard coded for the tile size. That's no-bueno.
+
+We have a global define in **Game.cs**, find the ```tileSize``` global variable and delete it. In it's place, add these two new defines:
+
+```cs
+public static readonly int TILE_W = 69; // 138 / 2
+public static readonly int TILE_H = 70; // 70
+```
