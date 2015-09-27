@@ -90,3 +90,35 @@ Lastly, there is a reference to the old ```height``` variable inside of the ```R
 ```cs
 if (SpriteSources[currentSprite][currentFrame].Height > Rect.Height) {
 ```
+
+**Run the game**, walking around and collision should be working pretty well. Especially in overhead view:
+
+![COMPARE](Images/side_by_side.png)
+
+###Rendering artifacts
+We have a few rendering artifacts going on. The most obvious of which is the bits of tile that render above the character. This happens becuase what gets written into the depth buffer is a square. Even if a diamond is rendered to the clor buffer, a square is rendered to the depth buffer.
+
+This square ends up putting pixels where they are not supposed to go! Open up **GraphicsManager.cs**, go to the ```Initialize``` function, and there are two lines commetned out:
+
+* ```GL.AlphaFunc(AlphaFunction.Greater, 0.1f);```
+* ```GL.Enable(EnableCap.AlphaTest);```
+
+Go ahead and comment these two lines back in, they will make it so alpha (transparent) pixels don't get written into the depth buffer.
+
+The next issue is that the character does not line up to the grid!
+
+![ERROR](Images/collision_error.png)
+
+This is not an easy one to fix. The issue is our player sprite uses it's middle left as a registration point right now. But in an isometric view, everything needs to be modeled relative to a tile. Look at this picture again:
+
+![T16C](Images/tut16c.gif)
+
+The + on the left marks the registration point, it's the top left for the floor tile. BUT, it also marks the registration point for the player! Notice how the players registration point doesn't actually touch the sprite! 
+
+So how do we figure out how much space we need to offset the player by? Looking at the picture, it's ```(TileCenter - TileW * 0.5) - (PlayerCenter - PlayerW * 0.5)``` Doing the math with our known numbers, that comes out to about **25**.
+
+You could calculate this at runtime, to support different size enemies, but we're just going to keep it simple. So, where to apply this offset? In **Character.cs**, the ```Render``` function. Find where the ```renderPosition``` is projected into isometric space. Directly after that add 25 to it's X component!
+
+There is one last bug. If you walk into an obstacle from the X direction you will first be behind it, but then quickly pop in front of it! We have to offset the X position of the player by 1 pixel just like we did the Y position of the player. Look at the top of the ```Render``` function in **Character.cs**, and offset X by 1 the same way Y is offset by 1.
+
+**Run the game**, everything should now work in an isometric environment. Your character can walk around, collide with walls and even enemies. As an adde bonus, the walls even have height to them!
