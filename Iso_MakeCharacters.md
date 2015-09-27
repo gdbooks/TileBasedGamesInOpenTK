@@ -62,6 +62,15 @@ Back in **Character.cs**, let's go ahead and project these characters into an is
 
 Lastly, back in **Game.cs**, go ahead and change ```heroSheet``` and ```npcSheet``` to point to the isometric sprite sheet. 
 
-**Run the game**, the isometric view should look pretty close to correct. Moving around is going to be broken, but visually it's close to good. This is what your game should look like:
+**Run the game**, the isometric view should look pretty close to correct. Moving around is going to be broken, but visually it's close to good. We're going to just ignore z-fighting issues for now. This is what your game should look like:
 
 ![DONT_MOVE](Images/dont_move.PNG)
+
+###Moving the character
+If the moving code is broken, then it's broken in a few places. Switch to the overhead view and see if movement is broken... Well it's not really broken, but it's also not correct. We should only see squares in this view, not sprites. 
+
+In **character.cs**, update the render method so if ```Game.ViewWorldSpace``` is true, we draw a square (use the Rect getter for it's rectangle), make it ```Color.SteelBlue```. If ```Game.ViewWorldSpace``` is false, draw the texture as usual.
+
+Looking at our new debug render, the errors are quiet obvious! The player is bigger (wider) than the floor tiles. That's a pretty big no-no. And how exactly does the size in this screen translate to the size of the iso sprite? After all the iso sprite only takes up a part of each tile.
+
+Just like the size of each tile is no longer the same as the size of it's sprite, the isometric size of the player tile is not the same as the size of its sprite.
