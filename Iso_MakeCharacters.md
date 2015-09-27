@@ -73,4 +73,10 @@ In **character.cs**, update the render method so if ```Game.ViewWorldSpace``` is
 
 Looking at our new debug render, the errors are quiet obvious! The player is bigger (wider) than the floor tiles. That's a pretty big no-no. And how exactly does the size in this screen translate to the size of the iso sprite? After all the iso sprite only takes up a part of each tile.
 
-Just like the size of each tile is no longer the same as the size of it's sprite, the isometric size of the player tile is not the same as the size of its sprite.
+Just like the size of each tile is no longer the same as the size of it's sprite, the isometric size of the player tile is not the same as the size of its sprite. We have to apply the same transform to player as we do to tiles, so we are going to cut his width in half. How about the height? We will just make it the same as his width... For now.
+
+![T16C](Images/tut16c.gif)
+
+```Character``` alredy has a ```height``` variable. Delete it. Change the constructor to just do nothing with the height argument, ignore it.
+
+Inside the ```Rect``` getter, make two new local intgers: ```width``` and ```height```. ```width``` is going to equal the current sprites width, divided by two. ```height``` is going to equal ```width```.
