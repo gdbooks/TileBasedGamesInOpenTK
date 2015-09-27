@@ -37,8 +37,6 @@
 * [X Mouse To Move](Chapter24.md)
 * [X Iso Mouse](Chapter25.md)
 * [X Iso Scroll](Chapter26.md)
-* [X Rotating Hero](Chapter27.md)
-* [X Rotating Ground](Chapter28.md)
 * [X Slopes](Chapter29.md)
 * [X Hexagons](Chapter30.md)
 * [X More Tiles](Chapter7.md)
