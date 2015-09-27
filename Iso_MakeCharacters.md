@@ -82,3 +82,11 @@ Just like the size of each tile is no longer the same as the size of it's sprite
 Inside the ```Rect``` getter, make two new local intgers: ```width``` and ```height```. ```width``` is going to equal the current sprites width, divided by two. ```height``` is going to equal ```width```. Return a rectangle at ```Positon`, with a size of ```width```, ```height```. The if statement in here is no longer needed.
 
 The ```Center``` getter already uses the ```Rect``` getter, there is nothing to change here.
+
+In the ```Corners``` getter, change w to equal ```Rect.Width``` and h to equal ```Rect.Height```
+
+Lastly, there is a reference to the old ```height``` variable inside of the ```Render``` function. Change the line to subtract ```Rect.Height``` instead of the old member. Also, because the if statment this is in no longer makes sense, change it to:
+
+```cs
+if (SpriteSources[currentSprite][currentFrame].Height > Rect.Height) {
+```
