@@ -38,4 +38,10 @@ public static readonly int TILE_H = 70; // 70
 
 We just caused a lot of compiler errors be removing ```tileSize```, go ahead and fix these. Instead of ```tileSize```, use ```TILE_W``` and ```TILE_H``` wherever appropriate. Appy H to Y values and W to X values.
 
-Now it's time to replace EVERY OTHER INSTANCE of 30. Search the entire project _(Control + shift + F)_ for **30**, replace every instance with TILE_W or TILE_H, depending on which one is appropriate. 
+Now it's time to replace EVERY OTHER INSTANCE of 30. Search the entire project _(Control + shift + F)_ for **30**, replace every instance with TILE_W or TILE_H, depending on which one is appropriate.
+
+Update the constructor of **Map.cs** to use the constants from ```Game```, instead of hard coding 138 / 2 and 70.
+
+In **Tile.cs** we hard coded the debug render size to 69x70. Switch these to be the constants in ```Game.cs```, also, there is a height text of 70 hard coded in there, change that 70 to ```Game.TILE_H```.
+
+**Run the game**, if you switch into debug view, even tough link is the wrong size he can walk around the map. He just looks small.
