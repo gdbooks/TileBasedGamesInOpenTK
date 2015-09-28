@@ -58,3 +58,21 @@ In **Game.cs** make a new member integer, let's call it ```spriteSheetInstnace``
 
 ###Isometric projection
 Now that both bullets and items work in a 2D verhead view (that is, they work in world space) lets make them work in an isometric view by applying the proper projections and offsets!
+
+In **Bullet.cs** take the ```renderPoint``` variable and project it into isometric space using ```Map.CartToIso```. Of course, only do this after all offsets have been applyed. If you look where we first set the position, we subtract 5 from the X and Y. Remove the -5. It worked when we where in a top down view, but we don't need it anymore (right now i should say)
+
+In **Item.cs** move the ```renderPosition``` into isometric space.
+
+**Run the game**, shoot some bullets, and check out where the items are. You will notice that both bullet shooting and item positions are way off from where we expect them to be. But why?
+
+Remember how the player's registration point needed to be the same as the base tiles registration point? Well that holds true for all objects! Here is a picture:
+
+![OFFSETS](Images/offsets.png)
+
+Just like we offset player by 25, we're going to offset the present by 50 and the bullet by 57. The above image shows both bullet and present as having some height (y offset), don't let that fool you we're only going to apply an X offset.
+
+In **Bullet.cs**, after you have converted ```renderPoint``` into isometric space, add 57 to it's X value
+
+In **Item.cs**, after you have converted ```renderPosition``` into isometric space, add 50 to it's X value.
+
+That's it! **Run the game** and you should have an awesome, interactive isometric world ready to go!
