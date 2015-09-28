@@ -39,3 +39,9 @@ While we are in the render function, find where we offset the y pixel position o
 
 ###Adding a shooting sprite
 Shooting already works in the debug view. Go ahead, try it. The thing is, bullets never had a sprite to begin with, so we must provide them with one!
+
+Let's start by adding two new variables to **Bullet.cs**. First, an integer, name it ```spriteSheetHandle```, next a Rectangle, name it ```sourceRect```. The initial value of sourceRect will be **43, 161, 22, 20**
+
+Update the ```Rect``` getter to return a rectangle at the location of the ```Position``` variable, with a width and height of **source width / 2**. The same logic that dictates the player width / height also dictates the bullet width / height.
+
+Change the constructor to take a third argument, the new argument is an integer and is a sprite sheetreference. In the constructor, set ```spriteSheetHandle``` equal to this new value.
