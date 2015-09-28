@@ -19,8 +19,8 @@ room1.AddItem(spriteSheets, new Rectangle(381, 256, 13, 15), 20, new Point(5 * T
 room2.AddItem(spriteSheets, new Rectangle(412, 256, 16, 15), 30, new Point(4 * TILE_W + 7, 2 * TILE_H + 7));
 ```
 
-Let's update the source rectangle, all items are going to use the same image. The new source rectangle is: **Rectangle(20, 198, 44, 49)**
+Let's update the source rectangle, all items are going to use the same image. The new source rectangle is: **Rectangle(20, 198, 44, 49)**. While editing these, go ahead and remove all the **+ 7** parts. 7 is the number we hard coded to put each item in the middle of a tile, now that tile sizes are different, 7 holds no meaning.
 
 Go int **Tile.cs** and let's add an if statement to the ```Render``` function to render the debug view of the item. Add an if statement, if ```Game.ViewWorldSpace``` is true we render a debug square, if it's false we render the texture like normal.
 
-The debug rectangle should be at the position specified by the ```Position``` member variable. It should be of color ```Color.DarkSeaGreen``` and 
+The debug rectangle should be at the position specified by the ```Position``` member variable. It should be of color ```Color.DarkSeaGreen```. As for size, both the width and the height are going to be **Source.Width / 2**. The size of the item works the same as the size of the player, so width is sprite width / 2 and height is width.
