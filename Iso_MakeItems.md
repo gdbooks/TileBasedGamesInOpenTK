@@ -6,3 +6,6 @@ First, we want to make sure that both projectiles and items work in our debug ov
 Here is the updates isometric.png sheet that has items and bullets on it:
 
 ![ITEMS](Images/isometric_items.png)
+
+###New projet?
+You can either do this in a brand new project, or keep working int he lat isometric one. I'll leave it up to you.
