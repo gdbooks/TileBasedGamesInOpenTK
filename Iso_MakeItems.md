@@ -9,3 +9,6 @@ Here is the updates isometric.png sheet that has items and bullets on it:
 
 ###New projet?
 You can either do this in a brand new project, or keep working int he lat isometric one. I'll leave it up to you.
+
+###Making top-down work
+Right now if you run the game and toggle on the debug view, your items are not visible, let's go ahead and fix that.
