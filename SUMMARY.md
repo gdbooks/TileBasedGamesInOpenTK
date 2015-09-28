@@ -33,7 +33,7 @@
 * [Ismetric View](Chapter23.md)
    * [Map](Iso_MakeMap.md)
    * [Characters](Iso_MakeCharacters.md)
-   * [X Items & Projectiles](Iso_MakeItems.md)
+   * [Items & Projectiles](Iso_MakeItems.md)
 * [X Mouse To Move](Chapter24.md)
 * [X Iso Mouse](Chapter25.md)
 * [X Iso Scroll](Chapter26.md)
