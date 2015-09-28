@@ -36,3 +36,6 @@ The debug rectangle should be at the position specified by the ```Position``` me
 While we are in the render function, find where we offset the y pixel position of the tile: ```int yTile = (Position.Y - 1) / Game.TILE_H;```, get rid of the -1 offset. Because isometric tiles use a different registration point than cartesian tiles, we no longer need to apply this offset.
 
 **Run the game**, you should now be seeing green item squares on the debug map. So long as your looking at the top down debug map you can even move around and collect the items!
+
+###Adding a shooting sprite
+Shooting already works in the debug view. Go ahead, try it. The thing is, bullets never had a sprite to begin with, so we must provide them with one!
