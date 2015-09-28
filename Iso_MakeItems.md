@@ -45,3 +45,11 @@ Let's start by adding two new variables to **Bullet.cs**. First, an integer, nam
 Update the ```Rect``` getter to return a rectangle at the location of the ```Position``` variable, with a width and height of **source width / 2**. The same logic that dictates the player width / height also dictates the bullet width / height.
 
 Change the constructor to take a third argument, the new argument is an integer and is a sprite sheetreference. In the constructor, set ```spriteSheetHandle``` equal to this new value.
+
+In the ```Render``` function, change ``Rectangle renderRect``` to ```PoinF renderPoint```. If ```Game.ViewWorldSpace``` is true, draw a red rectangle, use the ```Rect``` getter for the actual rectangle object to draw. 
+
+If ```Game.ViewWorldSpace``` is flse, draw the new bullet sprite. The spriteSheet is ```spriteSheetHandle```, the render poisition is ```renderPoint```, scale is 1 and the source rectangle is ```sourceRect```
+
+Trying to compile the game now you will get some compiler errors. This is because we changed the constructor, but not where it gets called. 
+
+In **Game.cs** make a new member integer, let's call it ```spriteSheetInstnace```. In the Initialize function, load the isometric sprite sheet into this. In the Shutdown function, don't forget to unload the image. Finally, where the new bullet is added, pass ```spriteSheetInstnace``` in as the last argument.
