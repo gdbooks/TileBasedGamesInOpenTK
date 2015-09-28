@@ -21,6 +21,16 @@ room2.AddItem(spriteSheets, new Rectangle(412, 256, 16, 15), 30, new Point(4 * T
 
 Let's update the source rectangle, all items are going to use the same image. The new source rectangle is: **Rectangle(20, 198, 44, 49)**. While editing these, go ahead and remove all the **+ 7** parts. 7 is the number we hard coded to put each item in the middle of a tile, now that tile sizes are different, 7 holds no meaning.
 
+Also, this line is not valid:
+
+```cs
+room1.AddItem(spriteSheets, new Rectangle(20, 198, 44, 49), 10, new Point(4 * TILE_W, 2 * TILE_H));
+```
+
+This is because i accidentally changed where one of the obstacles are. instead of the obstacle being at tile 5, 2 it's at 4, 2. Meaning this items is directly inside an obstacle! Update it's position to be at 3, 2.
+
 Go int **Tile.cs** and let's add an if statement to the ```Render``` function to render the debug view of the item. Add an if statement, if ```Game.ViewWorldSpace``` is true we render a debug square, if it's false we render the texture like normal.
 
 The debug rectangle should be at the position specified by the ```Position``` member variable. It should be of color ```Color.DarkSeaGreen```. As for size, both the width and the height are going to be **Source.Width / 2**. The size of the item works the same as the size of the player, so width is sprite width / 2 and height is width.
+
+While we are in the render function, find where we offset the y pixel position of the tile: ```int yTile = (Position.Y - 1) / Game.TILE_H;```, get rid of the -1 offset. Because isometric tiles use a different registration point than cartesian tiles, we no longer need to apply this offset.
