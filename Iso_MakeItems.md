@@ -16,5 +16,7 @@ The source rectangle for an item is defined in the constructor of the ```Item```
 ```cs
 room1.AddItem(spriteSheets, new Rectangle(350, 255, 16, 16), 10, new Point(4 * TILE_W + 7, 2 * TILE_H + 7));
 room1.AddItem(spriteSheets, new Rectangle(381, 256, 13, 15), 20, new Point(5 * TILE_W + 7, 4 * TILE_H + 7));
-room2.AddItem(spriteSheets, new Rectangle(412, 256, 16, 15), 31, new Point(4 * TILE_W + 7, 2 * TILE_H + 7));
+room2.AddItem(spriteSheets, new Rectangle(412, 256, 16, 15), 30, new Point(4 * TILE_W + 7, 2 * TILE_H + 7));
 ```
+
+Let's update the source rectangle, all items are going to use the same image. The new source rectangle is: **Rectangle(20, 198, 44, 49)**
