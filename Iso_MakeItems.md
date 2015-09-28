@@ -53,3 +53,8 @@ If ```Game.ViewWorldSpace``` is flse, draw the new bullet sprite. The spriteShee
 Trying to compile the game now you will get some compiler errors. This is because we changed the constructor, but not where it gets called. 
 
 In **Game.cs** make a new member integer, let's call it ```spriteSheetInstnace```. In the Initialize function, load the isometric sprite sheet into this. In the Shutdown function, don't forget to unload the image. Finally, where the new bullet is added, pass ```spriteSheetInstnace``` in as the last argument.
+
+**Run the game**, everything should more or less work as before. The bullet being shot in overhead view might look a little off center, but that's ok.
+
+###Isometric projection
+Now that both bullets and items work in a 2D verhead view (that is, they work in world space) lets make them work in an isometric view by applying the proper projections and offsets!
