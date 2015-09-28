@@ -22,3 +22,5 @@ room2.AddItem(spriteSheets, new Rectangle(412, 256, 16, 15), 30, new Point(4 * T
 Let's update the source rectangle, all items are going to use the same image. The new source rectangle is: **Rectangle(20, 198, 44, 49)**
 
 Go int **Tile.cs** and let's add an if statement to the ```Render``` function to render the debug view of the item. Add an if statement, if ```Game.ViewWorldSpace``` is true we render a debug square, if it's false we render the texture like normal.
+
+The debug rectangle should be at the position specified by the ```Position``` member variable. It should be of color ```Color.DarkSeaGreen``` and 
