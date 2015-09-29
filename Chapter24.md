@@ -1,1 +1,2 @@
-#Chapter 24 - Mouse To Move
+#Mouse To Move
+Using the mouse to move will involve some rudimentary pathfinding / AI. We're going to implement the simplest path-finding possible. Usually, when doing a mouse to move you would use the A* algorithm to find the shortest path, however i have that lesson planned for later.
