@@ -13,3 +13,9 @@ You can keep hard coding 30, or do this refactor too, it's up to you. For the re
 
 ###Mouse Indicator
 Clicking on tiles is usually obvious enough, but having a mouse indicator is always a nice touch. We're going to figure out which tile the mouse is over and highlight it with a red outline.
+
+In **Game.cs**, make a new ```Point``` variable, call it ```cursorTile```. In Update, we're going to set this. Set it to the tile that the mouse is on. Because our tiles are based on a grid of 30, if a mouse is at 45,67 it's tile would be 2,3.
+
+In the render function, go ahead and draw a red rectangle around the selected tile. Remember to bring the tile from "tile space" back into "world space". We don't have a method to draw a square outline, you will have to do it with 4 lines. Here is what this should look like:
+
+![SELECT](Images/tile_select.png)
