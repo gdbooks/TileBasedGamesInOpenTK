@@ -34,7 +34,7 @@
    * [Map](Iso_MakeMap.md)
    * [Characters](Iso_MakeCharacters.md)
    * [Items & Projectiles](Iso_MakeItems.md)
-* [X Mouse To Move](Chapter24.md)
+* [Mouse To Move](Chapter24.md)
 * [X Iso Mouse](Chapter25.md)
 * [X Iso Scroll](Chapter26.md)
 * [X Slopes](Chapter29.md)
