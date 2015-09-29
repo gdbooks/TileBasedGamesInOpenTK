@@ -19,3 +19,5 @@ In **Game.cs**, make a new ```Point``` variable, call it ```cursorTile```. In Up
 In the render function, go ahead and draw a red rectangle around the selected tile. Remember to bring the tile from "tile space" back into "world space". We don't have a method to draw a square outline, you will have to do it with 4 lines. Here is what this should look like:
 
 ![SELECT](Images/tile_select.png)
+
+**Note:** Right now you probably just divided the mouse position X and Y by tile size, that should work very well for this demo. Be aware however, if you add scrolling, you will have to account for the scrolling offset in the mouse position!
