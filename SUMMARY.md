@@ -35,9 +35,5 @@
    * [Characters](Iso_MakeCharacters.md)
    * [Items & Projectiles](Iso_MakeItems.md)
 * [Mouse To Move](Chapter24.md)
-* [X Iso Mouse](Chapter25.md)
-* [X Iso Scroll](Chapter26.md)
-* [X Slopes](Chapter29.md)
-* [X Hexagons](Chapter30.md)
-* [X More Tiles](Chapter7.md)
+* [More Tiles](Chapter7.md)
 
