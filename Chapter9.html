@@ -8,7 +8,7 @@
         <title>Keys To Move | Introduction</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.3.0">
+        <meta name="generator" content="GitBook 2.4.3">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -19,6 +19,10 @@
         <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
         
     <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
     
     
 
@@ -36,22 +40,23 @@
     <body>
         
         
-    <div class="book" data-level="7" data-basepath="." data-revision="Thu Oct 01 2015 00:09:44 GMT-0700 (Pacific Daylight Time)">
+    <div class="book" data-level="7" data-basepath="." data-revision="Fri Apr 15 2016 09:56:49 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
-    <div class="book-search">
+    <div class="book-search" role="search">
         <input type="text" placeholder="Type to search" class="form-control" />
     </div>
-    <ul class="summary">
-        
-        
-        
-        
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
 
-        
+            
 
-        
+            
     
         <li class="chapter " data-level="0" data-path="index.html">
             
@@ -647,20 +652,21 @@
     
 
 
-        
-        <li class="divider"></li>
-        <li>
-            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-                Published with GitBook
-            </a>
-        </li>
-        
-    </ul>
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
 </div>
 
     <div class="book-body">
         <div class="body-inner">
-            <div class="book-header">
+            <div class="book-header" role="navigation">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
     <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
@@ -744,7 +750,7 @@
     </h1>
 </div>
 
-            <div class="page-wrapper" tabindex="-1">
+            <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                 
                 
@@ -835,7 +841,7 @@ hero.SetSprite(<span class="hljs-string">&quot;Down&quot;</span>);
 </code></pre>
 <p>Next let&apos;s add an <code>Update</code> method to the <code>PlayerCharacter</code> class. It should take one argument, <code>deltaTime</code>.</p>
 <pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>(<span class="hljs-params"><span class="hljs-keyword">float</span> deltaTime</span>) </span>{
-    <span class="hljs-comment">// <span class="hljs-doctag"><span class="hljs-keyword">TODO</span></span>: Add move code</span>
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Add move code</span>
 }
 </code></pre>
 <p>This method is going to be responsible for checking Keyboard Input. When the appropriate keys are pressed it&apos;s going to update the inherited <code>Position</code> property to make the character move (Remember, the character is rendered at <code>Position</code>) Let&apos;s fill in the missing code:</p>

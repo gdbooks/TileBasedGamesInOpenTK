@@ -8,7 +8,7 @@
         <title>Hit The Wall | Introduction</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.3.0">
+        <meta name="generator" content="GitBook 2.4.3">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -19,6 +19,10 @@
         <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
         
     <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
     
     
 
@@ -36,22 +40,23 @@
     <body>
         
         
-    <div class="book" data-level="8" data-basepath="." data-revision="Thu Oct 01 2015 00:09:44 GMT-0700 (Pacific Daylight Time)">
+    <div class="book" data-level="8" data-basepath="." data-revision="Fri Apr 15 2016 09:56:49 GMT-0700 (PDT)">
     
 
 <div class="book-summary">
-    <div class="book-search">
+    <div class="book-search" role="search">
         <input type="text" placeholder="Type to search" class="form-control" />
     </div>
-    <ul class="summary">
-        
-        
-        
-        
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
 
-        
+            
 
-        
+            
     
         <li class="chapter " data-level="0" data-path="index.html">
             
@@ -647,20 +652,21 @@
     
 
 
-        
-        <li class="divider"></li>
-        <li>
-            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-                Published with GitBook
-            </a>
-        </li>
-        
-    </ul>
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
 </div>
 
     <div class="book-body">
         <div class="body-inner">
-            <div class="book-header">
+            <div class="book-header" role="navigation">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
     <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
@@ -744,7 +750,7 @@
     </h1>
 </div>
 
-            <div class="page-wrapper" tabindex="-1">
+            <div class="page-wrapper" tabindex="-1" role="main">
                 <div class="page-inner">
                 
                 
@@ -801,13 +807,13 @@
 <p>We&apos;re going to add some getters for the missing information, remember this is going in the <code>Character</code> class, not <em>PlayerCharacter</em>. You should have enough information to figure these attributes out. Implement these getters:</p>
 <pre><code class="lang-cs"><span class="hljs-keyword">public</span> PointF Center {
     <span class="hljs-keyword">get</span> {
-        <span class="hljs-comment">// <span class="hljs-doctag"><span class="hljs-keyword">TODO</span></span></span>
+        <span class="hljs-comment">// TODO</span>
     }
 }
 
 <span class="hljs-keyword">public</span> Rectangle Rect {
     <span class="hljs-keyword">get</span> {
-        <span class="hljs-comment">// <span class="hljs-doctag"><span class="hljs-keyword">TODO</span></span></span>
+        <span class="hljs-comment">// TODO</span>
     }
 }
 </code></pre>
@@ -890,13 +896,13 @@ Rectangle topLeft = heroChar.Corners[Hero.CORNER_TOP_LEFT]; <span class="hljs-co
 <p>How are these new functions going to be used? Inside of <code>PlayerCharacter</code> we&apos;re going to get the tile for one of the corners of the character. If the tile is NOT walkable, we&apos;re going to get it&apos;s rectangle (again, using one of the corner points). We will try to resolve collisions against this rectangle.</p>
 <p>With that, add these functions to <strong>Game.cs</strong></p>
 <pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> Tile <span class="hljs-title">GetTile</span>(<span class="hljs-params">PointF pixelPoint</span>) </span>{
-    <span class="hljs-comment">// <span class="hljs-doctag"><span class="hljs-keyword">TODO</span></span>: Get the x and y indices of the tile from pixelPoint</span>
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Get the x and y indices of the tile from pixelPoint</span>
     <span class="hljs-comment">// Return the appropriate tile</span>
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>; <span class="hljs-comment">// Just so this compiles</span>
 }
 
 <span class="hljs-function"><span class="hljs-keyword">public</span> Rectangle <span class="hljs-title">GetTileRect</span>(<span class="hljs-params">PointF pixelPoint</span>) </span>{
-    <span class="hljs-comment">// <span class="hljs-doctag"><span class="hljs-keyword">TODO</span></span>: Convert pixel point into a Rectangle that is on the tile grid</span>
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Convert pixel point into a Rectangle that is on the tile grid</span>
     <span class="hljs-comment">// Hint, xTile * tileSize = Grid X Position</span>
     <span class="hljs-comment">// return the resulting rectangle</span>
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Rectangle(); <span class="hljs-comment">// Just so this compiles</span>
